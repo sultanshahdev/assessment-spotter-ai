@@ -1,0 +1,193 @@
+{
+  "routes": [
+    {
+      "summary": {
+        "lengthInMeters": 160934.4,
+        "travelTimeInSeconds": 1000
+      },
+      "legs": [
+        {
+          "points": [
+            {
+              "latitude": 0,
+              "longitude": 0
+            },
+            {
+              "latitude": 0,
+              "longitude": 0.1
+            },
+            {
+              "latitude": 0,
+              "longitude": 2
+            },
+            {
+              "latitude": 1,
+              "longitude": 3
+            },
+            {
+              "latitude": 0,
+              "longitude": 4
+            }
+          ]
+        }
+      ],
+      "progress": [
+        {
+          "pointIndex": 0,
+          "distanceInMeters": 0,
+          "travelTimeInSeconds": 0
+        },
+        {
+          "pointIndex": 2,
+          "distanceInMeters": 80467.2,
+          "travelTimeInSeconds": 800
+        },
+        {
+          "pointIndex": 4,
+          "distanceInMeters": 160934.4,
+          "travelTimeInSeconds": 1000
+        }
+      ],
+      "sections": [
+        {
+          "startPointIndex": 0,
+          "endPointIndex": 1,
+          "sectionType": "TRAVEL_MODE",
+          "travelMode": "other"
+        },
+        {
+          "startPointIndex": 1,
+          "endPointIndex": 4,
+          "sectionType": "TRAVEL_MODE",
+          "travelMode": "truck"
+        }
+      ]
+    },
+    {
+      "summary": {
+        "lengthInMeters": 161934.4,
+        "travelTimeInSeconds": 1100
+      },
+      "legs": [
+        {
+          "points": [
+            {
+              "latitude": 0,
+              "longitude": 0
+            },
+            {
+              "latitude": 0,
+              "longitude": 0.1
+            },
+            {
+              "latitude": 0,
+              "longitude": 2
+            },
+            {
+              "latitude": 2,
+              "longitude": 3
+            },
+            {
+              "latitude": 0,
+              "longitude": 4
+            }
+          ]
+        }
+      ],
+      "progress": [
+        {
+          "pointIndex": 0,
+          "distanceInMeters": 0,
+          "travelTimeInSeconds": 0
+        },
+        {
+          "pointIndex": 2,
+          "distanceInMeters": 80467.2,
+          "travelTimeInSeconds": 800
+        },
+        {
+          "pointIndex": 4,
+          "distanceInMeters": 161934.4,
+          "travelTimeInSeconds": 1100
+        }
+      ],
+      "sections": [
+        {
+          "startPointIndex": 0,
+          "endPointIndex": 1,
+          "sectionType": "TRAVEL_MODE",
+          "travelMode": "other"
+        },
+        {
+          "startPointIndex": 1,
+          "endPointIndex": 4,
+          "sectionType": "TRAVEL_MODE",
+          "travelMode": "truck"
+        }
+      ]
+    },
+    {
+      "summary": {
+        "lengthInMeters": 162934.4,
+        "travelTimeInSeconds": 1200
+      },
+      "legs": [
+        {
+          "points": [
+            {
+              "latitude": 0,
+              "longitude": 0
+            },
+            {
+              "latitude": 0,
+              "longitude": 0.1
+            },
+            {
+              "latitude": 0,
+              "longitude": 2
+            },
+            {
+              "latitude": 3,
+              "longitude": 3
+            },
+            {
+              "latitude": 0,
+              "longitude": 4
+            }
+          ]
+        }
+      ],
+      "progress": [
+        {
+          "pointIndex": 0,
+          "distanceInMeters": 0,
+          "travelTimeInSeconds": 0
+        },
+        {
+          "pointIndex": 2,
+          "distanceInMeters": 80467.2,
+          "travelTimeInSeconds": 800
+        },
+        {
+          "pointIndex": 4,
+          "distanceInMeters": 162934.4,
+          "travelTimeInSeconds": 1200
+        }
+      ],
+      "sections": [
+        {
+          "startPointIndex": 0,
+          "endPointIndex": 1,
+          "sectionType": "TRAVEL_MODE",
+          "travelMode": "other"
+        },
+        {
+          "startPointIndex": 1,
+          "endPointIndex": 4,
+          "sectionType": "TRAVEL_MODE",
+          "travelMode": "truck"
+        }
+      ]
+    }
+  ]
+}

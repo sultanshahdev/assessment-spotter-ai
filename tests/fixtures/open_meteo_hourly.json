@@ -1,0 +1,49 @@
+{
+  "latitude": 41.8781,
+  "longitude": -87.6298,
+  "utc_offset_seconds": 0,
+  "hourly_units": {
+    "time": "unixtime",
+    "wind_speed_10m": "mp/h",
+    "rain": "inch",
+    "showers": "inch",
+    "snowfall": "inch"
+  },
+  "hourly": {
+    "time": [
+      1793872800,
+      1793876400,
+      1793880000,
+      1793883600,
+      1793887200
+    ],
+    "wind_speed_10m": [
+      0,
+      30,
+      40,
+      48,
+      60
+    ],
+    "rain": [
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1
+    ],
+    "showers": [
+      0.2,
+      0.2,
+      0.2,
+      0.2,
+      0.2
+    ],
+    "snowfall": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
+  }
+}

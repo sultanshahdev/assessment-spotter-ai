@@ -1,0 +1,212 @@
+{
+  "task": "P03",
+  "journey": "Chicago\u2013St. Louis",
+  "credential_source": "environment",
+  "executed_at_utc": "2026-11-05T15:21:54.515478+00:00",
+  "endpoint": "https://api.tomtom.com/routing/1/calculateRoute/{origin}:{destination}/json",
+  "extendedRouteRepresentation": [
+    "distance",
+    "travelTime"
+  ],
+  "http_status": 200,
+  "routes": [
+    {
+      "geometry_points": 4104,
+      "leg_point_counts": [
+        4104
+      ],
+      "progress_location": "routes[].progress",
+      "leg_progress_present": [
+        false
+      ],
+      "progress_entries": 53,
+      "progress_fields": [
+        "distanceInMeters",
+        "pointIndex",
+        "travelTimeInSeconds"
+      ],
+      "first": {
+        "pointIndex": 0,
+        "travelTimeInSeconds": 0,
+        "distanceInMeters": 0
+      },
+      "last": {
+        "pointIndex": 4103,
+        "travelTimeInSeconds": 15864,
+        "distanceInMeters": 477629
+      },
+      "sample": [
+        {
+          "pointIndex": 0,
+          "travelTimeInSeconds": 0,
+          "distanceInMeters": 0
+        },
+        {
+          "pointIndex": 5,
+          "travelTimeInSeconds": 63,
+          "distanceInMeters": 186
+        },
+        {
+          "pointIndex": 8,
+          "travelTimeInSeconds": 80,
+          "distanceInMeters": 243
+        }
+      ],
+      "indices_strictly_increasing": true,
+      "indices_in_range": true,
+      "distance_nondecreasing": true,
+      "time_nondecreasing": true,
+      "endpoints_present": true,
+      "summary_meters": 477629,
+      "summary_seconds": 15864,
+      "final_distance_delta": 0,
+      "final_time_delta": 0,
+      "non_truck_sections": []
+    },
+    {
+      "geometry_points": 4117,
+      "leg_point_counts": [
+        4117
+      ],
+      "progress_location": "routes[].progress",
+      "leg_progress_present": [
+        false
+      ],
+      "progress_entries": 63,
+      "progress_fields": [
+        "distanceInMeters",
+        "pointIndex",
+        "travelTimeInSeconds"
+      ],
+      "first": {
+        "pointIndex": 0,
+        "travelTimeInSeconds": 0,
+        "distanceInMeters": 0
+      },
+      "last": {
+        "pointIndex": 4116,
+        "travelTimeInSeconds": 16547,
+        "distanceInMeters": 501197
+      },
+      "sample": [
+        {
+          "pointIndex": 0,
+          "travelTimeInSeconds": 0,
+          "distanceInMeters": 0
+        },
+        {
+          "pointIndex": 5,
+          "travelTimeInSeconds": 63,
+          "distanceInMeters": 186
+        },
+        {
+          "pointIndex": 8,
+          "travelTimeInSeconds": 80,
+          "distanceInMeters": 243
+        }
+      ],
+      "indices_strictly_increasing": true,
+      "indices_in_range": true,
+      "distance_nondecreasing": true,
+      "time_nondecreasing": true,
+      "endpoints_present": true,
+      "summary_meters": 501197,
+      "summary_seconds": 16547,
+      "final_distance_delta": 0,
+      "final_time_delta": 0,
+      "non_truck_sections": []
+    },
+    {
+      "geometry_points": 4449,
+      "leg_point_counts": [
+        4449
+      ],
+      "progress_location": "routes[].progress",
+      "leg_progress_present": [
+        false
+      ],
+      "progress_entries": 70,
+      "progress_fields": [
+        "distanceInMeters",
+        "pointIndex",
+        "travelTimeInSeconds"
+      ],
+      "first": {
+        "pointIndex": 0,
+        "travelTimeInSeconds": 0,
+        "distanceInMeters": 0
+      },
+      "last": {
+        "pointIndex": 4448,
+        "travelTimeInSeconds": 18334,
+        "distanceInMeters": 541401
+      },
+      "sample": [
+        {
+          "pointIndex": 0,
+          "travelTimeInSeconds": 0,
+          "distanceInMeters": 0
+        },
+        {
+          "pointIndex": 5,
+          "travelTimeInSeconds": 63,
+          "distanceInMeters": 186
+        },
+        {
+          "pointIndex": 8,
+          "travelTimeInSeconds": 80,
+          "distanceInMeters": 243
+        }
+      ],
+      "indices_strictly_increasing": true,
+      "indices_in_range": true,
+      "distance_nondecreasing": true,
+      "time_nondecreasing": true,
+      "endpoints_present": true,
+      "summary_meters": 541401,
+      "summary_seconds": 18334,
+      "final_distance_delta": 0,
+      "final_time_delta": 0,
+      "non_truck_sections": []
+    }
+  ],
+  "route_count": 3,
+  "engine_verification": [
+    {
+      "route_id": "tomtom-2baf49c814b5399ccb8f7951725c30f23ad3ffa0a7cfb437b298a7fe95a422e0",
+      "checkpoints": 13,
+      "timing_source": "provider_progress_interpolated",
+      "final_meters": 477629.0,
+      "final_seconds": 15864.0,
+      "final_eta_utc": "2026-11-05T19:46:18.515478+00:00",
+      "chronological": true,
+      "warning_codes": [
+        "TRUCK_PROFILE_UNSPECIFIED"
+      ]
+    },
+    {
+      "route_id": "tomtom-4a7b965812cf3ff7e8b2a460a91979786805864293bf340ae53afa8bae1bf1f7",
+      "checkpoints": 14,
+      "timing_source": "provider_progress_interpolated",
+      "final_meters": 501197.0,
+      "final_seconds": 16547.0,
+      "final_eta_utc": "2026-11-05T19:57:41.515478+00:00",
+      "chronological": true,
+      "warning_codes": [
+        "TRUCK_PROFILE_UNSPECIFIED"
+      ]
+    },
+    {
+      "route_id": "tomtom-a2b1af2fdec0aa63fd3acaf7342098456057bfa3110c387a1882dd2ea1864133",
+      "checkpoints": 15,
+      "timing_source": "provider_progress_interpolated",
+      "final_meters": 541401.0,
+      "final_seconds": 18334.0,
+      "final_eta_utc": "2026-11-05T20:27:28.515478+00:00",
+      "chronological": true,
+      "warning_codes": [
+        "TRUCK_PROFILE_UNSPECIFIED"
+      ]
+    }
+  ]
+}

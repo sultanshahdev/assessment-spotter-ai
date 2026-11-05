@@ -1,0 +1,490 @@
+{
+  "provider": "TomTom",
+  "api_version": 1,
+  "endpoint": "https://api.tomtom.com/routing/1/calculateRoute/{origin}:{destination}/json",
+  "executed_at_utc": "2026-11-05T15:04:58.626590+00:00",
+  "credential_source": "environment",
+  "parameters": {
+    "travelMode": "truck",
+    "vehicleCommercial": "true",
+    "maxAlternatives": 2,
+    "alternativeType": "anyRoute",
+    "routeType": "fastest",
+    "traffic": "true",
+    "routeRepresentation": "polyline",
+    "computeTravelTimeFor": "all",
+    "report": "effectiveSettings",
+    "sectionType": "travelMode"
+  },
+  "vehicle_profile": "default dimensions/weights; commercial truck",
+  "journeys": [
+    {
+      "journey": "Dallas\u2013Houston",
+      "http_status": 200,
+      "route_count": 3,
+      "distinct_geometries": 3,
+      "routes": [
+        {
+          "meters": 383791,
+          "seconds": 12229,
+          "departure_time": "2026-11-05T09:04:59-06:00",
+          "arrival_time": "2026-11-05T12:28:48-06:00",
+          "traffic_delay_seconds": 0,
+          "timing_fields": [
+            "arrivalTime",
+            "departureTime",
+            "historicTrafficTravelTimeInSeconds",
+            "liveTrafficIncidentsTravelTimeInSeconds",
+            "noTrafficTravelTimeInSeconds",
+            "trafficDelayInSeconds",
+            "travelTimeInSeconds"
+          ],
+          "geometry_present": true,
+          "point_count": 3187,
+          "geometry_hash": "cbbd268733e99161c35a259991805303e39a513426473a1668312fefa3fb28f2",
+          "non_truck_sections": [
+            {
+              "startPointIndex": 0,
+              "endPointIndex": 2,
+              "sectionType": "TRAVEL_MODE",
+              "travelMode": "other"
+            }
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ]
+        },
+        {
+          "meters": 440615,
+          "seconds": 15565,
+          "departure_time": "2026-11-05T09:04:59-06:00",
+          "arrival_time": "2026-11-05T13:24:24-06:00",
+          "traffic_delay_seconds": 94,
+          "timing_fields": [
+            "arrivalTime",
+            "departureTime",
+            "deviationTime",
+            "historicTrafficTravelTimeInSeconds",
+            "liveTrafficIncidentsTravelTimeInSeconds",
+            "noTrafficTravelTimeInSeconds",
+            "trafficDelayInSeconds",
+            "travelTimeInSeconds"
+          ],
+          "geometry_present": true,
+          "point_count": 5035,
+          "geometry_hash": "ff79453b671a88432acdc86794946e18fc3843ed058030b9aff644fc7e5ffb6c",
+          "non_truck_sections": [
+            {
+              "startPointIndex": 0,
+              "endPointIndex": 2,
+              "sectionType": "TRAVEL_MODE",
+              "travelMode": "other"
+            }
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ]
+        },
+        {
+          "meters": 472525,
+          "seconds": 19483,
+          "departure_time": "2026-11-05T09:04:59-06:00",
+          "arrival_time": "2026-11-05T14:29:42-06:00",
+          "traffic_delay_seconds": 231,
+          "timing_fields": [
+            "arrivalTime",
+            "departureTime",
+            "deviationTime",
+            "historicTrafficTravelTimeInSeconds",
+            "liveTrafficIncidentsTravelTimeInSeconds",
+            "noTrafficTravelTimeInSeconds",
+            "trafficDelayInSeconds",
+            "travelTimeInSeconds"
+          ],
+          "geometry_present": true,
+          "point_count": 5893,
+          "geometry_hash": "275f26b8b6112565aa3dd3efc6facbf0481339c7e333ed677e9949c4aa63fb43",
+          "non_truck_sections": [
+            {
+              "startPointIndex": 0,
+              "endPointIndex": 2,
+              "sectionType": "TRAVEL_MODE",
+              "travelMode": "other"
+            }
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ]
+        }
+      ],
+      "pairwise_segment_comparison": [
+        {
+          "routes": [
+            1,
+            2
+          ],
+          "exact_shared_segment_meters": 6153,
+          "nonshared_meters": [
+            378342,
+            434976
+          ]
+        },
+        {
+          "routes": [
+            1,
+            3
+          ],
+          "exact_shared_segment_meters": 5937,
+          "nonshared_meters": [
+            378558,
+            466979
+          ]
+        },
+        {
+          "routes": [
+            2,
+            3
+          ],
+          "exact_shared_segment_meters": 1099,
+          "nonshared_meters": [
+            440030,
+            471818
+          ]
+        }
+      ],
+      "effective_settings": [
+        {
+          "key": "computeTravelTimeFor",
+          "value": "all"
+        },
+        {
+          "key": "maxAlternatives",
+          "value": "2"
+        },
+        {
+          "key": "routeRepresentation",
+          "value": "polyline"
+        },
+        {
+          "key": "routeType",
+          "value": "fastest"
+        },
+        {
+          "key": "sectionType",
+          "value": "travelMode"
+        },
+        {
+          "key": "traffic",
+          "value": "true"
+        },
+        {
+          "key": "travelMode",
+          "value": "truck"
+        },
+        {
+          "key": "vehicleCommercial",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "journey": "Chicago\u2013St Louis",
+      "http_status": 200,
+      "route_count": 3,
+      "distinct_geometries": 3,
+      "routes": [
+        {
+          "meters": 477629,
+          "seconds": 16284,
+          "departure_time": "2026-11-05T09:04:59-06:00",
+          "arrival_time": "2026-11-05T13:36:23-06:00",
+          "traffic_delay_seconds": 673,
+          "timing_fields": [
+            "arrivalTime",
+            "departureTime",
+            "historicTrafficTravelTimeInSeconds",
+            "liveTrafficIncidentsTravelTimeInSeconds",
+            "noTrafficTravelTimeInSeconds",
+            "trafficDelayInSeconds",
+            "travelTimeInSeconds"
+          ],
+          "geometry_present": true,
+          "point_count": 4104,
+          "geometry_hash": "047c74285310439abe2d5ea1491b5543702c5a0c232a32f8fbbde2279ad6ee75",
+          "non_truck_sections": [],
+          "travel_modes": [
+            "truck"
+          ]
+        },
+        {
+          "meters": 501073,
+          "seconds": 16461,
+          "departure_time": "2026-11-05T09:04:59-06:00",
+          "arrival_time": "2026-11-05T13:39:20-06:00",
+          "traffic_delay_seconds": 0,
+          "timing_fields": [
+            "arrivalTime",
+            "departureTime",
+            "deviationTime",
+            "historicTrafficTravelTimeInSeconds",
+            "liveTrafficIncidentsTravelTimeInSeconds",
+            "noTrafficTravelTimeInSeconds",
+            "trafficDelayInSeconds",
+            "travelTimeInSeconds"
+          ],
+          "geometry_present": true,
+          "point_count": 4132,
+          "geometry_hash": "45f26da083e7404e438a186968283ff2cd02b3feb3d3d9a18f806c7bf0675fe3",
+          "non_truck_sections": [],
+          "travel_modes": [
+            "truck"
+          ]
+        },
+        {
+          "meters": 551844,
+          "seconds": 18707,
+          "departure_time": "2026-11-05T09:04:59-06:00",
+          "arrival_time": "2026-11-05T14:16:46-06:00",
+          "traffic_delay_seconds": 43,
+          "timing_fields": [
+            "arrivalTime",
+            "departureTime",
+            "deviationTime",
+            "historicTrafficTravelTimeInSeconds",
+            "liveTrafficIncidentsTravelTimeInSeconds",
+            "noTrafficTravelTimeInSeconds",
+            "trafficDelayInSeconds",
+            "travelTimeInSeconds"
+          ],
+          "geometry_present": true,
+          "point_count": 4727,
+          "geometry_hash": "2b7b511ef2d8f431b048019180b526189f871d0a3102ad9e2601b53edffa3962",
+          "non_truck_sections": [],
+          "travel_modes": [
+            "truck"
+          ]
+        }
+      ],
+      "pairwise_segment_comparison": [
+        {
+          "routes": [
+            1,
+            2
+          ],
+          "exact_shared_segment_meters": 35931,
+          "nonshared_meters": [
+            441722,
+            465124
+          ]
+        },
+        {
+          "routes": [
+            1,
+            3
+          ],
+          "exact_shared_segment_meters": 166639,
+          "nonshared_meters": [
+            311014,
+            385126
+          ]
+        },
+        {
+          "routes": [
+            2,
+            3
+          ],
+          "exact_shared_segment_meters": 66329,
+          "nonshared_meters": [
+            434726,
+            485436
+          ]
+        }
+      ],
+      "effective_settings": [
+        {
+          "key": "computeTravelTimeFor",
+          "value": "all"
+        },
+        {
+          "key": "maxAlternatives",
+          "value": "2"
+        },
+        {
+          "key": "routeRepresentation",
+          "value": "polyline"
+        },
+        {
+          "key": "routeType",
+          "value": "fastest"
+        },
+        {
+          "key": "sectionType",
+          "value": "travelMode"
+        },
+        {
+          "key": "traffic",
+          "value": "true"
+        },
+        {
+          "key": "travelMode",
+          "value": "truck"
+        },
+        {
+          "key": "vehicleCommercial",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "journey": "Atlanta\u2013Nashville",
+      "http_status": 200,
+      "route_count": 3,
+      "distinct_geometries": 3,
+      "routes": [
+        {
+          "meters": 402796,
+          "seconds": 13768,
+          "departure_time": "2026-11-05T10:04:59-05:00",
+          "arrival_time": "2026-11-05T12:54:27-06:00",
+          "traffic_delay_seconds": 148,
+          "timing_fields": [
+            "arrivalTime",
+            "departureTime",
+            "historicTrafficTravelTimeInSeconds",
+            "liveTrafficIncidentsTravelTimeInSeconds",
+            "noTrafficTravelTimeInSeconds",
+            "trafficDelayInSeconds",
+            "travelTimeInSeconds"
+          ],
+          "geometry_present": true,
+          "point_count": 4353,
+          "geometry_hash": "807f5dc7bfac7df58a9849b141416ceb8d3563a01993f945a6ecd8516a43687d",
+          "non_truck_sections": [],
+          "travel_modes": [
+            "truck"
+          ]
+        },
+        {
+          "meters": 543389,
+          "seconds": 17708,
+          "departure_time": "2026-11-05T10:04:59-05:00",
+          "arrival_time": "2026-11-05T14:00:07-06:00",
+          "traffic_delay_seconds": 0,
+          "timing_fields": [
+            "arrivalTime",
+            "departureTime",
+            "deviationTime",
+            "historicTrafficTravelTimeInSeconds",
+            "liveTrafficIncidentsTravelTimeInSeconds",
+            "noTrafficTravelTimeInSeconds",
+            "trafficDelayInSeconds",
+            "travelTimeInSeconds"
+          ],
+          "geometry_present": true,
+          "point_count": 5044,
+          "geometry_hash": "efe56f31522a05c6ea0060af19e27a9ac6ba3238a5d203325c816518ba36cfa5",
+          "non_truck_sections": [],
+          "travel_modes": [
+            "truck"
+          ]
+        },
+        {
+          "meters": 464167,
+          "seconds": 17159,
+          "departure_time": "2026-11-05T10:04:59-05:00",
+          "arrival_time": "2026-11-05T13:50:58-06:00",
+          "traffic_delay_seconds": 433,
+          "timing_fields": [
+            "arrivalTime",
+            "departureTime",
+            "deviationTime",
+            "historicTrafficTravelTimeInSeconds",
+            "liveTrafficIncidentsTravelTimeInSeconds",
+            "noTrafficTravelTimeInSeconds",
+            "trafficDelayInSeconds",
+            "travelTimeInSeconds"
+          ],
+          "geometry_present": true,
+          "point_count": 5326,
+          "geometry_hash": "65a1e0fe6fefae10fcda578a9e22a7bdaebe01f60ae84752c9477a7bea8e3f00",
+          "non_truck_sections": [],
+          "travel_modes": [
+            "truck"
+          ]
+        }
+      ],
+      "pairwise_segment_comparison": [
+        {
+          "routes": [
+            1,
+            2
+          ],
+          "exact_shared_segment_meters": 5980,
+          "nonshared_meters": [
+            397001,
+            537596
+          ]
+        },
+        {
+          "routes": [
+            1,
+            3
+          ],
+          "exact_shared_segment_meters": 175993,
+          "nonshared_meters": [
+            226988,
+            288275
+          ]
+        },
+        {
+          "routes": [
+            2,
+            3
+          ],
+          "exact_shared_segment_meters": 169,
+          "nonshared_meters": [
+            543407,
+            464100
+          ]
+        }
+      ],
+      "effective_settings": [
+        {
+          "key": "computeTravelTimeFor",
+          "value": "all"
+        },
+        {
+          "key": "maxAlternatives",
+          "value": "2"
+        },
+        {
+          "key": "routeRepresentation",
+          "value": "polyline"
+        },
+        {
+          "key": "routeType",
+          "value": "fastest"
+        },
+        {
+          "key": "sectionType",
+          "value": "travelMode"
+        },
+        {
+          "key": "traffic",
+          "value": "true"
+        },
+        {
+          "key": "travelMode",
+          "value": "truck"
+        },
+        {
+          "key": "vehicleCommercial",
+          "value": "true"
+        }
+      ]
+    }
+  ]
+}

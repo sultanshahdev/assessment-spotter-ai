@@ -1,0 +1,140 @@
+{
+  "task": "P04",
+  "journey": "Chicago\u2013St. Louis",
+  "credential_source": "environment",
+  "departure_utc": "2026-11-05T15:58:55.174949+00:00",
+  "sampling_interval_miles": 25,
+  "load_weight_lb": 30000,
+  "tomtom_http_status": 200,
+  "route_count": 3,
+  "checkpoint_counts": [
+    13,
+    14,
+    15
+  ],
+  "forecast_locations_requested": 37,
+  "weather_api_calls": 4,
+  "weather_batches": 4,
+  "weather_http_statuses": [
+    200,
+    200,
+    200,
+    200
+  ],
+  "weather_units_observed": [
+    {
+      "rain": "inch",
+      "showers": "inch",
+      "snowfall": "inch",
+      "time": "unixtime",
+      "wind_speed_10m": "mp/h"
+    }
+  ],
+  "request_start_utc": "2026-11-05T15:00:00+00:00",
+  "request_end_utc": "2026-11-05T22:00:00+00:00",
+  "routes": [
+    {
+      "route_id": "tomtom-2baf49c814b5399ccb8f7951725c30f23ad3ffa0a7cfb437b298a7fe95a422e0",
+      "total_miles": 296.78490117712556,
+      "duration_seconds": 15674.0,
+      "exposure": {
+        "low_miles": 296.78490117712556,
+        "moderate_miles": 0.0,
+        "high_miles": 0.0,
+        "severe_miles": 0.0,
+        "no_travel_miles": 0.0,
+        "unknown_miles": 0.0,
+        "assessed_miles": 296.78490117712556,
+        "coverage_fraction": 1.0,
+        "average_risk": 0.0,
+        "has_confirmed_no_travel": false,
+        "has_confirmed_severe": false
+      },
+      "weather_warning_codes": [],
+      "routing_warning_codes": [
+        "TRUCK_PROFILE_UNSPECIFIED"
+      ],
+      "timing_warning_codes": [
+        "ETA_PROVIDER_INTERPOLATED"
+      ],
+      "first_checkpoint": {
+        "eta_utc": "2026-11-05T15:58:55.174949+00:00",
+        "weather": {
+          "wind_speed_mph": "10.30900347930555555555555556",
+          "rain_inches_per_hour": "0.0",
+          "snow_inches_per_hour": "0.0"
+        },
+        "status": "complete"
+      }
+    },
+    {
+      "route_id": "tomtom-4a7b965812cf3ff7e8b2a460a91979786805864293bf340ae53afa8bae1bf1f7",
+      "total_miles": 311.42937743577505,
+      "duration_seconds": 16541.0,
+      "exposure": {
+        "low_miles": 311.42937743577505,
+        "moderate_miles": 0.0,
+        "high_miles": 0.0,
+        "severe_miles": 0.0,
+        "no_travel_miles": 0.0,
+        "unknown_miles": 0.0,
+        "assessed_miles": 311.42937743577505,
+        "coverage_fraction": 1.0,
+        "average_risk": 0.0,
+        "has_confirmed_no_travel": false,
+        "has_confirmed_severe": false
+      },
+      "weather_warning_codes": [],
+      "routing_warning_codes": [
+        "TRUCK_PROFILE_UNSPECIFIED"
+      ],
+      "timing_warning_codes": [
+        "ETA_PROVIDER_INTERPOLATED"
+      ],
+      "first_checkpoint": {
+        "eta_utc": "2026-11-05T15:58:55.174949+00:00",
+        "weather": {
+          "wind_speed_mph": "10.30900347930555555555555556",
+          "rain_inches_per_hour": "0.0",
+          "snow_inches_per_hour": "0.0"
+        },
+        "status": "complete"
+      }
+    },
+    {
+      "route_id": "tomtom-a2b1af2fdec0aa63fd3acaf7342098456057bfa3110c387a1882dd2ea1864133",
+      "total_miles": 336.4109848484848,
+      "duration_seconds": 18165.0,
+      "exposure": {
+        "low_miles": 336.4109848484848,
+        "moderate_miles": 0.0,
+        "high_miles": 0.0,
+        "severe_miles": 0.0,
+        "no_travel_miles": 0.0,
+        "unknown_miles": 0.0,
+        "assessed_miles": 336.4109848484848,
+        "coverage_fraction": 1.0,
+        "average_risk": 0.0,
+        "has_confirmed_no_travel": false,
+        "has_confirmed_severe": false
+      },
+      "weather_warning_codes": [],
+      "routing_warning_codes": [
+        "TRUCK_PROFILE_UNSPECIFIED"
+      ],
+      "timing_warning_codes": [
+        "ETA_PROVIDER_INTERPOLATED"
+      ],
+      "first_checkpoint": {
+        "eta_utc": "2026-11-05T15:58:55.174949+00:00",
+        "weather": {
+          "wind_speed_mph": "10.30900347930555555555555556",
+          "rain_inches_per_hour": "0.0",
+          "snow_inches_per_hour": "0.0"
+        },
+        "status": "complete"
+      }
+    }
+  ],
+  "status": "completed"
+}
