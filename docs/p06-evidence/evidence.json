@@ -1,0 +1,20 @@
+{
+  "contract": "design-contract.md: operational trip workspace, progressively disclosed comparison, 1440x900 desktop and 390x844 mobile, backend-authoritative safety and recommendation",
+  "targetViewports": ["1440x900", "390x844"],
+  "accessibility": {"status": "pass", "evidence": "Playwright axe WCAG2 A/AA scans passed for initial desktop and final mobile results. Keyboard Tab moved from Origin to Destination; labels, pressed route buttons and native checkpoint selector exercised. Visible focus styles and reduced-motion mode inspected. Earlier eyebrow contrast failures corrected."},
+  "responsive": {"status": "pass", "evidence": "Inspected desktop-results.png, desktop-checkpoint.png and mobile-results.png. Desktop recommendation is visible beside a larger map; mobile stacks usable controls, cards and 470px map. Playwright measured body scrollWidth exactly 390 at a 390px viewport; map resizes/refits without remounting."},
+  "contentStates": {
+    "empty": {"status": "pass", "evidence": "desktop-initial.png and mobile-initial.png show labeled form and real basemap, with no fake route cards."},
+    "loading": {"status": "pass", "evidence": "desktop-loading.png shows disabled Analyze action, explicit forecast waiting message and cancel. Unit tests verify duplicate-submit lock and cancellation."},
+    "error": {"status": "pass", "evidence": "desktop-error.png shows sanitized structured provider error with retained inputs and retry; desktop-map-error.png covers real MapLibre style failure and recovery. Malformed geometry was rejected before map rendering."},
+    "partial": {"status": "pass", "evidence": "desktop-partial.png and mobile-partial.png use clearly documented synthetic fixtures for confirmed No Travel plus incomplete weather, no recommendation, unknown mileage and checkpoint details; no invented live hazards."},
+    "success": {"status": "pass", "evidence": "Real browser POST through Vite reached Django and returned 3 genuine truck alternatives. desktop-results.png shows provider geometry and backend recommendation; checkpoint circle click opened actual weather. Only one analysis request occurred while switching routes/checkpoints."},
+    "permission": {"status": "not-applicable", "reason": "No login, geolocation, permission prompt or credential input exists in this scope."}
+  },
+  "renderedEvidence": [
+    {"viewport": "1440x900", "artifact": "desktop-results.png", "observation": "Real basemap and three real road routes; selected route and severity checkpoints are distinct. Recommendation and comparison remain in the first viewport."},
+    {"viewport": "1440x900", "artifact": "desktop-checkpoint.png", "observation": "Route 2 selection and compact forecast panel with actual arrival, units, completeness and risk explanations."},
+    {"viewport": "390x844", "artifact": "mobile-results.png", "observation": "Stacked cards and map without horizontal overflow; native checkpoint selection and bounded scrollable weather panel remain usable."},
+    {"viewport": "390x844", "artifact": "mobile-partial.png", "observation": "Synthetic partial/no-travel fixture retains safety warnings and absence of a recommendation in the mobile layout."}
+  ]
+}

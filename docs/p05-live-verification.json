@@ -1,0 +1,360 @@
+{
+  "task": "P05.1",
+  "status": "completed",
+  "http_status": 200,
+  "health": {
+    "http_status": 200,
+    "body": {
+      "status": "ok",
+      "service": "spotter-routing"
+    }
+  },
+  "request": {
+    "origin": {
+      "position": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      },
+      "label": "41.8781, -87.6298"
+    },
+    "destination": {
+      "position": {
+        "latitude": 38.627,
+        "longitude": -90.1994
+      },
+      "label": "38.627, -90.1994"
+    },
+    "departure_time": "2026-11-05T18:20:01.334473+00:00",
+    "load_weight_lb": 30000.0,
+    "checkpoint_interval_miles": 25,
+    "actual_alternatives": 3
+  },
+  "duration_seconds": 7.551355707999846,
+  "alternatives_received": 3,
+  "forecast_complete": true,
+  "weather_http_calls": 4,
+  "recommendation": {
+    "recommended_route_id": "tomtom-81eb2e44f11fe833ceb38dcec4952081fe08402e739e4ac63513f441bf9ff546",
+    "fully_eligible_recommendation": true,
+    "explanation": "First eligible route by Severe miles, High miles, average risk, then duration; provider order breaks ties.",
+    "notices": [
+      "Default truck profile; cargo load is not gross vehicle weight. Routes are not vehicle-certified."
+    ]
+  },
+  "routes": [
+    {
+      "route_id": "tomtom-81eb2e44f11fe833ceb38dcec4952081fe08402e739e4ac63513f441bf9ff546",
+      "geometry_points": 4089,
+      "checkpoints": 13,
+      "first_eta": "2026-11-05T18:20:01.334473+00:00",
+      "last_eta": "2026-11-05T22:46:49.334473+00:00",
+      "distance_miles": 296.861951204963,
+      "duration_seconds": 16008.0,
+      "exposure": {
+        "low_miles": 296.861951204963,
+        "moderate_miles": 0.0,
+        "high_miles": 0.0,
+        "severe_miles": 0.0,
+        "no_travel_miles": 0.0,
+        "unknown_miles": 0.0,
+        "assessed_miles": 296.861951204963,
+        "coverage_fraction": 1.0,
+        "average_risk": 0.0,
+        "has_confirmed_no_travel": false,
+        "has_confirmed_severe": false
+      },
+      "eligibility": {
+        "status": "ELIGIBLE",
+        "reasons": [],
+        "fully_verified": true
+      },
+      "ranking_position": 1,
+      "timing_sources": [
+        "provider_progress_interpolated"
+      ],
+      "risk_severities": [
+        0
+      ],
+      "first_forecast": {
+        "eta_utc": "2026-11-05T18:20:01.334473+00:00",
+        "measurement": {
+          "wind_speed_mph": 8.766073567555555,
+          "rain_inches_per_hour": 0.0,
+          "snow_inches_per_hour": 0.0
+        },
+        "wind_timestamps_utc": [
+          "2026-11-05T18:00:00+00:00",
+          "2026-11-05T19:00:00+00:00"
+        ],
+        "accumulation_timestamp_utc": "2026-11-05T19:00:00+00:00",
+        "wind_method": "linear_hourly",
+        "accumulation_method": "preceding_hour_(start,end]",
+        "grid_position": {
+          "latitude": 41.879498,
+          "longitude": -87.64974
+        },
+        "source_units": [
+          [
+            "rain",
+            "inch"
+          ],
+          [
+            "showers",
+            "inch"
+          ],
+          [
+            "snowfall",
+            "inch"
+          ],
+          [
+            "time",
+            "unixtime"
+          ],
+          [
+            "wind_speed_10m",
+            "mp/h"
+          ]
+        ],
+        "warnings": [],
+        "rain_lower_bound_inches_per_hour": null,
+        "normalized_units": [
+          [
+            "wind",
+            "mph"
+          ],
+          [
+            "rain",
+            "in/hr"
+          ],
+          [
+            "snow",
+            "in/hr"
+          ]
+        ]
+      },
+      "provider_truck_warnings": [
+        {
+          "code": "TRUCK_PROFILE_UNSPECIFIED",
+          "description": "Selected prototype configuration uses default truck dimensions/weights; cargo is not gross vehicle mass."
+        }
+      ],
+      "weather_warning_codes": []
+    },
+    {
+      "route_id": "tomtom-290108f25a2570149440b7b2e1e231891dc3f1f345004069fd18d4a62ca71a13",
+      "geometry_points": 4132,
+      "checkpoints": 14,
+      "first_eta": "2026-11-05T18:20:01.334473+00:00",
+      "last_eta": "2026-11-05T22:57:26.334473+00:00",
+      "distance_miles": 311.35232740793765,
+      "duration_seconds": 16645.0,
+      "exposure": {
+        "low_miles": 311.35232740793765,
+        "moderate_miles": 0.0,
+        "high_miles": 0.0,
+        "severe_miles": 0.0,
+        "no_travel_miles": 0.0,
+        "unknown_miles": 0.0,
+        "assessed_miles": 311.35232740793765,
+        "coverage_fraction": 1.0,
+        "average_risk": 0.0,
+        "has_confirmed_no_travel": false,
+        "has_confirmed_severe": false
+      },
+      "eligibility": {
+        "status": "ELIGIBLE",
+        "reasons": [],
+        "fully_verified": true
+      },
+      "ranking_position": 2,
+      "timing_sources": [
+        "provider_progress_interpolated"
+      ],
+      "risk_severities": [
+        0
+      ],
+      "first_forecast": {
+        "eta_utc": "2026-11-05T18:20:01.334473+00:00",
+        "measurement": {
+          "wind_speed_mph": 8.766073567555555,
+          "rain_inches_per_hour": 0.0,
+          "snow_inches_per_hour": 0.0
+        },
+        "wind_timestamps_utc": [
+          "2026-11-05T18:00:00+00:00",
+          "2026-11-05T19:00:00+00:00"
+        ],
+        "accumulation_timestamp_utc": "2026-11-05T19:00:00+00:00",
+        "wind_method": "linear_hourly",
+        "accumulation_method": "preceding_hour_(start,end]",
+        "grid_position": {
+          "latitude": 41.879498,
+          "longitude": -87.64974
+        },
+        "source_units": [
+          [
+            "rain",
+            "inch"
+          ],
+          [
+            "showers",
+            "inch"
+          ],
+          [
+            "snowfall",
+            "inch"
+          ],
+          [
+            "time",
+            "unixtime"
+          ],
+          [
+            "wind_speed_10m",
+            "mp/h"
+          ]
+        ],
+        "warnings": [],
+        "rain_lower_bound_inches_per_hour": null,
+        "normalized_units": [
+          [
+            "wind",
+            "mph"
+          ],
+          [
+            "rain",
+            "in/hr"
+          ],
+          [
+            "snow",
+            "in/hr"
+          ]
+        ]
+      },
+      "provider_truck_warnings": [
+        {
+          "code": "TRUCK_PROFILE_UNSPECIFIED",
+          "description": "Selected prototype configuration uses default truck dimensions/weights; cargo is not gross vehicle mass."
+        }
+      ],
+      "weather_warning_codes": []
+    },
+    {
+      "route_id": "tomtom-58cbdae1aa254ea84ea6ec2b65a905f859299cb68d2229640c7ca2ed4fccb533",
+      "geometry_points": 4434,
+      "checkpoints": 15,
+      "first_eta": "2026-11-05T18:20:01.334473+00:00",
+      "last_eta": "2026-11-05T23:28:42.334473+00:00",
+      "distance_miles": 336.4880348763223,
+      "duration_seconds": 18521.0,
+      "exposure": {
+        "low_miles": 336.4880348763223,
+        "moderate_miles": 0.0,
+        "high_miles": 0.0,
+        "severe_miles": 0.0,
+        "no_travel_miles": 0.0,
+        "unknown_miles": 0.0,
+        "assessed_miles": 336.4880348763223,
+        "coverage_fraction": 1.0,
+        "average_risk": 0.0,
+        "has_confirmed_no_travel": false,
+        "has_confirmed_severe": false
+      },
+      "eligibility": {
+        "status": "ELIGIBLE",
+        "reasons": [],
+        "fully_verified": true
+      },
+      "ranking_position": 3,
+      "timing_sources": [
+        "provider_progress_interpolated"
+      ],
+      "risk_severities": [
+        0
+      ],
+      "first_forecast": {
+        "eta_utc": "2026-11-05T18:20:01.334473+00:00",
+        "measurement": {
+          "wind_speed_mph": 8.766073567555555,
+          "rain_inches_per_hour": 0.0,
+          "snow_inches_per_hour": 0.0
+        },
+        "wind_timestamps_utc": [
+          "2026-11-05T18:00:00+00:00",
+          "2026-11-05T19:00:00+00:00"
+        ],
+        "accumulation_timestamp_utc": "2026-11-05T19:00:00+00:00",
+        "wind_method": "linear_hourly",
+        "accumulation_method": "preceding_hour_(start,end]",
+        "grid_position": {
+          "latitude": 41.879498,
+          "longitude": -87.64974
+        },
+        "source_units": [
+          [
+            "rain",
+            "inch"
+          ],
+          [
+            "showers",
+            "inch"
+          ],
+          [
+            "snowfall",
+            "inch"
+          ],
+          [
+            "time",
+            "unixtime"
+          ],
+          [
+            "wind_speed_10m",
+            "mp/h"
+          ]
+        ],
+        "warnings": [],
+        "rain_lower_bound_inches_per_hour": null,
+        "normalized_units": [
+          [
+            "wind",
+            "mph"
+          ],
+          [
+            "rain",
+            "in/hr"
+          ],
+          [
+            "snow",
+            "in/hr"
+          ]
+        ]
+      },
+      "provider_truck_warnings": [
+        {
+          "code": "TRUCK_PROFILE_UNSPECIFIED",
+          "description": "Selected prototype configuration uses default truck dimensions/weights; cargo is not gross vehicle mass."
+        }
+      ],
+      "weather_warning_codes": []
+    }
+  ],
+  "checks": {
+    "exposure_conserved": true,
+    "ranking_valid": true,
+    "geometry_present": true,
+    "etas_valid": true,
+    "secret_absent": true,
+    "no_travel_excluded": true,
+    "positions_valid": true,
+    "risk_values_valid": true,
+    "eligibility_valid": true,
+    "forecast_timestamps_present_for_complete_risk": true,
+    "server_log_secret_absent": true,
+    "server_log_tracebacks_absent": true
+  },
+  "credential_verification": {
+    "source": "Git-ignored repository .env",
+    "initial_environment_present": false,
+    "django_settings_present": true,
+    "routing_client_matches_settings": true
+  }
+}
