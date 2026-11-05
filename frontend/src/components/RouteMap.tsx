@@ -10,6 +10,7 @@ import type { GeoJSONSource } from "maplibre-gl";
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { Checkpoint, Route } from "../lib/contracts";
+import { corridorFeatures, type Corridor } from "../lib/corridor";
 import { routeFeatures, checkpointFeatures } from "../lib/geojson";
 setWorkerUrl(workerUrl);
 const STYLE = "https://tiles.openfreemap.org/styles/positron";
@@ -18,6 +19,9 @@ interface Props {
   selectedId: string;
   onSelect: (id: string) => void;
   onCheckpoint: (sample: Checkpoint) => void;
+  corridor?: Corridor | null;
+  forecastOffset?: number;
+  onCorridorSample?: (id: string) => void;
 }
 export function RouteMap(props: Props) {
   const container = useRef<HTMLDivElement>(null);
@@ -113,6 +117,59 @@ export function RouteMap(props: Props) {
           "circle-stroke-width": 2,
         },
       });
+      try {
+        map.addSource("corridor", {
+          type: "geojson",
+          data: corridorFeatures(null, 0),
+        });
+        map.addLayer(
+          {
+            id: "corridor-fill",
+            type: "fill",
+            source: "corridor",
+            layout: { "fill-sort-key": ["get", "priority"] },
+            paint: { "fill-color": ["get", "color"], "fill-opacity": 0.32 },
+          },
+          "route-casing",
+        );
+        map.addLayer(
+          {
+            id: "corridor-outline",
+            type: "line",
+            source: "corridor",
+            layout: { "line-sort-key": ["get", "priority"] },
+            paint: {
+              "line-color": ["get", "borderColor"],
+              "line-width": ["case", ["get", "partial"], 2, 0.7],
+              "line-opacity": 0.8,
+            },
+          },
+          "route-casing",
+        );
+        map.addLayer(
+          {
+            id: "corridor-unknown-edge",
+            type: "line",
+            source: "corridor",
+            filter: ["==", ["get", "partial"], true],
+            paint: {
+              "line-color": "#606b79",
+              "line-width": 1.2,
+              "line-dasharray": [2, 2],
+            },
+          },
+          "route-casing",
+        );
+      } catch {
+        setError(
+          "The optional forecast layer could not start. Route and checkpoint inspection remains available.",
+        );
+      }
+      map.on("webglcontextlost", () =>
+        setError(
+          "The graphics context was lost. Retry the map; trip results remain available.",
+        ),
+      );
       setReady((n) => n + 1);
     });
     map.on("error", () =>
@@ -123,7 +180,11 @@ export function RouteMap(props: Props) {
     map.on("click", (event) => {
       if (!map.getLayer("routes-hit")) return;
       const features = map.queryRenderedFeatures(event.point, {
-        layers: ["checkpoint-points", "routes-hit"],
+        layers: [
+          "checkpoint-points",
+          "routes-hit",
+          ...(map.getLayer("corridor-fill") ? ["corridor-fill"] : []),
+        ],
       });
       const checkpoint = features.find(
         (f) => f.layer.id === "checkpoint-points",
@@ -137,13 +198,26 @@ export function RouteMap(props: Props) {
             c.checkpoint.checkpoint_id === checkpoint.properties.checkpointId,
         );
         if (sample) current.current.onCheckpoint(sample);
-      } else if (features[0])
-        current.current.onSelect(String(features[0].properties.routeId));
+      } else {
+        const line = features.find((f) => f.layer.id === "routes-hit");
+        if (line) current.current.onSelect(String(line.properties.routeId));
+        else {
+          const region = features.find((f) => f.layer.id === "corridor-fill");
+          if (region)
+            current.current.onCorridorSample?.(
+              String(region.properties.sampleId),
+            );
+        }
+      }
     });
     map.on("mousemove", (event) => {
       if (map.getLayer("routes-hit"))
         map.getCanvas().style.cursor = map.queryRenderedFeatures(event.point, {
-          layers: ["routes-hit", "checkpoint-points"],
+          layers: [
+            "routes-hit",
+            "checkpoint-points",
+            ...(map.getLayer("corridor-fill") ? ["corridor-fill"] : []),
+          ],
         }).length
           ? "pointer"
           : "";
@@ -202,6 +276,25 @@ export function RouteMap(props: Props) {
       ),
     );
   }, [props.routes, props.selectedId, ready]);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!ready || !map?.getSource("corridor")) return;
+    try {
+      void (map.getSource("corridor") as GeoJSONSource)
+        .setData(
+          corridorFeatures(props.corridor ?? null, props.forecastOffset ?? 0),
+        )
+        .catch(() =>
+          setError(
+            "The forecast layer could not update. Route comparison remains available.",
+          ),
+        );
+    } catch {
+      setError(
+        "The forecast layer could not update. Route comparison remains available.",
+      );
+    }
+  }, [props.corridor, props.forecastOffset, ready]);
   return (
     <>
       <div
@@ -213,7 +306,10 @@ export function RouteMap(props: Props) {
       />
       <div className="map-toolbar">
         <span className="map-chip">
-          <span className="live-dot" /> OpenFreeMap · arrival-time weather
+          <span className="live-dot" />{" "}
+          {props.corridor
+            ? "OpenFreeMap · forecast snapshot"
+            : "OpenFreeMap · arrival-time weather"}
         </span>
         <button
           type="button"

@@ -1,0 +1,3 @@
+# P07 visual verification contract
+
+Extend the accepted P06 operational workspace; no redesign. Optional selected-route corridor, off by default. Maintain a readable map and road/checkpoint overlays. Use compact UTC slider controls and one distinguishable forecast-snapshot detail overlay. Clearly separate fixed-time field from checkpoint arrival weather. Preserve gray unknown regions and visible known-hazard outlines with text labels. Target viewports1440x900 and390x844; no mobile horizontal overflow. Real-provider field may remain Low; synthetic categories are testing evidence only. No account, geolocation permission or credential entry.

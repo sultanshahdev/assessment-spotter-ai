@@ -58,3 +58,16 @@ Risk thresholds and route ranking never run in the browser. Bars use backend mil
 - Map unavailable: allow OpenFreeMap tile/style/glyph traffic and WebGL. Retry map after connectivity returns; route data remains usable without tiles.
 
 Manually check desktop 1440x900 and mobile 390x844: initial basemap and no fake cards; labeled form and visible timezone; disabled submit/loading/cancel; successful real alternatives and backend recommendation; click lines/cards; inspect checkpoint dots/dropdown; verify numeric weather/timestamps and risk legend; edit/reset/retry; keyboard focus and mobile horizontal overflow; error, partial and null recommendation states. P07 heatmap/slider are deliberately absent. Provider hosted-use licensing and vehicle certification remain open deployment concerns.
+
+## P07 corridor forecasts
+
+The existing setup/dependencies also run P07; no new key or service is needed. Analyze a trip, enable **Corridor forecast layer**, then move **Forecast offset · 0–48 hours**. The clock is explicitly UTC and relative to the analyzed trip departure. Inspect a cell or choose a forecast region; checkpoint details remain a separate arrival-time view. The toggle defaults off and completed route datasets are cached in memory for ten minutes. Slider moves use the downloaded series; route switches load only uncached corridors. Refresh retries just the optional layer. Missing/unavailable hours remain gray with explicit notices.
+
+```bash
+.venv/bin/python -m unittest tests.test_corridor tests.test_corridor_api -q
+npm --prefix frontend test
+# Live new feature plus synthetic safety/interaction scenarios (servers already running):
+npm --prefix frontend run test:browser -- --grep '48-hour|synthetic categories'
+```
+
+The selected route must have ≤12000 vertices and supported geometry/length; otherwise corridor inspection shows a recoverable error without deleting the trip. Long trips may coarsen sampling. Native slider/region controls provide keyboard access. Complete field contract, sampling approximation, unknown/hazard rendering and licensing notes: docs/forecast-heatmap.md. Live evidence: docs/p07-evidence/. Existing user-started Vite/default Django processes are preserved during verification; the documented frontend proxy targets Django port8005.

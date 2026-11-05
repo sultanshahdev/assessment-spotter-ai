@@ -1,0 +1,20 @@
+{
+  "contract":"design-contract.md: extend P06 map with bounded real forecast footprint grid, compact UTC slider and independent snapshot detail; preserve arrival-time workflow",
+  "targetViewports":["1440x900","390x844"],
+  "accessibility":{"status":"pass","evidence":"Final live browser mobile axe WCAG2A/AA scan passed. Toggle/native slider/region select have labels, range0–48 and meaningful UTC aria-valuetext. Existing route/checkpoint keyboard controls passed regressions; no color-only severity communication."},
+  "responsive":{"status":"pass","evidence":"Opened desktop-hour-0.png/desktop-hour-48.png/mobile-hour-48.png and synthetic mobile unknown screenshot. Controls compact above map, bounded detail overlay, existing three alternatives retained; body scrollWidth390 at viewport390."},
+  "contentStates":{
+    "empty":{"status":"pass","evidence":"No corridor requested until actual route analysis and explicit toggle; live test verified zero corridor requests before enable."},
+    "loading":{"status":"pass","evidence":"Real live request showed Loading the corridor’s forecast series; original trip results remained available; no fabricated percentage."},
+    "error":{"status":"pass","evidence":"Synthetic503 displayed corridor retry without removing trip cards; original network/map recovery regressions passed. Transient actual trip-provider504 and successful focused reruns are recorded in report."},
+    "partial":{"status":"pass","evidence":"Synthetic unknown-hour screenshots show unavailable warning, gray cells and separate detail. Unit/backend tests verify known No Travel persists with partial rain and gray incomplete known-Low cells never become green."},
+    "success":{"status":"pass","evidence":"Fresh real React/Vite/Django run returned39locations and49frames. Hour0/24/48 UTC, off/on, second-route load and cached return passed with no per-slider HTTP. Snapshot and original checkpoint details remained independent."},
+    "permission":{"status":"not-applicable","reason":"No auth, geolocation or credential permission flow; explicit task authorizes local real provider verification. Hosted licensing is documented for later review, not asserted authorized."}
+  },
+  "renderedEvidence":[
+    {"viewport":"1440x900","artifact":"desktop-hour-0.png","observation":"Real39-location corridor around actual selected truck geometry; roads/markers stay prominent and slider/time visible."},
+    {"viewport":"1440x900","artifact":"desktop-hour-48.png","observation":"+48 timestamp and actual forecast measurement detail, distinct from arrival-time risk. All live categories Low, accurately retained."},
+    {"viewport":"390x844","artifact":"mobile-hour-48.png","observation":"Stacked comparison/map and usable forecast controls with no horizontal overflow."},
+    {"viewport":"390x844","artifact":"synthetic-mobile-unknown-hour.png","observation":"Clearly synthetic unavailable data rendered as gray with explicit notice and bounded snapshot detail; never false Low."}
+  ]
+}

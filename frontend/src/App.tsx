@@ -6,6 +6,11 @@ import {
   useRef,
   useState,
 } from "react";
+import { useCorridor } from "./lib/useCorridor";
+import {
+  CorridorControls,
+  CorridorSnapshotDetail,
+} from "./components/CorridorControls";
 import { TripForm } from "./components/TripForm";
 import { RouteComparison } from "./components/RouteComparison";
 const RouteMap = lazy(() =>
@@ -71,6 +76,10 @@ export default function App() {
   }, []);
   const selectCheckpoint = useCallback((cp: Checkpoint) => setSample(cp), []);
   const route = analysis?.routes.find((r) => r.route_id === selectedId);
+  const corridor = useCorridor(analysis, route);
+  useEffect(() => {
+    if (corridor.selectedSample) setSample(null);
+  }, [corridor.selectedSample]);
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -201,6 +210,13 @@ export default function App() {
                 : "Plan a trip to compare routes"}
             </span>
           </div>
+          {analysis && route && (
+            <CorridorControls
+              state={corridor}
+              routeLabel={routeName(analysis.routes, route.route_id)}
+              departure={analysis.request.departure_time}
+            />
+          )}
           <div className="map-stage">
             <Suspense
               fallback={
@@ -213,9 +229,20 @@ export default function App() {
                 routes={analysis?.routes ?? EMPTY_ROUTES}
                 selectedId={selectedId}
                 onSelect={selectRoute}
-                onCheckpoint={selectCheckpoint}
+                onCheckpoint={(cp) => {
+                  selectCheckpoint(cp);
+                  corridor.setSelectedSample(null);
+                }}
+                corridor={corridor.data}
+                forecastOffset={corridor.offset}
+                onCorridorSample={corridor.setSelectedSample}
               />
             </Suspense>
+            {corridor.enabled && corridor.data && corridor.selectedSample && (
+              <div className="map-checkpoint">
+                <CorridorSnapshotDetail state={corridor} />
+              </div>
+            )}
             {sample && (
               <div className="map-checkpoint">
                 <CheckpointDetail
@@ -274,13 +301,14 @@ export default function App() {
               <select
                 id="checkpoint"
                 value={sample?.checkpoint.checkpoint_id ?? ""}
-                onChange={(e) =>
+                onChange={(e) => {
+                  corridor.setSelectedSample(null);
                   setSample(
                     route.checkpoints.find(
                       (c) => c.checkpoint.checkpoint_id === e.target.value,
                     ) ?? null,
-                  )
-                }
+                  );
+                }}
               >
                 <option value="">Choose a checkpoint…</option>
                 {route.checkpoints.map((c, i) => (

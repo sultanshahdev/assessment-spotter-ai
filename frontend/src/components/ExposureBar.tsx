@@ -36,9 +36,13 @@ export function ExposureBar({ exposure }: { exposure: Route["exposure"] }) {
     </div>
   );
 }
-export function RiskLegend() {
+export function RiskLegend({
+  label = "Checkpoint weather legend",
+}: {
+  label?: string;
+}) {
   return (
-    <div className="risk-legend" aria-label="Checkpoint weather legend">
+    <div className="risk-legend" aria-label={label}>
       {[...names.slice(0, 5), "Unknown / incomplete"].map((name, i) => (
         <span key={name}>
           <i style={{ background: [...riskColors, "#77808d"][i] }} />

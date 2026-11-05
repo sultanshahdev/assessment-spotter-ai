@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "http_status": 200,
+  "trip_route_count": 3,
+  "route_id": "tomtom-d6c5926078283019c2ba40d9a35aa051c1b0477a65a1ac77d2c624a3ec490711",
+  "departure": "2026-11-05T20:13:00+00:00",
+  "samples": 39,
+  "frames": 49,
+  "weather_http_calls": 4,
+  "endpoint_ms": 5551,
+  "initial_layer_visual_check_ms": 6346,
+  "slider_control_update_ms": [
+    73,
+    137,
+    164
+  ],
+  "response_bytes": 664732,
+  "frames_summary": [
+    {
+      "offset": 0,
+      "timestamp": "2026-11-05T20:13:00+00:00",
+      "coverage": 1,
+      "severities": {
+        "0": 39
+      }
+    },
+    {
+      "offset": 24,
+      "timestamp": "2026-11-06T20:13:00+00:00",
+      "coverage": 1,
+      "severities": {
+        "0": 39
+      }
+    },
+    {
+      "offset": 48,
+      "timestamp": "2026-11-07T20:13:00+00:00",
+      "coverage": 1,
+      "severities": {
+        "0": 39
+      }
+    }
+  ],
+  "weather_changes_between_0_and_48": true,
+  "analysis_requests": 1,
+  "corridor_requests": 2,
+  "slider_caused_http_requests": false,
+  "cache_reused": true,
+  "recommended_route_id": "tomtom-d6c5926078283019c2ba40d9a35aa051c1b0477a65a1ac77d2c624a3ec490711",
+  "secret_absent": true,
+  "page_exceptions": [],
+  "console_errors": [],
+  "mobile_scroll_width": 390
+}

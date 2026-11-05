@@ -20,20 +20,20 @@ Wind >=55: No Travel all loads. Wind 45–54 and load >30,000 lb: No Travel. Win
 P02-approved interpretation: wind intervals [25,35), [35,45), [45,55); intermediate shared precipitation boundaries use the more severe category. Rain exactly 1.00 and snow exactly 3.0 remain Severe. See docs/weather-risk.md.
 
 ## Route ranking
-Lexicographic preference: fewest Severe miles, fewest High miles, lowest average risk, shortest time. No Travel eligibility and missing-forecast handling are separate proposed safety policies, pending review.
+Lexicographic preference: fewest Severe miles, fewest High miles, lowest average risk, shortest time. Approved eligibility is separate: confirmed No Travel, incomplete weather and unsupported truck access exclude recommendation; preserve every reason (D20).
 
-## Proposed architecture
-Frontend candidates: React, TypeScript, Vite, MapLibre GL JS. Backend: Python, Django, DRF; current tests use standard-library unittest. Providers: TomTom Routing v1 approved for prototype at P02 intake; HERE Routing v8 and Geocoding retained as investigation, Open-Meteo, compatible basemap (OpenFreeMap candidate). No full application implemented; TomTom preferred prototype routing approved.
+## Current architecture
+React/strict TypeScript/Vite with MapLibre and OpenFreeMap Positron; Django/DRF HTTP adapters compose framework-independent route/weather/risk packages. TomTom v1 truck routing and conservative text geocoding, Open-Meteo normalization/forecasts. Python uses unittest; frontend uses Vitest/Playwright. HERE remains investigation only. Trip ETA risk and fixed-time corridor snapshots are independent; hosted-use permissions remain unresolved.
 
 ## Architecture decisions
-See docs/decisions.md for D01–D19 and trade-offs. P02 intake approves TomTom prototype routing, threshold interpretation and checkpoint missing-data policy; other decisions retain their stated status.
+See docs/decisions.md for D01–D35 and trade-offs. P02 intake approves TomTom prototype routing, threshold interpretation and checkpoint missing-data policy; other decisions retain their stated status.
 
 ## Module responsibilities
 Provider spike (preserved): http_client.py transports JSON with timeout and sanitized failures; check_routing.py requests three city-pair truck alternatives and summarizes geometry; check_weather.py validates multi-coordinate hourly arrays.
-Implemented domain: weather_risk/models.py (immutable measurement, ordered severity, completeness, reasons, assessment, numeric validation); weather_risk/risk.py (base classifiers and assess_weather). P03 adds route_processing (route models, geometry, progress and UTC checkpoints) plus routing_adapters/tomtom.py (schema normalization only). P04 adds weather_adapters (Open-Meteo HTTP/normalization) and weather_analysis (forecast-time alignment, P02/P03 composition, midpoint exposure and serialization). P05 adds trip_planning orchestration/eligibility/ranking and the Django HTTP adapter. P06 adds frontend/ React forms/comparison, MapLibre sources and checkpoint interaction; P07 heatmap/slider remain future scope.
+Implemented domain: weather_risk/models.py (immutable measurement, ordered severity, completeness, reasons, assessment, numeric validation); weather_risk/risk.py (base classifiers and assess_weather). P03 adds route_processing (route models, geometry, progress and UTC checkpoints) plus routing_adapters/tomtom.py (schema normalization only). P04 adds weather_adapters (Open-Meteo HTTP/normalization) and weather_analysis (forecast-time alignment, P02/P03 composition, midpoint exposure and serialization). P05 adds trip_planning orchestration/eligibility/ranking and the Django HTTP adapter. P06 adds frontend/ React forms/comparison, MapLibre sources and checkpoint interaction; P07 adds forecast_corridor sampling/service, the corridor endpoint and cached forecast slider/fill-grid controls.
 
 ## API contracts
-Django GET /api/health/ and POST /api/routes/analyze/ are live verified. Stable schema 1.0 is documented in docs/api-contract.md and consumed by frontend/src/lib/contracts.ts; the frontend validates responses at runtime. Provider probe output remains diagnostic.
+Django GET /api/health/, POST /api/routes/analyze/ and POST /api/weather/corridor/ are live verified. Stable schema 1.0 is documented in docs/api-contract.md and consumed by frontend/src/lib/contracts.ts; the frontend validates responses at runtime. Provider probe output remains diagnostic.
 
 ## Implementation status
 | Phase | Description | Status |
@@ -43,8 +43,8 @@ Django GET /api/health/ and POST /api/routes/analyze/ are live verified. Stable 
 | P03 | Routing geometry, checkpoints and ETA | Verified and accepted at P04 intake |
 | P04 | Weather integration and exposure | Accepted at P05 intake |
 | P05 | Recommendation and Django API | Accepted at P06 intake |
-| P06 | React experience and map | Implemented, browser/live verified; awaiting user acceptance |
-| P07 | Corridor heatmap | Not started |
+| P06 | React experience and map | Accepted at P07 intake |
+| P07 | Corridor heatmap | Implemented/live browser verified; awaiting user review |
 | P08 | Integration and optimization | Not started |
 | P09 | Deployment and walkthrough | Not started |
 
@@ -53,10 +53,10 @@ P01/P01.2 reviewed at P02 intake. TomTom live authentication and three-route tec
 ## Current blockers
 - HERE remains unverified (original key absent); TomTom now supplies live routing evidence. TomTom geocoding not tested. Truck dimensions/weight profile and Dallas unsupported origin section remain open.
 - Provider hosted-use eligibility/entitlements unconfirmed. Resolve account/terms review before publishing; open.
-- Decimal boundaries and checkpoint completeness policy approved and tested in P02. Route-level safety eligibility remains unresolved.
+- Decimal boundaries and checkpoint completeness policy approved and tested in P02. Route-level safety eligibility was approved/implemented in P05; no unresolved P07 algorithm decision.
 
 ## Verified features
-Weather live HTTP 200 for Dallas/Houston coordinates: 72 hourly timestamps each, UTC offset zero; wind mp/h, rain/snow inch; all requested arrays non-null. P02 pure risk engine is verified by offline tests; no full application implemented.
+Weather live HTTP 200 for Dallas/Houston coordinates: 72 hourly timestamps each, UTC offset zero; wind mp/h, rain/snow inch; all requested arrays non-null. The complete React/Django trip and corridor experience is now live verified. P02 risk, P03 geometry/ETA, P04 exposure, P05 ranking and P07 snapshots have offline coverage; new live evidence is in docs/p07-evidence/.
 Probe outputs and detailed official-source findings: spikes/provider_feasibility/findings.md.
 
 ## Known limitations
@@ -65,7 +65,7 @@ Graph originally indexed documentation only; AST update indexes probes, while ch
 Existing Codex hook uses PreToolUse/Bash configuration; registration file exists but runtime execution in this host is not verified.
 
 ## Next task
-P01–P03 accepted. P04 implements forecast/checkpoint assessment and distance-weighted exposure. Next milestone P05 ranking/orchestration/Django API only after P04 review and acceptance. No P05 work started.
+P01–P06 accepted. P07 is implemented and verified, awaiting user review. Next bounded task after acceptance is provider licensing and deployment/submission readiness. Do not begin deployment automatically. Phase sections below are historical records; newer intake acceptance supersedes earlier pending-review statements.
 
 ## P01.2 — TomTom verification completed 2026-11-05
 TOMTOM_API_KEY available from environment; no .env needed; secret never printed. Added isolated TomTom probe sharing HERE journey constants and sanitized transport; preserved HERE script/results. v1 Calculate Route, truck/commercial, maxAlternatives=2, anyRoute returned HTTP 200 and 3 distinct routes per journey on two runs. Chicago–St. Louis and Atlanta–Nashville report truck throughout. Dallas–Houston has other mode at origin indices 0–2 on every route. Geometry point counts, meters, seconds, departure/arrival offsets and timing field availability saved in spikes/provider_feasibility/tomtom-routing-result.json. Exact segment comparison supports substantial divergence but is not buffered corridor overlap. Default dimensions/weights do not establish suitability for a particular truck.
@@ -150,3 +150,17 @@ Checks: 42 frontend unit/component/API tests; 20 form tests under America/New_Yo
 Docs: docs/frontend-setup.md, docs/p06-report.md, docs/p06-evidence/ screenshots/metrics/design contract, D25–D30, corrected API enum prose. Remaining map download/GPU, network, forecast approximation, truck profile and hosted licensing limitations documented; Open-Meteo attribution retained. P06 ready for user review/acceptance. Next bounded task: review P06, then scope P07's distinct corridor-hour heatmap contract only after acceptance. No P07, deployment, accounts/history, commit or push. Official 16-working-hour constraint retained; consumed hours unknown.
 
 P06 closing audit: focused browser map-line hit test passed using explicitly synthetic divergent fixture lines; actual live map-checkpoint clicking was separately verified. Local frontend imports are acyclic; backend domain framework isolation retained. Final design evidence, secret/whitespace/source checks pass. Local verification servers stopped; restart instructions in frontend setup guide. P07 remains unstarted.
+
+
+## P07 — Forecast corridor completed, 2026-11-06 local
+P01–P06 accepted at intake. Added forecast_corridor/{sampling,service}.py plus typed request/sample models, bounded backend/corridor.py adapter and POST /api/weather/corridor/. Actual selected polyline sampled at3–30 stations, three lateral bands, default±8mi, max90locations, spherical offsets and1km dedup. Road distance scales actual geometry because P05 omits vertex progress anchors. Hairpins use outgoing course and local nondegenerate footprint fallback. Body768KiB/12000points/6000km/width5/8/10/horizon0–48 limits; polar/dateline restrictions explicit.
+
+Uses unchanged P04 fetch_forecasts/normalization/match_forecast and P02 assess_weather/load overrides, including partial rainfall lower bounds/confirmed hazards. Static sample cells and49 timestamped departure-relative frames, nullable measurements/severity/status/reasons/source timestamps. Snapshot UTC differs from checkpoint ETA weather; no ranking/exposure/eligibility mutation or classifier in TypeScript. Domain/P05 source preservation verified via Git diff.
+
+Frontend lib/corridor.ts runtime schema/client/GeoJSON, useCorridor memory cache and CorridorControls/detail overlay. Default off; fetch selected route only, cache10minutes, clear on new analysis, abort stale requests, explicit refresh. Slider0–48 uses already-loaded frames with no HTTP. MapLibre sources/layers created once, setData updates;32% categorical fills under roads/points, gray incomplete cells/dashed edges and known-hazard borders. Region click/native selector and original checkpoint inspection work independently. Existing P06 severity legend reused via optional label prop. No native density artifact, simulated live weather, animation or redesign.
+
+Final real browser: React/Vite/Django HTTP200; three genuine routes; departure2026-11-05T20:13UTC;39corridor locations,49frames,4weatherHTTP calls;5.551sec endpoint and664732bytes. Visual-check6.346sec includes700ms settling wait; slider control updates73/137/164ms (automation/DOM overhead, not GPU-only). Checked0/24/48 each100% sample completeness andallLow. Measurements changed, risk colors truthfully stayedLow. Route2 visit plus cached return produced2corridorrequests total; slider0newrequests; trip recommendation unchanged. No console/page errors in successful runs, no secret in browser traffic, mobile390px no overflow, axe scan passed. Actual provider outages caused recorded504 test failures; focused reruns succeeded. No backend routing/provider timeout/retry algorithm change.
+
+Executed15new backendtests +137accepted=152 with env cleared/dotenv disabled/sockets blocked. Frontend57tests including42accepted; strict typecheck/build, Django, compileall,pip checks passed. Five unique browser scenarios passed across full/focused runs; full suite once4pass/1upstream504, original focusedrerun passed, finalnewlivepassed. Initial serializer-error shape and ambiguous browser text selector corrected; UI compacted after screenshot review. ExpectedMapLibre chunk warning retained. Exact secret/whitespace/import/untracked checks and Graphify refresh885nodes/2035edges/53communities; pure domain isolation/no cycles preserved; AST-only doc caveat remains.
+
+Docs: forecast-heatmap.md (full algorithm/schema/limits), p07-report.md A–S, p07-evidence/ (live/synthetic clearly separated), additive API/setup updates, D31–D35. P06 historical evidence restored after regression writers; new regression evidence copied underP07. No dependencies/credentials changed; user-started Vite/default Django servers preserved. Remaining model/geographic approximation, truck profile and hosted licensing concerns explicit; Open-Meteo attribution retained and hosted permission not assumed. P07 ready for user review. Next bounded task only after acceptance: deployment/submission readiness and provider licensing review. No deployment, unrelated work, commit or push. Official16workinghours retained; consumed time unknown.

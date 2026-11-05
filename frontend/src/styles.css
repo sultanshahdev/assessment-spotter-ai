@@ -956,3 +956,132 @@ summary {
   width: 100%;
   height: 100%;
 }
+/* Fixed-time forecast controls; separate from arrival-time checkpoints. */
+.corridor-controls {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 0 12px;
+  font-size: 12px;
+}
+.corridor-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+.corridor-toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  min-height: 28px;
+}
+.corridor-toggle input {
+  width: 17px;
+  height: 17px;
+  min-height: 17px;
+  accent-color: var(--blue);
+  margin: 0;
+}
+.corridor-controls .fine-print {
+  margin: 4px 0;
+}
+.forecast-time {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 9px 0 2px;
+  flex-wrap: wrap;
+}
+.forecast-time span {
+  color: var(--muted);
+}
+.corridor-controls input[type="range"] {
+  padding: 0;
+  border: 0;
+  accent-color: var(--blue);
+  height: 30px;
+  min-height: 30px;
+}
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+.corridor-controls button {
+  background: none;
+  border: 0;
+  color: var(--blue);
+  padding: 4px 8px;
+}
+.corridor-controls .warning {
+  margin: 9px 0;
+}
+.corridor-inspector-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.corridor-inspector-row label {
+  font-size: 11px;
+}
+.corridor-inspector-row select {
+  width: 260px;
+  max-width: 100%;
+  margin: 0;
+  min-height: 38px;
+  padding: 8px;
+}
+.corridor-inspector-row button {
+  margin-left: auto;
+  font-size: 10px;
+  min-height: 38px;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.map-panel:has(.corridor-controls input:checked) .map-stage {
+  height: clamp(360px, calc(100dvh - 415px), 620px);
+  min-height: 360px;
+}
+@media (max-width: 700px) {
+  .map-panel:has(.corridor-controls input:checked) .map-stage {
+    height: 470px;
+    min-height: 470px;
+  }
+  .corridor-toggle-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .corridor-toggle {
+    min-height: 36px;
+  }
+  .corridor-inspector-row select {
+    width: 100%;
+  }
+  .forecast-time {
+    margin-top: 8px;
+    font-size: 12px;
+    gap: 4px;
+  }
+  .corridor-inspector-row {
+    gap: 6px;
+  }
+}
