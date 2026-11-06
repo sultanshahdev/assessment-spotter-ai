@@ -1,0 +1,19 @@
+{
+  "files": [
+    "desktop-initial.png",
+    "initial-1280x800.png",
+    "initial-1440x900.png",
+    "initial-1024x768.png",
+    "mobile-forecast.png",
+    "mobile-expanded.png",
+    "workspace/mobile-partial.png",
+    "workspace/desktop-partial.png",
+    "workspace/desktop-error.png",
+    "workspace/desktop-map-error.png",
+    "corridor/synthetic-mobile-unknown-hour.png",
+    "corridor/synthetic-unknown-hour.png",
+    "corridor/synthetic-categories-hour-0.png",
+    "locations/mobile-pin.json"
+  ],
+  "note": "Final source: fresh changed deterministic regression captures archived; previous P07.3 evidence restored byte-for-byte."
+}

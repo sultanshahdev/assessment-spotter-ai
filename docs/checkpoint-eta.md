@@ -77,3 +77,5 @@ Spherical distance, simplified geometry and sparse traffic progress limit accura
 - Inline AST/import/whitespace/key checks and unchanged baseline SHA256 audit: passed. `git diff --check`: exit 0, complemented by direct file checks for untracked sources. No configured formatter/linter exists.
 
 No failing unit tests remain. One earlier live engine-validation probe failed with interrupted chunked HTTP read before processing; sanitized handling was added and both explicit retries succeeded, as recorded in the progress findings.
+
+P07.4 implementation note: normalized immutable routes retain their validated RouteScale for checkpoint generation. Changed route objects recompute it; departure-specific UTC ETAs remain freshly calculated. No geometry simplification, numeric tolerance or checkpoint-spacing change. See D51 and tests/test_p074_processing.py.

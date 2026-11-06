@@ -1,3 +1,4 @@
+import { measureSync } from "./performance";
 import { analysisSchema, type Analysis, type TripRequest } from "./contracts";
 export class APIError extends Error {
   constructor(
@@ -57,6 +58,8 @@ export async function analyzeTrip(
           "The routing provider is busy. Wait a moment and retry.",
         PROVIDER_RESPONSE_INTERRUPTED:
           "The routing provider connection was interrupted. Please retry.",
+        PROVIDER_CONNECTION_ERROR:
+          "Could not connect to the routing provider. Please retry.",
         PROVIDER_TIMEOUT:
           "The routing provider did not respond in time. Please retry.",
       };
@@ -70,7 +73,9 @@ export async function analyzeTrip(
         response.status,
       );
     }
-    const parsed = analysisSchema.safeParse(data);
+    const parsed = measureSync("analysis-validation", () =>
+      analysisSchema.safeParse(data),
+    );
     if (!parsed.success)
       throw new APIError(
         "The server returned incomplete or invalid route data. Please retry.",

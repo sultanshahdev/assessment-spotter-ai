@@ -1,0 +1,136 @@
+{
+  "label": "baseline",
+  "departure": "2026-11-06T22:41:00+00:00",
+  "environment": "Local browser→Playwright forwarding→profiling Django; real route/weather, verified replayed location selection; background-only MapLibre style, no network throttling; external caches uncontrolled",
+  "samples": [
+    {
+      "journey": "A",
+      "spacing": 50,
+      "cache": "fresh browser; no routing/weather application cache",
+      "status": 200,
+      "http_ms": 56925.188108999995,
+      "bytes": 306705,
+      "spans": {
+        "tomtom_headers": 31952.766,
+        "tomtom_download": 3417.7,
+        "tomtom_attempt": 35388.457,
+        "tomtom_wire_bytes": 78671,
+        "tomtom_decompress": 3.487,
+        "tomtom_json": 13.507,
+        "tomtom_routes": 35638.657,
+        "geometry_distances": 47.628,
+        "route_normalization": 88.09,
+        "checkpoint_scale": 33.124,
+        "checkpoint_generation": 34.569,
+        "checkpoint_count": 23,
+        "weather_headers": 42174.068,
+        "weather_wire_bytes": 1519,
+        "weather_download": 0.873,
+        "weather_decompress": 2.705,
+        "weather_json": 0.403,
+        "weather_batch": 42178.479,
+        "weather_attempt": 42178.486,
+        "weather_normalization": 3.523,
+        "weather_retrieval": 21093.805,
+        "weather_unique_locations": 19,
+        "weather_http_calls": 2,
+        "weather_batches": 2,
+        "risk_calculation": 0.658,
+        "eta_matching": 0.877,
+        "exposure": 0.305,
+        "weather_assessment": 2.013,
+        "ranking": 0.027,
+        "response_projection": 6.484,
+        "json_serialization": 19.096,
+        "django_total": 56892.542
+      },
+      "routes": [
+        {
+          "checkpoints": 7,
+          "vertices": 4076,
+          "miles": 296.825290304621,
+          "hours": 4.788055555555555,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        },
+        {
+          "checkpoints": 8,
+          "vertices": 4104,
+          "miles": 311.3920951642408,
+          "hours": 4.9447222222222225,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        },
+        {
+          "checkpoints": 8,
+          "vertices": 4626,
+          "miles": 342.04247196373177,
+          "hours": 5.521388888888889,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        }
+      ],
+      "recommended": true,
+      "visible_ms": 57496.294224,
+      "pending_pan_automation_ms": 181.48630499999945,
+      "browser": {
+        "fetches": [
+          {
+            "path": "/api/routes/analyze/",
+            "start": 3176.399999999907,
+            "headers_ms": 56956.10000000009
+          }
+        ],
+        "json": [
+          {
+            "path": "/api/routes/analyze/",
+            "body_ms": 11,
+            "parse_ms": 4.5,
+            "end": 60148.10000000009
+          }
+        ],
+        "renders": [
+          {
+            "after_json_ms": 117.5999999998603,
+            "end": 60265.69999999995
+          }
+        ],
+        "long_tasks": [
+          {
+            "start": 60143.39999999991,
+            "ms": 54
+          }
+        ],
+        "click_to_fetch_ms": 1.7999999998137355,
+        "map": [
+          {
+            "name": "map-routes-source",
+            "ms": 113.39999999990687
+          },
+          {
+            "name": "map-checkpoints-source",
+            "ms": 101.5
+          }
+        ]
+      }
+    },
+    {
+      "journey": "D",
+      "spacing": 50,
+      "cache": "same browser; no routing/weather application cache",
+      "visible_ms": 120377.063697,
+      "pending_pan_automation_ms": 183.95633100000032,
+      "browser": {
+        "fetches": [],
+        "json": [],
+        "renders": [],
+        "long_tasks": [],
+        "click_to_fetch_ms": null,
+        "map": []
+      }
+    }
+  ]
+}

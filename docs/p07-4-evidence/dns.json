@@ -1,0 +1,17 @@
+[
+  {
+    "provider": "api.tomtom.com",
+    "dns_ms": 15016.580188000034,
+    "address_count": 1
+  },
+  {
+    "provider": "api.open-meteo.com",
+    "dns_ms": 5005.077052999923,
+    "address_count": 1
+  },
+  {
+    "provider": "tiles.openfreemap.org",
+    "dns_ms": 28.58074999994642,
+    "address_count": 6
+  }
+]

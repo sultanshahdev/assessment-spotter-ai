@@ -98,3 +98,5 @@ The exact request/response fields, geographic restrictions, safety semantics and
 ## Routing interrupted-response recovery
 
 A truncated routing HTTP body (`IncompleteRead`) now permits one identical routing GET retry after250ms. The30-second socket timeout is unchanged. Repeated truncation returns HTTP502 with `error.code="PROVIDER_RESPONSE_INTERRUPTED"`; the frontend distinguishes an interrupted connection from a true PROVIDER_TIMEOUT/504. No automatic retry of actual timeouts, HTTP4xx/5xx/429, malformed JSON/gzip, geocoding or weather. No partial routes accepted or routing parameters relaxed. Evidence and limits: [routing-timeout-investigation.md](routing-timeout-investigation.md).
+
+P07.4 connection classification: `PROVIDER_CONNECTION_ERROR`/502 identifies non-timeout DNS/connection/reset/disconnect failures. Real socket timeouts, including `URLError` wrapping `TimeoutError`, remain `PROVIDER_TIMEOUT`/504. Neither automatically retries. Interrupted bodies retain the separately documented retry/code above. Error messages are fixed/sanitized, not raw exception reasons or URLs. Response envelope/schema1.0 is unchanged.

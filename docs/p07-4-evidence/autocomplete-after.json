@@ -1,0 +1,55 @@
+{
+  "samples": [
+    {
+      "failed": true,
+      "visible_ms": 26687.537328
+    },
+    {
+      "failed": true,
+      "visible_ms": 25032.928931
+    },
+    {
+      "failed": true,
+      "visible_ms": 25022.447971999994
+    }
+  ],
+  "calls": [
+    {
+      "operation": "/api/locations/suggest/"
+    },
+    {
+      "operation": "/api/locations/suggest/"
+    },
+    {
+      "operation": "/api/locations/suggest/"
+    }
+  ],
+  "browser": [
+    {
+      "debounce_ms": 530,
+      "start": 2906.100000000093,
+      "status": 200,
+      "http_ms": 21.299999999813735,
+      "json_ms": 8.199999999720603,
+      "json_end": 2935.7999999998137
+    },
+    {
+      "debounce_ms": 549.2999999998137,
+      "start": 2925.399999999907,
+      "failed": true,
+      "http_ms": 15000.399999999907
+    },
+    {
+      "debounce_ms": 260,
+      "start": 27719.399999999907,
+      "failed": true,
+      "http_ms": 15000.200000000186
+    },
+    {
+      "debounce_ms": 256.8000000002794,
+      "start": 52762.60000000009,
+      "failed": true,
+      "http_ms": 15000.399999999907
+    }
+  ]
+}

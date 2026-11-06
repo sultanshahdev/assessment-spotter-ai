@@ -1,0 +1,255 @@
+{
+  "label": "browser-after",
+  "departure": "2026-11-06T22:41:00+00:00",
+  "environment": "Local browser→Playwright forwarding→profiling Django; real route/weather, verified replayed location selection; background-only MapLibre style, no network throttling; external caches uncontrolled",
+  "samples": [
+    {
+      "journey": "A",
+      "spacing": 50,
+      "cache": "fresh browser; no routing/weather application cache",
+      "status": 200,
+      "http_ms": 20353.706533,
+      "bytes": 308382,
+      "spans": {
+        "tomtom_dns": 5005.574,
+        "tomtom_headers": 7485.929,
+        "tomtom_wire_bytes": 78607,
+        "tomtom_download": 4359.647,
+        "tomtom_decompress": 2.287,
+        "tomtom_json": 11.235,
+        "tomtom_attempt": 11859.289,
+        "tomtom_routes": 11859.356,
+        "geometry_distances": 18.704,
+        "route_scale": 22.274,
+        "route_normalization": 71.964,
+        "checkpoint_generation": 0.326,
+        "checkpoint_count": 24,
+        "weather_dns": 5004.014,
+        "weather_headers": 8310.259,
+        "weather_wire_bytes": 1306,
+        "weather_download": 0.181,
+        "weather_decompress": 0.069,
+        "weather_json": 0.242,
+        "weather_batch": 8310.922,
+        "weather_attempt": 8310.925,
+        "weather_normalization": 3.655,
+        "weather_retrieval": 8315.142,
+        "weather_unique_locations": 20,
+        "weather_http_calls": 1,
+        "weather_batches": 1,
+        "risk_calculation": 1.23,
+        "eta_matching": 1.84,
+        "exposure": 0.314,
+        "weather_assessment": 4.031,
+        "ranking": 0.02,
+        "response_projection": 43.728,
+        "json_serialization": 14.583,
+        "django_total": 20313.842
+      },
+      "routes": [
+        {
+          "checkpoints": 8,
+          "vertices": 4281,
+          "miles": 302.4163882923725,
+          "hours": 4.844444444444444,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        },
+        {
+          "checkpoints": 8,
+          "vertices": 4104,
+          "miles": 311.3920951642408,
+          "hours": 4.9575,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        },
+        {
+          "checkpoints": 8,
+          "vertices": 4421,
+          "miles": 336.4513739759803,
+          "hours": 5.532777777777778,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        }
+      ],
+      "recommended": true,
+      "outcome": "results",
+      "client_error_text": null,
+      "visible_ms": 20896.505892,
+      "pending_pan_automation_ms": 259.0536750000001,
+      "browser": {
+        "fetches": [
+          {
+            "path": "/api/routes/analyze/",
+            "start": 4287.299999999814,
+            "headers_ms": 20385.600000000093
+          }
+        ],
+        "json": [
+          {
+            "path": "/api/routes/analyze/",
+            "body_ms": 3.7000000001862645,
+            "parse_ms": 3.1999999997206032,
+            "end": 24679.799999999814
+          }
+        ],
+        "renders": [
+          {
+            "after_json_ms": 130.3000000002794,
+            "end": 24810.100000000093
+          }
+        ],
+        "long_tasks": [
+          {
+            "start": 24676.399999999907,
+            "ms": 55
+          },
+          {
+            "start": 24959.100000000093,
+            "ms": 69
+          },
+          {
+            "start": 25038.799999999814,
+            "ms": 57
+          }
+        ],
+        "click_to_fetch_ms": 2.5,
+        "map": [
+          {
+            "name": "analysis-validation",
+            "ms": 51.200000000186265
+          },
+          {
+            "name": "map-routes-source",
+            "ms": 150.60000000009313
+          },
+          {
+            "name": "map-checkpoints-source",
+            "ms": 148.8000000002794
+          }
+        ]
+      }
+    },
+    {
+      "journey": "D",
+      "spacing": 50,
+      "cache": "same browser; no routing/weather application cache",
+      "status": 200,
+      "http_ms": 32865.756071,
+      "bytes": 1429097,
+      "spans": {
+        "tomtom_dns": 5004.964,
+        "tomtom_headers": 9824.101,
+        "tomtom_wire_bytes": 354494,
+        "tomtom_download": 763.2,
+        "tomtom_decompress": 10.001,
+        "tomtom_json": 45.892,
+        "tomtom_attempt": 10643.432,
+        "tomtom_routes": 10643.481,
+        "geometry_distances": 98.935,
+        "route_scale": 118.818,
+        "route_normalization": 382.16,
+        "checkpoint_generation": 3.152,
+        "checkpoint_count": 99,
+        "weather_dns": 55046.847,
+        "weather_headers": 58939.813,
+        "weather_wire_bytes": 11576,
+        "weather_download": 7.553,
+        "weather_decompress": 49.993,
+        "weather_json": 3.517,
+        "weather_batch": 59002.084,
+        "weather_attempt": 59002.101,
+        "weather_normalization": 112.659,
+        "weather_retrieval": 21645.484,
+        "weather_unique_locations": 95,
+        "weather_http_calls": 5,
+        "weather_batches": 5,
+        "risk_calculation": 2.873,
+        "eta_matching": 5.47,
+        "exposure": 0.622,
+        "weather_assessment": 10.857,
+        "ranking": 0.034,
+        "response_projection": 29.324,
+        "json_serialization": 85.51,
+        "django_total": 32822.263
+      },
+      "routes": [
+        {
+          "checkpoints": 30,
+          "vertices": 15930,
+          "miles": 1437.858531177921,
+          "hours": 20.74111111111111,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        },
+        {
+          "checkpoints": 30,
+          "vertices": 17094,
+          "miles": 1439.6288177046051,
+          "hours": 21.74111111111111,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        },
+        {
+          "checkpoints": 39,
+          "vertices": 25761,
+          "miles": 1896.437306132188,
+          "hours": 26.891944444444444,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        }
+      ],
+      "recommended": true,
+      "outcome": "results",
+      "client_error_text": null,
+      "visible_ms": 33317.619806999995,
+      "pending_pan_automation_ms": 160.61781699999847,
+      "browser": {
+        "fetches": [
+          {
+            "path": "/api/routes/analyze/",
+            "start": 26529.799999999814,
+            "headers_ms": 32969.30000000028
+          }
+        ],
+        "json": [
+          {
+            "path": "/api/routes/analyze/",
+            "body_ms": 16.5,
+            "parse_ms": 21.199999999720603,
+            "end": 59536.89999999991
+          }
+        ],
+        "renders": [
+          {
+            "after_json_ms": 203,
+            "end": 59739.89999999991
+          }
+        ],
+        "long_tasks": [
+          {
+            "start": 59514.60000000009,
+            "ms": 134
+          },
+          {
+            "start": 59663.200000000186,
+            "ms": 75
+          }
+        ],
+        "click_to_fetch_ms": 4.7999999998137355,
+        "map": [
+          {
+            "name": "analysis-validation",
+            "ms": 112.39999999990687
+          }
+        ]
+      }
+    }
+  ]
+}

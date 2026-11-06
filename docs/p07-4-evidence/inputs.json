@@ -1,0 +1,54 @@
+{
+  "departure": "2026-11-06T22:41:00+00:00",
+  "load_weight_lb": 30000,
+  "locations": {
+    "Chicago": {
+      "id": "A-ijkJ0h20LoVLeL8l3dYQ",
+      "label": "Chicago, IL, United States",
+      "subtitle": "United States",
+      "source": "tomtom-v3",
+      "latitude": 41.883229,
+      "longitude": -87.632398
+    },
+    "St. Louis": {
+      "id": "BrUfOlvtwYFxf2eDtXrTvA",
+      "label": "Saint Louis, MO, United States",
+      "subtitle": "United States",
+      "source": "tomtom-v3",
+      "latitude": 38.635355,
+      "longitude": -90.200986
+    },
+    "Dallas": {
+      "id": "zK2aykRFLfTtm0slSWcgUw",
+      "label": "Dallas, TX, United States",
+      "subtitle": "United States",
+      "source": "tomtom-v3",
+      "latitude": 32.777976,
+      "longitude": -96.796215
+    },
+    "Houston": {
+      "id": "x1B_vrrupzsZbJjV1mLSXQ",
+      "label": "Houston, TX, United States",
+      "subtitle": "United States",
+      "source": "tomtom-v3",
+      "latitude": 29.760803,
+      "longitude": -95.369506
+    },
+    "Atlanta": {
+      "id": "qJD7btrQ-Y9sqDRdBnjODw",
+      "label": "Atlanta, GA, United States",
+      "subtitle": "United States",
+      "source": "tomtom-v3",
+      "latitude": 33.748547,
+      "longitude": -84.391502
+    },
+    "Los Angeles": {
+      "id": "VdBALq_YicqbSGsgJSrM0Q",
+      "label": "Los Angeles, CA, United States",
+      "subtitle": "United States",
+      "source": "tomtom-v3",
+      "latitude": 34.052238,
+      "longitude": -118.243344
+    }
+  }
+}

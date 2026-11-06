@@ -1,0 +1,686 @@
+{
+  "config": {
+    "argv": [
+      "/home/sultan/.nvm/versions/node/v24.12.0/bin/node",
+      "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/node_modules/.bin/playwright",
+      "test",
+      "--reporter=line,json"
+    ],
+    "configFile": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/playwright.config.ts",
+    "rootDir": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e",
+        "snapshotDir": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5173",
+          "headless": true,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "launchOptions": {
+            "args": [
+              "--use-gl=angle",
+              "--use-angle=swiftshader",
+              "--enable-unsafe-swiftshader"
+            ]
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "corridor.spec.ts",
+      "file": "corridor.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "live 48-hour corridor on existing map with route cache",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Opt-in real provider smoke test: LIVE_PROVIDERS=1",
+                  "location": {
+                    "file": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e/corridor.spec.ts",
+                    "line": 14,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 100,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:11:22.304Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Opt-in real provider smoke test: LIVE_PROVIDERS=1",
+                      "location": {
+                        "file": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e/corridor.spec.ts",
+                        "line": 14,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "9bca1b962c42954dd5a4-0dc78235d0657b4a1374",
+          "file": "corridor.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "synthetic categories, missing data, errors and slider frame rendering",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7981,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:11:22.560Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9bca1b962c42954dd5a4-4d89ce9b973332e59a45",
+          "file": "corridor.spec.ts",
+          "line": 234,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "locations.spec.ts",
+      "file": "locations.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "live v3 autocomplete, coordinate trip, swap, map confirmation and mobile",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Opt-in real provider smoke test: LIVE_PROVIDERS=1",
+                  "location": {
+                    "file": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e/locations.spec.ts",
+                    "line": 11,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 413,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:11:30.619Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Opt-in real provider smoke test: LIVE_PROVIDERS=1",
+                      "location": {
+                        "file": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e/locations.spec.ts",
+                        "line": 11,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "fad2de03dbce305bbc97-2dcab73fe0000c0f3059",
+          "file": "locations.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "mobile touch map picker preserves map instance and submits pin coordinates (synthetic analysis response)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2835,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:11:31.132Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fad2de03dbce305bbc97-1db760ccd70910270978",
+          "file": "locations.spec.ts",
+          "line": 181,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "p074-responsiveness.spec.ts",
+      "file": "p074-responsiveness.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "P07.4 pending analysis keeps map usable, prevents duplicates and renders a long response",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14699,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:11:34.010Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7eba3e6344e71780693a-282b3a1b389a0d9dbd6d",
+          "file": "p074-responsiveness.spec.ts",
+          "line": 8,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "redesign.spec.ts",
+      "file": "redesign.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "P07.3 decision, comparison, checkpoint, forecast cache and browser console",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9748,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:11:48.759Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8c55c0801a27607fa79e-7fa1e5ff5785236d4d59",
+          "file": "redesign.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "P07.3 responsive layout and expanded settings at eight sizes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5879,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:11:58.532Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8c55c0801a27607fa79e-d0bfb074126ff57df6f2",
+          "file": "redesign.spec.ts",
+          "line": 130,
+          "column": 1
+        },
+        {
+          "title": "P07.3 map toolbar cancel, Escape, drag and confirmed destination preserve coordinate state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4070,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:12:04.433Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8c55c0801a27607fa79e-653ea05905893d9e2897",
+          "file": "redesign.spec.ts",
+          "line": 176,
+          "column": 1
+        },
+        {
+          "title": "P07.3 no recommendation, provider recovery and keyboard autocomplete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4303,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:12:08.550Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8c55c0801a27607fa79e-ab4317d77e6b61811190",
+          "file": "redesign.spec.ts",
+          "line": 222,
+          "column": 1
+        },
+        {
+          "title": "P07.3 visual viewport keyboard resize keeps the sheet and suggestions reachable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2152,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:12:12.900Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8c55c0801a27607fa79e-b9d1cf34313dcdcde972",
+          "file": "redesign.spec.ts",
+          "line": 351,
+          "column": 1
+        },
+        {
+          "title": "P07.3 200% and 400% equivalent reflow keeps the primary form keyboard-reachable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3705,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:12:15.088Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8c55c0801a27607fa79e-28461d1c8adc34113bfd",
+          "file": "redesign.spec.ts",
+          "line": 408,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "workspace.spec.ts",
+      "file": "workspace.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real Django + MapLibre desktop/mobile journey",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Opt-in real provider smoke test: LIVE_PROVIDERS=1",
+                  "location": {
+                    "file": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e/workspace.spec.ts",
+                    "line": 10,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 56,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:12:18.832Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Opt-in real provider smoke test: LIVE_PROVIDERS=1",
+                      "location": {
+                        "file": "/home/sultan/Desktop/repos/assessment-spotter-ai/frontend/e2e/workspace.spec.ts",
+                        "line": 10,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "b163ed09f68681248ada-4d589fb0da86358b995c",
+          "file": "workspace.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "browser error, partial safety and checkpoint map interaction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5296,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:12:18.906Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b163ed09f68681248ada-b4e553ca1d09268fa3b9",
+          "file": "workspace.spec.ts",
+          "line": 232,
+          "column": 1
+        },
+        {
+          "title": "map failure can retry; malformed geometry cannot reach map sources",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2626,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T21:12:24.233Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b163ed09f68681248ada-6f2c1e2fccc4c1417851",
+          "file": "workspace.spec.ts",
+          "line": 354,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-06T21:11:21.125Z",
+    "duration": 66183.841,
+    "expected": 11,
+    "skipped": 3,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

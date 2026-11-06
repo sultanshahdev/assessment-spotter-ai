@@ -1,3 +1,4 @@
+import { AnalysisPending } from "./AnalysisPending";
 import { LocationAutocomplete } from "./LocationAutocomplete";
 import {
   exampleLocations,
@@ -275,14 +276,7 @@ export function TripForm({
           Check the highlighted trip details.
         </p>
       )}
-      {loading && (
-        <div className="loading-message" role="status">
-          Checking routes and weather. This may take a moment.{" "}
-          <button type="button" className="text-button" onClick={onCancel}>
-            Cancel
-          </button>
-        </div>
-      )}
+      {loading && <AnalysisPending onCancel={onCancel} />}
     </form>
   );
 }

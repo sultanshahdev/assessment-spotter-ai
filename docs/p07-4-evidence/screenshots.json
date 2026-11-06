@@ -1,0 +1,173 @@
+{
+  "captures": [
+    {
+      "path": "baseline-long-haul.png",
+      "bytes": 70814,
+      "width": 1440,
+      "height": 900,
+      "sha256": "a5121be9fa915f2b5ef8bef93828522937f0117e2258132f95afb681c33cd70a",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-after-long-haul.png",
+      "bytes": 65206,
+      "width": 1440,
+      "height": 900,
+      "sha256": "ea06b7fda4ccba381438467dfcd468b5eabb7fd9f6c88b07d1c1dd9da68b5319",
+      "visually_inspected_at_signoff": true
+    },
+    {
+      "path": "browser-map-confirmation-long-haul.png",
+      "bytes": 123656,
+      "width": 1440,
+      "height": 900,
+      "sha256": "7492dd4e3c1dfa0f2e7ecf1682ceb80be55c7a21d75feebe5c1b455943a886a3",
+      "visually_inspected_at_signoff": true
+    },
+    {
+      "path": "browser-regression/corridor/synthetic-categories-hour-0.png",
+      "bytes": 91036,
+      "width": 1440,
+      "height": 900,
+      "sha256": "42afb8fc5ec5ed146818afc574e103c74d451615c168fb87c001a856f64bae9b",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/corridor/synthetic-mobile-unknown-hour.png",
+      "bytes": 58653,
+      "width": 390,
+      "height": 844,
+      "sha256": "b085c70c34987ad8e97b8b2d6156cf6e752837a41c603873e48931bb82af4132",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/corridor/synthetic-unknown-hour.png",
+      "bytes": 105635,
+      "width": 1440,
+      "height": 900,
+      "sha256": "204fb6fdc19abb31771a52976c062ae60ff950c69248581d2047c966edfa6b1f",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/desktop-initial.png",
+      "bytes": 57515,
+      "width": 1440,
+      "height": 900,
+      "sha256": "9d90f9c76ae9bb3d22a8ef0b4c163689a301e74b978bc405773f5c1baa829dd0",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/initial-1024x768.png",
+      "bytes": 54395,
+      "width": 1024,
+      "height": 768,
+      "sha256": "a0ea323622670fa46c432be4ac91d3bba1af26b004a5fede5dd8fcaed8cb8cee",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/initial-1280x800.png",
+      "bytes": 55537,
+      "width": 1280,
+      "height": 800,
+      "sha256": "c8308c7b3318bf0151200a2e1d0733019de2064ccdcea02259485ce2cdf4bf3a",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/initial-1440x900.png",
+      "bytes": 57515,
+      "width": 1440,
+      "height": 900,
+      "sha256": "9d90f9c76ae9bb3d22a8ef0b4c163689a301e74b978bc405773f5c1baa829dd0",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/mobile-expanded.png",
+      "bytes": 43028,
+      "width": 390,
+      "height": 844,
+      "sha256": "fd13ada219ccf6250dd3d5e4c42bcfc87c05479c41cf7ab6b4b9f68e54d381bf",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/mobile-forecast.png",
+      "bytes": 46524,
+      "width": 390,
+      "height": 844,
+      "sha256": "577a747652e02b698c65078d5e9d73a05bc748ca087e169cb3af09b797136f38",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/workspace/desktop-error.png",
+      "bytes": 72742,
+      "width": 1440,
+      "height": 900,
+      "sha256": "dd0061b49ca2bebacace6145327c70b84892eb2d7873e75d6e469a296e4a858b",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/workspace/desktop-map-error.png",
+      "bytes": 66831,
+      "width": 1440,
+      "height": 900,
+      "sha256": "ae56dbf05c414b5c2006671ec2729e82b0df7330bf8d4a94f910273757feeec8",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/workspace/desktop-partial.png",
+      "bytes": 135325,
+      "width": 1440,
+      "height": 900,
+      "sha256": "e282e3d0798ca8d4b75e1ac92c4bbc75a80be47c7153b7642db26d3fe359ba33",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "browser-regression/workspace/mobile-partial.png",
+      "bytes": 65946,
+      "width": 390,
+      "height": 844,
+      "sha256": "94fb05ea5a5a5ee0174dda8b4746eee5b44814bcd57a1eadddaa88c12c7ed5b0",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "deterministic-long-results.png",
+      "bytes": 117014,
+      "width": 1440,
+      "height": 900,
+      "sha256": "91f199503b705c5c141f4a0d1f30e95c2e6c45eab4a6c9ceca531d85c945a35c",
+      "visually_inspected_at_signoff": true
+    },
+    {
+      "path": "pending-analysis.png",
+      "bytes": 72581,
+      "width": 1440,
+      "height": 900,
+      "sha256": "e17f5e6285bc527b016c77a36d4b5a58d7778775fcfa894161c8a9b6625049b8",
+      "visually_inspected_at_signoff": true
+    },
+    {
+      "path": "real-basemap/desktop-comparison.png",
+      "bytes": 366785,
+      "width": 1440,
+      "height": 900,
+      "sha256": "c163af2077b8549a1aa72474021eab529b09ea18182fe554ae72188ac7852289",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "real-basemap/desktop-initial.png",
+      "bytes": 381018,
+      "width": 1440,
+      "height": 900,
+      "sha256": "64ccbac4414102414ca4be9c86fb0ea18ae0e97a78f9841ca319d1661a6ed3ad",
+      "visually_inspected_at_signoff": false
+    },
+    {
+      "path": "real-basemap/mobile-forecast.png",
+      "bytes": 117747,
+      "width": 390,
+      "height": 844,
+      "sha256": "d2f4a11d15b3388b5291956bc13ee5ed78073301799237ab482e4bc2c0744687",
+      "visually_inspected_at_signoff": false
+    }
+  ],
+  "provenance": "README.md separates real routing/weather from fixtures and background-only from real external basemaps."
+}

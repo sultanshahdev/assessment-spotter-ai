@@ -1,0 +1,28 @@
+{
+  "samples": [
+    {
+      "failed": true,
+      "visible_ms": 25247.481713
+    },
+    {
+      "failed": true,
+      "visible_ms": 25019.809361
+    },
+    {
+      "failed": true,
+      "visible_ms": 25020.011828000002
+    }
+  ],
+  "calls": [
+    {
+      "operation": "/api/locations/suggest/"
+    },
+    {
+      "operation": "/api/locations/suggest/"
+    },
+    {
+      "operation": "/api/locations/suggest/"
+    }
+  ],
+  "browser": []
+}

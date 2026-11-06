@@ -1,0 +1,33 @@
+{
+  "method": "Identical 41 exact positions, same forecast fixtures and three workers. Artificial 25ms I/O per batch; not a live benchmark.",
+  "results": {
+    "10": {
+      "samples_ms": [
+        66.9989349999014,
+        67.853271000331,
+        65.63269499974922,
+        61.24282900009348,
+        63.94612899975982,
+        67.23903700003575,
+        65.72896099987702
+      ],
+      "median_ms": 65.72896099987702,
+      "http_calls": 5,
+      "exact_unique_positions": 41
+    },
+    "20": {
+      "samples_ms": [
+        39.97717199990802,
+        38.79887299990514,
+        41.25641800010271,
+        39.72257899977194,
+        44.78299299989885,
+        40.658657000221865,
+        44.27341499967952
+      ],
+      "median_ms": 40.658657000221865,
+      "http_calls": 3,
+      "exact_unique_positions": 41
+    }
+  }
+}

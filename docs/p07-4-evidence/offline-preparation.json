@@ -1,0 +1,6 @@
+{
+  "kind": "Deterministic 41 exact checkpoint positions; window preparation plus thread dispatch to first transport. No provider I/O.",
+  "measurements_ms": {
+    "weather_preparation_and_dispatch": 0.960633999966376
+  }
+}

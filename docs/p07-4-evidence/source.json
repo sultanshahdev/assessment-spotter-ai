@@ -1,0 +1,38 @@
+{
+  "intake_head": "66b181b42809e39c26c50f814c1713702725f896",
+  "note": "Baseline runtime source reconstructed from the clean intake HEAD; diagnostic instrumentation was independently extended before baseline. Current source hashes reflect final worktree, not a new commit.",
+  "files": {
+    "backend/views.py": {
+      "baseline_sha256": "8c4f7ae487e142465c2af69ca8595e45ca1c146e44cdbe5fa6e99d4d52d76045",
+      "final_sha256": "70251625c148b6afadbd034ed2ee7646b2d8dfc27a2c3d118bb3603196dcb58e"
+    },
+    "route_processing/models.py": {
+      "baseline_sha256": "6f81c1bf892a2669c5d05f3a809b0197d10bbac6220a9f15ed610c601f01af7a",
+      "final_sha256": "f0169800dd2b747ae8c907180eae25dae4f51bf7ab98089121a160b2436d890c"
+    },
+    "route_processing/checkpoints.py": {
+      "baseline_sha256": "19ea1f808f09f6cbfb451ba0a2175df31c66677ba47d053b8e7047f8a5ac0876",
+      "final_sha256": "e89dc4126bb1a6f9aa0e6450068143f4241e17b62c24542d46239ba4c09f5704"
+    },
+    "routing_adapters/tomtom.py": {
+      "baseline_sha256": "541500f743ca7489f497bf411fb96b4e3f72d4fe7e52f26e49456dd5d3d9b845",
+      "final_sha256": "bd2a10d45c2bddc0dbb6d35061c81a8284296321dd6f3482f2e9f68bbe9615e9"
+    },
+    "trip_planning/providers.py": {
+      "baseline_sha256": "42df11f84d1a5270440a35c4442729192e0173a8481e52d3755ad73acfe3c5f0",
+      "final_sha256": "9cc64b981efab0a59deaa8f450ca359099a48068b997133269f0823db33d836c"
+    },
+    "frontend/src/components/TripForm.tsx": {
+      "baseline_sha256": "d24d3b1d1c2a3f32e4183eb6dcccf27a5b2123a4bf4317e92b990274b048f867",
+      "final_sha256": "aeca7d3a002c35a204038c7c66423cf36cc92e41710fbf4f5356272fcf66df99"
+    },
+    "frontend/src/lib/api.ts": {
+      "baseline_sha256": "769876f02536968e0ccbe5b64f8d3d71dcc90f250e350b58cf678616bcc40e1f",
+      "final_sha256": "573504a0133b85c37fb96f05c4d036ec6b8109a5b2f3a5e411803a99ee94790c"
+    },
+    "frontend/src/lib/performance.ts": {
+      "baseline_sha256": "48ea9be8a1db92166cc0ce63597918be26f06291a21d47f9e15b230be001a675",
+      "final_sha256": "535a4904382e4e66bc8ce91754e3ff8aa5c83e85a9505846636f64243c389f2d"
+    }
+  }
+}

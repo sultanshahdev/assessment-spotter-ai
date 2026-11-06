@@ -129,3 +129,35 @@ it("reuses typing-session results immediately without a duplicate request", asyn
   expect(screen.getByRole("option")).toBeVisible();
   expect(search).toHaveBeenCalledTimes(1);
 });
+
+it("an older response cannot replace newer suggestions even when transport ignores abort", async () => {
+  vi.useFakeTimers();
+  let old!: (items: Suggestion[]) => void;
+  let latest!: (items: Suggestion[]) => void;
+  search
+    .mockImplementationOnce(
+      () =>
+        new Promise((r) => {
+          old = r;
+        }),
+    )
+    .mockImplementationOnce(
+      () =>
+        new Promise((r) => {
+          latest = r;
+        }),
+    );
+  render(<Harness />);
+  const input = screen.getByRole("combobox");
+  fireEvent.focus(input);
+  fireEvent.change(input, { target: { value: "old query" } });
+  await act(() => vi.advanceTimersByTimeAsync(250));
+  fireEvent.change(input, { target: { value: "new query" } });
+  await act(() => vi.advanceTimersByTimeAsync(250));
+  await act(async () =>
+    latest([{ ...suggestion, id: "latest", title: "Latest place" }]),
+  );
+  await act(async () => old([suggestion]));
+  expect(screen.getByRole("option")).toHaveTextContent("Latest place");
+  expect(screen.queryByText("Chicago, IL")).not.toBeInTheDocument();
+});

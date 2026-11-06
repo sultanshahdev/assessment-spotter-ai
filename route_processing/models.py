@@ -2,7 +2,12 @@
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
+from functools import cached_property
 import math
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .progress import RouteScale
 
 
 class RouteValidationError(ValueError):
@@ -111,6 +116,16 @@ class NormalizedRoute:
             object.__setattr__(self, name, number)
         if any(s.end_point_index >= len(self.coordinates) for s in self.sections):
             raise RouteValidationError('section index outside geometry')
+
+    @cached_property
+    def scale(self) -> 'RouteScale':
+        """One validated scale per immutable route; no cross-request cache.
+
+        Coordinates/progress are frozen tuples. dataclasses.replace creates a new
+        instance, so changed geometry, distance or duration cannot reuse a scale.
+        """
+        from .progress import build_route_scale
+        return build_route_scale(self)
 
 
 @dataclass(frozen=True)

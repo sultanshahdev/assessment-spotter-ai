@@ -36,8 +36,14 @@ def request_json(url: str, parameters: list | dict, timeout: float) -> Any:
         raise _InterruptedResponse() from None
     except (gzip.BadGzipFile, EOFError, zlib.error):
         raise PlanningError('MALFORMED_PROVIDER_RESPONSE', 'External provider returned invalid compressed data.') from None
-    except (TimeoutError, URLError, HTTPException, OSError):
-        raise PlanningError('PROVIDER_TIMEOUT', 'External provider connection failed or timed out.', 504) from None
+    except TimeoutError:
+        raise PlanningError('PROVIDER_TIMEOUT', 'External provider timed out.', 504) from None
+    except URLError as exc:
+        if isinstance(exc.reason, TimeoutError):
+            raise PlanningError('PROVIDER_TIMEOUT', 'External provider timed out.', 504) from None
+        raise PlanningError('PROVIDER_CONNECTION_ERROR', 'External provider connection failed. Please retry.', 502) from None
+    except (HTTPException, OSError):
+        raise PlanningError('PROVIDER_CONNECTION_ERROR', 'External provider connection failed. Please retry.', 502) from None
     except (ValueError, UnicodeError):
         raise PlanningError('MALFORMED_PROVIDER_RESPONSE', 'External provider returned invalid JSON.') from None
 

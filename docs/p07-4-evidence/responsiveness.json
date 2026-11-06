@@ -1,0 +1,40 @@
+{
+  "fixture_vertices": 60000,
+  "comparison_and_selection_automation_ms": 469.43574199999784,
+  "weather_detail_open_automation_ms": 267.9379360000021,
+  "pending_pan_and_preview_ms": 497.32914900000105,
+  "response_release_to_results_ms": 574.7359080000024,
+  "analysis_calls": 2,
+  "initial_corridor_calls": 0,
+  "map_identity_preserved": true,
+  "source_measures": [
+    {
+      "name": "map-routes-source",
+      "ms": 458.89999999990687
+    },
+    {
+      "name": "map-checkpoints-source",
+      "ms": 458.8000000002794
+    },
+    {
+      "name": "map-corridor-source",
+      "ms": 459
+    },
+    {
+      "name": "analysis-validation",
+      "ms": 98.1999999997206
+    },
+    {
+      "name": "map-routes-source",
+      "ms": 354.09999999962747
+    },
+    {
+      "name": "map-checkpoints-source",
+      "ms": 307.60000000009313
+    },
+    {
+      "name": "map-checkpoints-source",
+      "ms": 210.89999999990687
+    }
+  ]
+}

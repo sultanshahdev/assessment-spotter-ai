@@ -1,0 +1,45 @@
+{
+  "task": "P07.4",
+  "backend_offline_tests": 180,
+  "frontend_tests": 84,
+  "frontend_test_files": 12,
+  "default_browser": {
+    "passed": 11,
+    "skipped_opt_in_live": 3
+  },
+  "focused_final_browser": {
+    "passed": 1,
+    "seconds": 23.3
+  },
+  "external_basemap": {
+    "passed": 1,
+    "seconds": 24.6,
+    "route_weather_data": "deterministic fixtures"
+  },
+  "typecheck": "passed",
+  "build": "passed; expected MapLibre chunk warning",
+  "prettier": "passed on changed frontend/diagnostic files",
+  "django_check": "passed",
+  "compileall": "passed",
+  "pip_check": "passed",
+  "git_diff_check": "passed",
+  "graph": {
+    "nodes": 1163,
+    "edges": 2598,
+    "communities": 81
+  },
+  "live_reliability": "partial; matrix successes and failures retained; live autocomplete unavailable",
+  "scale_controlled_improvement_percent": 36.49871643100882,
+  "weather_simulated_io_improvement_percent": 38.14194476572064,
+  "live_d25_before_after_http_ms": [
+    162593.0,
+    43418.41568100017
+  ],
+  "note": "Live totals are observations with uncontrolled network/provider/forecast differences; do not attribute all differences to code.",
+  "final_bundle_kb": {
+    "initial_js": 361.21,
+    "initial_js_gzip": 109.7,
+    "lazy_map": 1084.64,
+    "lazy_map_gzip": 294.84
+  }
+}

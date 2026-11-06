@@ -5,7 +5,7 @@ from typing import Any, Mapping
 
 from route_processing import (
     GeographicPoint, NormalizedRoute, RouteProgressPoint, RouteSection,
-    RouteValidationError, RoutingWarning, build_route_scale, haversine_meters,
+    RouteValidationError, RoutingWarning, haversine_meters,
 )
 
 
@@ -63,7 +63,7 @@ def _normalize_route(raw: Mapping[str, Any]) -> NormalizedRoute:
         total_duration_seconds=summary['travelTimeInSeconds'], progress=progress,
         warnings=tuple(warnings), sections=tuple(sections), provider='tomtom_routing_v1',
     )
-    build_route_scale(route)  # Reject malformed supplied progress before exposing normalized routes.
+    _ = route.scale  # Validate once before exposure; checkpoints reuse this immutable scale.
     return route
 
 

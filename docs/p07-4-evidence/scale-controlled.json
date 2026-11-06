@@ -1,0 +1,25 @@
+{
+  "method": "Seven interleaved pairs; fresh immutable route per timed sample, same 60000 vertices. Before explicitly repeats the original two builds; after performs cold cached-property calculation plus reuse. Full equality checked outside timing.",
+  "samples_ms": {
+    "before": [
+      341.84028300023783,
+      431.37511199984147,
+      358.85463800013895,
+      584.8139760000777,
+      540.9196159998828,
+      572.6305780003713,
+      485.95710300014616
+    ],
+    "after": [
+      183.73270100028094,
+      313.3974290003607,
+      273.1006899998647,
+      310.14918300024874,
+      327.286322999953,
+      308.58899799977735,
+      164.15779099997962
+    ]
+  },
+  "before_median_ms": 485.95710300014616,
+  "after_median_ms": 308.58899799977735
+}

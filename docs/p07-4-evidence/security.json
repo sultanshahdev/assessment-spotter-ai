@@ -1,0 +1,12 @@
+{
+  "candidate_and_build_files_scanned": 369,
+  "configured_secret_values_checked": 1,
+  "exact_secret_matches": [],
+  "authenticated_provider_url_candidates": [],
+  "environment_like_candidates": [
+    ".env.example",
+    "frontend/.env.example"
+  ],
+  "staged_files": 0,
+  "runtime_dependency_lock_environment_changes": []
+}

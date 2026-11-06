@@ -1,0 +1,144 @@
+{
+  "label": "browser-map-confirmation",
+  "departure": "2026-11-06T22:41:00+00:00",
+  "environment": "Local browser→Playwright forwarding→profiling Django; real route/weather, verified replayed location selection; background-only MapLibre style, no network throttling; external caches uncontrolled",
+  "samples": [
+    {
+      "journey": "D",
+      "spacing": 50,
+      "cache": "fresh browser; no routing/weather application cache",
+      "status": 200,
+      "http_ms": 42945.471256,
+      "bytes": 1429490,
+      "spans": {
+        "tomtom_wire_bytes": 354547,
+        "tomtom_attempt_count": 1,
+        "checkpoint_count": 99,
+        "weather_wire_bytes": 11608,
+        "weather_attempt_count": 5,
+        "weather_unique_locations": 95,
+        "weather_http_calls": 5,
+        "weather_batches": 5,
+        "tomtom_dns": 15012.127,
+        "tomtom_headers": 19912.77,
+        "tomtom_download": 808.884,
+        "tomtom_decompress": 9.206,
+        "tomtom_json": 41.183,
+        "tomtom_attempt": 20772.275,
+        "tomtom_routes": 20772.324,
+        "geometry_distances": 94.621,
+        "route_scale": 113.637,
+        "route_normalization": 445.248,
+        "checkpoint_generation": 2.353,
+        "weather_dns": 55047.559,
+        "weather_headers": 58634.206,
+        "weather_download": 14.027,
+        "weather_decompress": 36.166,
+        "weather_json": 3.656,
+        "weather_batch": 58689.323,
+        "weather_attempt": 58689.336,
+        "weather_normalization": 97.217,
+        "weather_retrieval": 21527.185,
+        "risk_calculation": 3.107,
+        "eta_matching": 5.62,
+        "exposure": 0.748,
+        "weather_assessment": 11.555,
+        "ranking": 0.027,
+        "response_projection": 22.931,
+        "json_serialization": 83.763,
+        "django_total": 42880.412
+      },
+      "routes": [
+        {
+          "checkpoints": 30,
+          "vertices": 15930,
+          "miles": 1437.858531177921,
+          "hours": 20.74111111111111,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        },
+        {
+          "checkpoints": 30,
+          "vertices": 17113,
+          "miles": 1439.2789857233754,
+          "hours": 21.735555555555557,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        },
+        {
+          "checkpoints": 39,
+          "vertices": 25761,
+          "miles": 1896.437306132188,
+          "hours": 26.914166666666667,
+          "coverage": 1,
+          "eligibility": "ELIGIBLE",
+          "eta_monotonic": true
+        }
+      ],
+      "recommended": true,
+      "outcome": "results",
+      "client_error_text": null,
+      "visible_ms": 43401.337503,
+      "map_source_completed_and_fit": true,
+      "pending_pan_automation_ms": 155.61484400000018,
+      "browser": {
+        "fetches": [
+          {
+            "path": "/api/routes/analyze/",
+            "start": 3100.5,
+            "headers_ms": 43025
+          }
+        ],
+        "json": [
+          {
+            "path": "/api/routes/analyze/",
+            "body_ms": 16,
+            "parse_ms": 19.899999999906868,
+            "end": 46161.5
+          }
+        ],
+        "renders": [
+          {
+            "after_json_ms": 294.79999999981374,
+            "end": 46456.299999999814
+          }
+        ],
+        "long_tasks": [
+          {
+            "start": 46140.39999999991,
+            "ms": 156
+          },
+          {
+            "start": 46310.299999999814,
+            "ms": 101
+          },
+          {
+            "start": 46792.299999999814,
+            "ms": 71
+          },
+          {
+            "start": 46881.89999999991,
+            "ms": 105
+          }
+        ],
+        "click_to_fetch_ms": 1.3999999999068677,
+        "map": [
+          {
+            "name": "analysis-validation",
+            "ms": 135.5
+          },
+          {
+            "name": "map-routes-source",
+            "ms": 370.40000000037253
+          },
+          {
+            "name": "map-checkpoints-source",
+            "ms": 336.79999999981374
+          }
+        ]
+      }
+    }
+  ]
+}

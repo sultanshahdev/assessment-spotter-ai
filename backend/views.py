@@ -21,7 +21,7 @@ def api_exception_handler(exc, context):
 
 def get_planner():
     return TripPlanner(TomTomClient(settings.TOMTOM_API_KEY, settings.ROUTING_TIMEOUT_SECONDS),
-                       partial(fetch_forecasts, transport=weather_transport(settings.WEATHER_TIMEOUT_SECONDS), retries=0, max_workers=3))
+                       partial(fetch_forecasts, transport=weather_transport(settings.WEATHER_TIMEOUT_SECONDS), retries=0, max_workers=3, batch_size=20))
 
 
 @api_view(['GET'])

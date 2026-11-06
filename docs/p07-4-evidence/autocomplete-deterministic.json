@@ -1,0 +1,47 @@
+{
+  "mode": "deterministic suggestions, no provider",
+  "samples": [
+    {
+      "cache": false,
+      "visible_ms": 1634.9758740000002
+    },
+    {
+      "cache": false,
+      "visible_ms": 355.8059290000001
+    },
+    {
+      "cache": true,
+      "visible_ms": 62.90338700000029
+    }
+  ],
+  "calls": [
+    {
+      "operation": "/api/locations/suggest/"
+    },
+    {
+      "operation": "/api/locations/suggest/"
+    }
+  ],
+  "browser": [
+    {
+      "path": "/api/locations/suggest/",
+      "debounce_ms": 843.3000000002794,
+      "start": 1544.3000000002794,
+      "status": 200,
+      "http_ms": 186.1999999997206,
+      "json_ms": 14.700000000186265,
+      "json_end": 1745.2000000001863,
+      "response_to_options_ms": 49.89999999990687
+    },
+    {
+      "path": "/api/locations/suggest/",
+      "debounce_ms": 258.60000000009313,
+      "start": 2411.600000000093,
+      "status": 200,
+      "http_ms": 7.100000000093132,
+      "json_ms": 0.6000000000931323,
+      "json_end": 2419.3000000002794,
+      "response_to_options_ms": 2.3999999999068677
+    }
+  ]
+}

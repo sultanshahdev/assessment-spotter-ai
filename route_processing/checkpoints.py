@@ -5,7 +5,6 @@ import math
 
 from .geometry import METERS_PER_MILE, interpolate_position
 from .models import NormalizedRoute, RouteCheckpoint, RouteValidationError, finite_number
-from .progress import build_route_scale
 
 
 def generate_checkpoints(route: NormalizedRoute, interval_miles: float,
@@ -22,7 +21,7 @@ def generate_checkpoints(route: NormalizedRoute, interval_miles: float,
         departure_utc + timedelta(seconds=route.total_duration_seconds)
     except (ValueError, OverflowError):
         raise RouteValidationError('departure plus duration exceeds datetime range') from None
-    scale = build_route_scale(route)
+    scale = route.scale
     step = interval_miles * METERS_PER_MILE
     total = route.total_distance_meters
     # Integer multiples avoid accumulation drift; absolute nanometer-scale

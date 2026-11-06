@@ -1,0 +1,82 @@
+{
+  "departure": "2026-11-06T22:41:00+00:00",
+  "cache": "No app route/weather cache; external caches uncontrolled; sequential localhost diagnostic requests",
+  "samples": [
+    {
+      "journey": "D25",
+      "spacing": 25,
+      "status": 200,
+      "http_ms": 43418.41568100017,
+      "bytes": 1583351,
+      "spans": {
+        "tomtom_dns": 3423.887,
+        "tomtom_headers": 8112.962,
+        "tomtom_download": 841.086,
+        "tomtom_decompress": 30.567,
+        "tomtom_json": 102.634,
+        "tomtom_attempt": 9088.209,
+        "tomtom_routes": 9088.249,
+        "geometry_distances": 249.078,
+        "route_scale": 295.994,
+        "route_normalization": 987.559,
+        "checkpoint_generation": 8.288,
+        "weather_dns": 80073.527,
+        "weather_headers": 87476.167,
+        "weather_download": 7.366,
+        "weather_decompress": 24.377,
+        "weather_json": 9.897,
+        "weather_batch": 87521.293,
+        "weather_attempt": 87521.337,
+        "weather_normalization": 433.179,
+        "weather_retrieval": 33014.602,
+        "risk_calculation": 10.271,
+        "eta_matching": 18.65,
+        "exposure": 1.85,
+        "weather_assessment": 39.811,
+        "ranking": 0.044,
+        "response_projection": 36.153,
+        "json_serialization": 97.885,
+        "django_total": 43289.367,
+        "tomtom_wire_bytes": 354602,
+        "tomtom_attempt_count": 1,
+        "checkpoint_count": 195,
+        "weather_wire_bytes": 23158,
+        "weather_attempt_count": 10,
+        "weather_unique_locations": 191,
+        "weather_http_calls": 10,
+        "weather_batches": 10
+      },
+      "error_code": null,
+      "routes": [
+        {
+          "vertices": 15930,
+          "checkpoints": 59,
+          "coverage": 1.0,
+          "eligibility": "ELIGIBLE",
+          "miles": 1437.858531177921,
+          "hours": 20.740555555555556,
+          "eta_monotonic": true
+        },
+        {
+          "vertices": 17113,
+          "checkpoints": 59,
+          "coverage": 1.0,
+          "eligibility": "ELIGIBLE",
+          "miles": 1439.2789857233754,
+          "hours": 21.739444444444445,
+          "eta_monotonic": true
+        },
+        {
+          "vertices": 25761,
+          "checkpoints": 77,
+          "coverage": 1.0,
+          "eligibility": "ELIGIBLE",
+          "miles": 1896.437306132188,
+          "hours": 26.892777777777777,
+          "eta_monotonic": true
+        }
+      ],
+      "recommended": true
+    }
+  ]
+}

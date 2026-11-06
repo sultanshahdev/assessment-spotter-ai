@@ -1,9 +1,9 @@
 """A single routing-only retry of a proven truncated response, never partial success."""
-from http.client import IncompleteRead
+from http.client import IncompleteRead, RemoteDisconnected
 import json
 import unittest
 from unittest.mock import Mock, patch
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from route_processing import GeographicPoint
 from trip_planning.models import PlanningError
 from trip_planning.providers import TomTomClient, request_json, weather_transport
@@ -79,3 +79,20 @@ class ReliabilityTests(unittest.TestCase):
             with self.assertRaises(PlanningError):
                 request_json('https://example.test', {}, 3)
             self.assertEqual(opened.call_count, 1)
+
+
+class ConnectionClassificationTests(unittest.TestCase):
+    def test_connection_failures_are_not_reported_as_genuine_timeouts_or_retried(self):
+        for failure, code, status in (
+            (URLError(OSError('SECRET_DNS_ERROR')), 'PROVIDER_CONNECTION_ERROR', 502),
+            (ConnectionResetError('SECRET_RESET'), 'PROVIDER_CONNECTION_ERROR', 502),
+            (RemoteDisconnected('SECRET_CLOSED'), 'PROVIDER_CONNECTION_ERROR', 502),
+            (URLError(TimeoutError('SECRET_TIMEOUT')), 'PROVIDER_TIMEOUT', 504),
+            (TimeoutError('SECRET_TIMEOUT'), 'PROVIDER_TIMEOUT', 504),
+        ):
+            with self.subTest(code=code), patch('trip_planning.providers.urlopen', side_effect=failure) as opened:
+                with self.assertRaises(PlanningError) as error:
+                    TomTomClient('secret').routes(GeographicPoint(32,-96), GeographicPoint(34,-118), DEPARTURE)
+                self.assertEqual((error.exception.code,error.exception.status),(code,status))
+                self.assertEqual(opened.call_count,1)
+                self.assertNotIn('SECRET',str(error.exception))

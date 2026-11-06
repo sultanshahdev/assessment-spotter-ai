@@ -14,3 +14,13 @@ export function measureSource(
     performance.measure(name, { start, end: performance.now() }),
   );
 }
+
+export function measureSync<T>(name: string, work: () => T): T {
+  if (!enabled) return work();
+  const start = performance.now();
+  try {
+    return work();
+  } finally {
+    performance.measure(name, { start, end: performance.now() });
+  }
+}

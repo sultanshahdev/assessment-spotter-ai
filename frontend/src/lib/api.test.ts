@@ -106,3 +106,41 @@ it("distinguishes an interrupted provider response from a genuine timeout withou
     message: "The routing provider connection was interrupted. Please retry.",
   });
 });
+
+it("keeps the deadline active through response body download", async () => {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async (_url, options: RequestInit) => ({
+      ok: true,
+      json: () =>
+        new Promise((_resolve, reject) =>
+          options.signal?.addEventListener("abort", () =>
+            reject(new DOMException("", "AbortError")),
+          ),
+        ),
+    })),
+  );
+  await expect(analyzeTrip(request, signal(), 5)).rejects.toMatchObject({
+    code: "TIMEOUT",
+  });
+});
+
+it("distinguishes a provider connection failure from timeout without exposing upstream text", async () => {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn().mockResolvedValue({
+      ok: false,
+      status: 502,
+      json: async () => ({
+        error: {
+          code: "PROVIDER_CONNECTION_ERROR",
+          message: "SECRET_DNS_REASON",
+        },
+      }),
+    }),
+  );
+  await expect(analyzeTrip(request, signal())).rejects.toMatchObject({
+    code: "PROVIDER_CONNECTION_ERROR",
+    message: "Could not connect to the routing provider. Please retry.",
+  });
+});
