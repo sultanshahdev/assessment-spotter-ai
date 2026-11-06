@@ -3,7 +3,7 @@ import { writeFileSync, readFileSync } from "node:fs";
 import AxeBuilder from "@axe-core/playwright";
 import { corridorFixture } from "../src/test/corridorFixture";
 import { fixture } from "../src/test/fixtures";
-const evidence = "../docs/p07-evidence/";
+const evidence = "../docs/p07-1-evidence/p07-regression/";
 
 test("live 48-hour corridor on existing map with route cache", async ({
   page,
@@ -24,10 +24,7 @@ test("live 48-hour corridor on existing map with route cache", async ({
   });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await page.getByLabel("Origin", { exact: true }).fill("41.8781, -87.6298");
-  await page
-    .getByLabel("Destination", { exact: true })
-    .fill("38.6270, -90.1994");
+  await page.getByRole("button", { name: "Try an example journey" }).click();
   const analysisPending = page.waitForResponse((r) =>
     r.url().endsWith("/api/routes/analyze/"),
   );
@@ -258,8 +255,7 @@ test("synthetic categories, missing data, errors and slider frame rendering", as
     });
   });
   await page.goto("/");
-  await page.getByLabel("Origin", { exact: true }).fill("Chicago");
-  await page.getByLabel("Destination", { exact: true }).fill("St. Louis");
+  await page.getByRole("button", { name: "Try an example journey" }).click();
   await page
     .getByRole("button", { name: "Analyze routes", exact: true })
     .click();

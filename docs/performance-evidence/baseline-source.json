@@ -1,0 +1,8 @@
+{
+  "weather_adapters/client.py": "f54ef96ec82af7d1ec3a154c1b62a695a57b73fbdb626d41de745142d2331b83",
+  "backend/views.py": "ccc9280ce7ce62030bddda4b41dcd6bca6396e141fd1066e849b5b04a0e63c57",
+  "backend/corridor.py": "c6f7bf3a6cf03d4c941b6d92c115955de3a85e344986da468dc9606803b810a9",
+  "frontend/src/components/LocationAutocomplete.tsx": "00d0315aca398bf9d61c8d26867bda1e5747fdf1cd6c64fcfc833b08b951fc43",
+  "location_search/__init__.py": "069c248145241199b8f97fd513fd4cf29c7b65d70307aa290e40100c879a5390",
+  "frontend/src/components/RouteMap.tsx": "fefac366afdacec3a955a6c0673f2847de8f8d01eda33dc0e84c66d01d08ddfa"
+}

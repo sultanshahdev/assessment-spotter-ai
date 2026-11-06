@@ -1,25 +1,86 @@
-import { useState } from "react";
+import { LocationAutocomplete } from "./LocationAutocomplete";
+import {
+  exampleLocations,
+  fieldFor,
+  locationSchema,
+  type LocationFieldState,
+  type SelectedLocation,
+} from "../lib/locations";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import type { TripRequest } from "../lib/contracts";
 import { initialForm, validateForm, type FormValues } from "../lib/form";
 interface Props {
   loading: boolean;
+  onMap?: (field: "origin" | "destination") => void;
+  pinned?: {
+    field: "origin" | "destination";
+    location: SelectedLocation;
+  } | null;
+  onEdit?: () => void;
   onSubmit: (request: TripRequest) => void;
   onReset: () => void;
   onCancel: () => void;
 }
-export function TripForm({ loading, onSubmit, onReset, onCancel }: Props) {
+export function TripForm({
+  loading,
+  onSubmit,
+  onReset,
+  onCancel,
+  onMap,
+  pinned,
+  onEdit,
+}: Props) {
   const [values, setValues] = useState(initialForm);
   const [errors, setErrors] = useState<
     Partial<Record<keyof FormValues, string>>
   >({});
+  const [locations, setLocations] = useState<
+    Record<"origin" | "destination", LocationFieldState>
+  >({
+    origin: { query: "", selected: null },
+    destination: { query: "", selected: null },
+  });
+  const [generation, setGeneration] = useState(0);
+  useEffect(() => {
+    if (pinned) {
+      setLocations((v) => ({
+        ...v,
+        [pinned.field]: fieldFor(pinned.location),
+      }));
+      setErrors({});
+      setGeneration((v) => v + 1);
+    }
+  }, [pinned]);
   const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   function submit(event: FormEvent) {
     event.preventDefault();
     if (loading) return;
-    const result = validateForm(values);
+    const result = validateForm({
+      ...values,
+      origin: locations.origin.selected
+        ? `${locations.origin.selected.latitude}, ${locations.origin.selected.longitude}`
+        : "",
+      destination: locations.destination.selected
+        ? `${locations.destination.selected.latitude}, ${locations.destination.selected.longitude}`
+        : "",
+    });
+    for (const field of ["origin", "destination"] as const) {
+      const selected = locations[field].selected;
+      if (!selected || !locationSchema.safeParse(selected).success)
+        result.errors[field] = "Select a location from the suggestions.";
+      else {
+        delete result.errors[field];
+        if (result.request)
+          result.request[field] = {
+            latitude: selected.latitude,
+            longitude: selected.longitude,
+          };
+      }
+    }
     setErrors(result.errors);
-    if (result.request) onSubmit(result.request);
+    if (result.request && !Object.keys(result.errors).length)
+      onSubmit(result.request);
   }
   function input(
     name: keyof FormValues,
@@ -62,6 +123,11 @@ export function TripForm({ loading, onSubmit, onReset, onCancel }: Props) {
           disabled={loading}
           onClick={() => {
             setValues(initialForm());
+            setLocations({
+              origin: { query: "", selected: null },
+              destination: { query: "", selected: null },
+            });
+            setGeneration((v) => v + 1);
             setErrors({});
             onReset();
           }}
@@ -70,22 +136,60 @@ export function TripForm({ loading, onSubmit, onReset, onCancel }: Props) {
         </button>
       </div>
       <div className="location-fields">
-        {input(
-          "origin",
-          "Origin",
-          "text",
-          "City, address or 41.8781, -87.6298",
-        )}
-        {input(
-          "destination",
-          "Destination",
-          "text",
-          "City, address or 38.6270, -90.1994",
-        )}
+        {(["origin", "destination"] as const).map((field, index) => (
+          <div key={field}>
+            {index === 1 && (
+              <button
+                className="text-button swap-button"
+                type="button"
+                disabled={loading}
+                aria-label="Swap origin and destination"
+                onClick={() => {
+                  setLocations((v) => ({
+                    origin: v.destination,
+                    destination: v.origin,
+                  }));
+                  setGeneration((v) => v + 1);
+                  setErrors({});
+                  onEdit?.();
+                }}
+              >
+                ⇅ Swap
+              </button>
+            )}
+            <LocationAutocomplete
+              key={field + generation}
+              label={field === "origin" ? "Origin" : "Destination"}
+              value={locations[field]}
+              disabled={loading}
+              error={errors[field]}
+              onMap={onMap ? () => onMap(field) : undefined}
+              onChange={(value) => {
+                setLocations((v) => ({ ...v, [field]: value }));
+                setErrors((v) => ({ ...v, [field]: undefined }));
+                onEdit?.();
+              }}
+            />
+          </div>
+        ))}
       </div>
-      <p className="field-help">
-        Use a specific address, or latitude, longitude. No autocomplete.
-      </p>
+      <button
+        type="button"
+        className="text-button example-trip"
+        disabled={loading}
+        onClick={() => {
+          setLocations({
+            origin: fieldFor(exampleLocations[0]),
+            destination: fieldFor(exampleLocations[1]),
+          });
+          setValues(initialForm());
+          setErrors({});
+          setGeneration((v) => v + 1);
+          onEdit?.();
+        }}
+      >
+        Try an example journey
+      </button>
       <div className="field-row">
         {input("date", "Departure date", "date")}
         {input("time", "Departure time", "time")}
@@ -127,7 +231,7 @@ export function TripForm({ loading, onSubmit, onReset, onCancel }: Props) {
           </>
         )}
       </button>
-      {Object.keys(errors).length > 0 && (
+      {Object.values(errors).some(Boolean) && (
         <p role="alert" className="field-error">
           Check the highlighted trip details.
         </p>

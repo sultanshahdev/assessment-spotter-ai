@@ -82,7 +82,7 @@ class CorridorSerializer(serializers.Serializer):
 
 
 def get_corridor_service():
-    return CorridorService(partial(fetch_forecasts, transport=weather_transport(settings.WEATHER_TIMEOUT_SECONDS), retries=0))
+    return CorridorService(partial(fetch_forecasts, transport=weather_transport(settings.WEATHER_TIMEOUT_SECONDS), retries=0, max_workers=3))
 
 
 @api_view(['POST'])

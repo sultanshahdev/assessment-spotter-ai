@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { fixture } from "../src/test/fixtures";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import AxeBuilder from "@axe-core/playwright";
-const evidence = "../docs/p06-evidence/";
+const evidence = "../docs/p07-1-evidence/p06-regression/";
 
 test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
   const exceptions: string[] = [],
@@ -42,7 +42,9 @@ test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
   expect(initialA11y.violations).toEqual([]);
   await page.getByLabel("Origin", { exact: true }).focus();
   await page.keyboard.press("Tab");
-  await expect(page.getByLabel("Destination", { exact: true })).toBeFocused();
+  await expect(
+    page.getByRole("button", { name: "Choose origin on map" }),
+  ).toBeFocused();
   await page.screenshot({ path: evidence + "desktop-initial.png" });
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator("body")).toHaveJSProperty("scrollWidth", 390);
@@ -51,10 +53,7 @@ test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
     fullPage: true,
   });
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.getByLabel("Origin", { exact: true }).fill("41.8781, -87.6298");
-  await page
-    .getByLabel("Destination", { exact: true })
-    .fill("38.6270, -90.1994");
+  await page.getByRole("button", { name: "Try an example journey" }).click();
   const started = Date.now();
   const pending = page.waitForResponse(
     (r) =>
@@ -277,8 +276,7 @@ test("browser error, partial safety and checkpoint map interaction", async ({
     }),
   );
   await page.goto("/");
-  await page.getByLabel("Origin", { exact: true }).fill("Chicago, IL");
-  await page.getByLabel("Destination", { exact: true }).fill("St. Louis, MO");
+  await page.getByRole("button", { name: "Try an example journey" }).click();
   await page.getByRole("button", { name: "Analyze routes" }).click();
   await expect(page.getByRole("alert")).toContainText("server administrator");
   await page.screenshot({ path: evidence + "desktop-error.png" });
@@ -361,8 +359,7 @@ test("map failure can retry; malformed geometry cannot reach map sources", async
       body: JSON.stringify(invalid),
     }),
   );
-  await page.getByLabel("Origin", { exact: true }).fill("Chicago, IL");
-  await page.getByLabel("Destination", { exact: true }).fill("St. Louis, MO");
+  await page.getByRole("button", { name: "Try an example journey" }).click();
   await page.getByRole("button", { name: "Analyze routes" }).click();
   await expect(page.locator(".request-error")).toContainText(
     "invalid route data",
@@ -371,6 +368,6 @@ test("map failure can retry; malformed geometry cannot reach map sources", async
     page.getByRole("region", { name: "Route comparison" }),
   ).toHaveCount(0);
   await expect(page.getByLabel("Origin", { exact: true })).toHaveValue(
-    "Chicago, IL",
+    "Chicago, Illinois, United States",
   );
 });

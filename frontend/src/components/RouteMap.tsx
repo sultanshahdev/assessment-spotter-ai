@@ -1,3 +1,5 @@
+import { measureSource } from "../lib/performance";
+import type { SelectedLocation } from "../lib/locations";
 import { useEffect, useRef, useState } from "react";
 import {
   Map,
@@ -15,6 +17,9 @@ import { routeFeatures, checkpointFeatures } from "../lib/geojson";
 setWorkerUrl(workerUrl);
 const STYLE = "https://tiles.openfreemap.org/styles/positron";
 interface Props {
+  picker?: "origin" | "destination" | null;
+  onPinConfirm?: (location: SelectedLocation) => void;
+  onPinCancel?: () => void;
   routes: Route[];
   selectedId: string;
   onSelect: (id: string) => void;
@@ -24,6 +29,8 @@ interface Props {
   onCorridorSample?: (id: string) => void;
 }
 export function RouteMap(props: Props) {
+  const [preview, setPreview] = useState<[number, number] | null>(null);
+  const temporary = useRef<Marker | null>(null);
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<Map | null>(null);
   const current = useRef(props);
@@ -178,6 +185,11 @@ export function RouteMap(props: Props) {
       ),
     );
     map.on("click", (event) => {
+      if (current.current.picker) {
+        if (map.isStyleLoaded())
+          setPreview([event.lngLat.wrap().lng, event.lngLat.lat]);
+        return;
+      }
       if (!map.getLayer("routes-hit")) return;
       const features = map.queryRenderedFeatures(event.point, {
         layers: [
@@ -211,6 +223,10 @@ export function RouteMap(props: Props) {
       }
     });
     map.on("mousemove", (event) => {
+      if (current.current.picker) {
+        map.getCanvas().style.cursor = "crosshair";
+        return;
+      }
       if (map.getLayer("routes-hit"))
         map.getCanvas().style.cursor = map.queryRenderedFeatures(event.point, {
           layers: [
@@ -231,6 +247,7 @@ export function RouteMap(props: Props) {
       observer.disconnect();
       markers.current.forEach((marker) => marker.remove());
       markers.current = [];
+      temporary.current?.remove();
       map.remove();
       mapRef.current = null;
     };
@@ -238,8 +255,10 @@ export function RouteMap(props: Props) {
   useEffect(() => {
     const map = mapRef.current;
     if (!ready || !map?.getSource("routes")) return;
-    (map.getSource("routes") as GeoJSONSource).setData(
-      routeFeatures(props.routes),
+    measureSource("map-routes-source", () =>
+      (map.getSource("routes") as GeoJSONSource).setData(
+        routeFeatures(props.routes),
+      ),
     );
     markers.current.forEach((marker) => marker.remove());
     markers.current = [];
@@ -270,9 +289,11 @@ export function RouteMap(props: Props) {
       ["get", "routeId"],
       props.selectedId,
     ]);
-    (map.getSource("checkpoints") as GeoJSONSource).setData(
-      checkpointFeatures(
-        props.routes.find((r) => r.route_id === props.selectedId),
+    measureSource("map-checkpoints-source", () =>
+      (map.getSource("checkpoints") as GeoJSONSource).setData(
+        checkpointFeatures(
+          props.routes.find((r) => r.route_id === props.selectedId),
+        ),
       ),
     );
   }, [props.routes, props.selectedId, ready]);
@@ -280,23 +301,91 @@ export function RouteMap(props: Props) {
     const map = mapRef.current;
     if (!ready || !map?.getSource("corridor")) return;
     try {
-      void (map.getSource("corridor") as GeoJSONSource)
-        .setData(
-          corridorFeatures(props.corridor ?? null, props.forecastOffset ?? 0),
-        )
-        .catch(() =>
-          setError(
-            "The forecast layer could not update. Route comparison remains available.",
+      measureSource("map-corridor-source", () =>
+        (map.getSource("corridor") as GeoJSONSource)
+          .setData(
+            corridorFeatures(props.corridor ?? null, props.forecastOffset ?? 0),
+          )
+          .catch(() =>
+            setError(
+              "The forecast layer could not update. Route comparison remains available.",
+            ),
           ),
-        );
+      );
     } catch {
       setError(
         "The forecast layer could not update. Route comparison remains available.",
       );
     }
   }, [props.corridor, props.forecastOffset, ready]);
+  useEffect(() => {
+    setPreview(null);
+    const map = mapRef.current;
+    if (map) map.getCanvas().style.cursor = props.picker ? "crosshair" : "";
+  }, [props.picker]);
+  useEffect(() => {
+    temporary.current?.remove();
+    temporary.current = null;
+    if (preview && props.picker && mapRef.current) {
+      temporary.current = new Marker({
+        color: props.picker === "origin" ? "#16816a" : "#d66a36",
+      })
+        .setLngLat(preview)
+        .addTo(mapRef.current);
+    }
+    return () => {
+      temporary.current?.remove();
+      temporary.current = null;
+    };
+  }, [preview, props.picker]);
   return (
     <>
+      {props.picker && (
+        <div
+          className="pin-controls"
+          role="region"
+          aria-label="Choose location on map"
+        >
+          <p role="status">
+            Choose {props.picker}:{" "}
+            {ready
+              ? "Click the map to preview a pin."
+              : "Waiting for the map. You can cancel and use search."}
+          </p>
+          {preview && (
+            <p>
+              Pinned location · {preview[1].toFixed(4)}, {preview[0].toFixed(4)}
+            </p>
+          )}
+          <button
+            type="button"
+            disabled={!preview}
+            onClick={() => {
+              if (preview) {
+                props.onPinConfirm?.({
+                  id: "pin-" + crypto.randomUUID(),
+                  source: "map",
+                  label: `Pinned location · ${preview[1].toFixed(4)}, ${preview[0].toFixed(4)}`,
+                  latitude: preview[1],
+                  longitude: preview[0],
+                });
+                setPreview(null);
+              }
+            }}
+          >
+            Confirm {props.picker}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setPreview(null);
+              props.onPinCancel?.();
+            }}
+          >
+            Cancel map selection
+          </button>
+        </div>
+      )}
       <div
         ref={container}
         className="map-canvas"

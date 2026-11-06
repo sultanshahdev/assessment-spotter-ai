@@ -10,10 +10,8 @@ vi.mock("./components/RouteMap", () => ({
 }));
 afterEach(() => vi.unstubAllGlobals());
 async function enterTrip() {
-  await userEvent.type(screen.getByLabelText("Origin"), "41.8781, -87.6298");
-  await userEvent.type(
-    screen.getByLabelText("Destination"),
-    "38.6270, -90.1994",
+  await userEvent.click(
+    screen.getByRole("button", { name: "Try an example journey" }),
   );
 }
 it("shows no fake alternatives before submission", async () => {
@@ -95,7 +93,9 @@ it("preserves trip details and offers retry after network failure", async () => 
   await enterTrip();
   await userEvent.click(screen.getByRole("button", { name: /Analyze routes/ }));
   expect(await screen.findByRole("alert")).toHaveTextContent("Cannot reach");
-  expect(screen.getByLabelText("Origin")).toHaveValue("41.8781, -87.6298");
+  expect(screen.getByLabelText("Origin")).toHaveValue(
+    "Chicago, Illinois, United States",
+  );
   expect(screen.getByRole("button", { name: "Retry analysis" })).toBeEnabled();
 });
 it("cancels an active request and re-enables form", async () => {

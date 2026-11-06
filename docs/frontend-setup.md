@@ -71,3 +71,9 @@ npm --prefix frontend run test:browser -- --grep '48-hour|synthetic categories'
 ```
 
 The selected route must have ≤12000 vertices and supported geometry/length; otherwise corridor inspection shows a recoverable error without deleting the trip. Long trips may coarsen sampling. Native slider/region controls provide keyboard access. Complete field contract, sampling approximation, unknown/hazard rendering and licensing notes: docs/forecast-heatmap.md. Live evidence: docs/p07-evidence/. Existing user-started Vite/default Django processes are preserved during verification; the documented frontend proxy targets Django port8005.
+
+## P07.1 confirmed places
+
+Origin/destination now share searchable accessible comboboxes backed by Django TomTom Places v3 Suggest/Details. Type at least2 characters, wait350ms, choose a suggestion, then Analyze. Arbitrary typed text is not confirmed; editing removes stored coordinates. Keyboard: arrows, Enter, Escape, Tab. Clear, swap, Try an example journey and Choose on map are available. Example populates dynamic future departure and makes no requests. Map click previews a pin requiring Confirm; Cancel preserves selection. Search provides the complete keyboard alternative. Full contracts, state/session behavior, security and limits: [location-selection.md](location-selection.md). Earlier P06 “no autocomplete” and strict-address troubleshooting describe historical behavior.
+
+Tests: `npm --prefix frontend test`; live P07.1 scenarios: `npm --prefix frontend run test:browser -- --grep 'live v3'`. Existing browser scenarios now populate confirmed example selections; evidence writes into `docs/p07-1-evidence/` to preserve previous milestone screenshots.

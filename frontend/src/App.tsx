@@ -1,3 +1,4 @@
+import type { SelectedLocation } from "./lib/locations";
 import {
   lazy,
   Suspense,
@@ -31,6 +32,18 @@ import {
 } from "./lib/presentation";
 const EMPTY_ROUTES: Analysis["routes"] = [];
 export default function App() {
+  const [picker, setPicker] = useState<"origin" | "destination" | null>(null);
+  const [pinned, setPinned] = useState<{
+    field: "origin" | "destination";
+    location: SelectedLocation;
+  } | null>(null);
+  const invalidate = () => {
+    setAnalysis(null);
+    setSample(null);
+    setSelectedId("");
+    setError("");
+    setLastRequest(null);
+  };
   const [editing, setEditing] = useState(true);
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [selectedId, setSelectedId] = useState("");
@@ -108,9 +121,19 @@ export default function App() {
           <div hidden={!!analysis && !editing}>
             <TripForm
               loading={loading}
+              pinned={pinned}
+              onEdit={invalidate}
+              onMap={(field) => {
+                setPicker(field);
+                document
+                  .querySelector(".map-panel")
+                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
               onSubmit={submit}
               onCancel={() => active.current?.abort()}
               onReset={() => {
+                setPinned(null);
+                setPicker(null);
                 setAnalysis(null);
                 setSample(null);
                 setSelectedId("");
@@ -226,6 +249,15 @@ export default function App() {
               }
             >
               <RouteMap
+                picker={picker}
+                onPinCancel={() => setPicker(null)}
+                onPinConfirm={(location) => {
+                  if (picker) {
+                    setPinned({ field: picker, location });
+                    invalidate();
+                    setPicker(null);
+                  }
+                }}
                 routes={analysis?.routes ?? EMPTY_ROUTES}
                 selectedId={selectedId}
                 onSelect={selectRoute}

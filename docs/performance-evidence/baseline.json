@@ -1,0 +1,1841 @@
+{
+  "label": "baseline",
+  "count": 5,
+  "environment": {
+    "node": "v24.12.0",
+    "browser": "156.0.8078.4",
+    "viewport": "1440x1000",
+    "mode": "Vite dev, local profiling WSGI, Playwright HTTP proxy, no throttling",
+    "cold": "first operation in fresh browser; application cache empty; server startup excluded; external caches uncontrolled"
+  },
+  "requests": [
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 712.1692119999998,
+      "bytes": 746,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 677.584
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.086
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.067
+        },
+        {
+          "name": "django_total",
+          "ms": 679.065
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 634.062226,
+      "bytes": 160,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 619.139
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.077
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.066
+        },
+        {
+          "name": "django_total",
+          "ms": 620.774
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 2059.811970999999,
+      "bytes": 720,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 2053.384
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.144
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.066
+        },
+        {
+          "name": "django_total",
+          "ms": 2054.498
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 655.0195510000012,
+      "bytes": 164,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 647.301
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.056
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.092
+        },
+        {
+          "name": "django_total",
+          "ms": 648.694
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 620.1959129999996,
+      "bytes": 746,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 613.149
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.105
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.056
+        },
+        {
+          "name": "django_total",
+          "ms": 614.31
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 678.2226090000004,
+      "bytes": 160,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 670.161
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.102
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.05
+        },
+        {
+          "name": "django_total",
+          "ms": 671.975
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 637.331943000001,
+      "bytes": 720,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 628.646
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.117
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.07
+        },
+        {
+          "name": "django_total",
+          "ms": 629.747
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 642.2772049999985,
+      "bytes": 164,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 633.983
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.051
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.059
+        },
+        {
+          "name": "django_total",
+          "ms": 635.307
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 625.077824,
+      "bytes": 746,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 617.796
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.09
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.073
+        },
+        {
+          "name": "django_total",
+          "ms": 619.14
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 696.8704639999996,
+      "bytes": 160,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 689.9
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.046
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.037
+        },
+        {
+          "name": "django_total",
+          "ms": 691.259
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 596.955377000002,
+      "bytes": 720,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 590.387
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.122
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.095
+        },
+        {
+          "name": "django_total",
+          "ms": 591.613
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 738.4768279999989,
+      "bytes": 164,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 731.407
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.077
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.036
+        },
+        {
+          "name": "django_total",
+          "ms": 732.737
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 596.643752,
+      "bytes": 746,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 591.181
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.085
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.05
+        },
+        {
+          "name": "django_total",
+          "ms": 592.215
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 598.5331039999983,
+      "bytes": 160,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 591.337
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.068
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.056
+        },
+        {
+          "name": "django_total",
+          "ms": 592.837
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 554.6810350000014,
+      "bytes": 720,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 548.48
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.067
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.098
+        },
+        {
+          "name": "django_total",
+          "ms": 549.721
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 594.3034570000018,
+      "bytes": 164,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 586.604
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.087
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.114
+        },
+        {
+          "name": "django_total",
+          "ms": 588.169
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 546.5020379999987,
+      "bytes": 746,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 540.558
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.07
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.053
+        },
+        {
+          "name": "django_total",
+          "ms": 541.652
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 526.296531,
+      "bytes": 160,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 519.851
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.127
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.066
+        },
+        {
+          "name": "django_total",
+          "ms": 521.265
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 638.3085690000007,
+      "bytes": 720,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 632.483
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.063
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.047
+        },
+        {
+          "name": "django_total",
+          "ms": 633.455
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/resolve/",
+      "status": 200,
+      "ms": 693.7269359999991,
+      "bytes": 164,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 687.573
+        },
+        {
+          "name": "details_normalization_1",
+          "ms": 0.048
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.063
+        },
+        {
+          "name": "django_total",
+          "ms": 688.957
+        }
+      ]
+    },
+    {
+      "operation": "/api/locations/suggest/",
+      "status": 200,
+      "ms": 594.9800859999996,
+      "bytes": 746,
+      "spans": [
+        {
+          "name": "tomtom_places_0",
+          "ms": 589.542
+        },
+        {
+          "name": "suggest_normalization_1",
+          "ms": 0.17
+        },
+        {
+          "name": "json_serialization_2",
+          "ms": 0.092
+        },
+        {
+          "name": "django_total",
+          "ms": 590.796
+        }
+      ]
+    },
+    {
+      "operation": "/api/routes/analyze/",
+      "status": 200,
+      "ms": 7610.039635000001,
+      "bytes": 334012,
+      "spans": [
+        {
+          "name": "tomtom_routes_0",
+          "ms": 4116.752
+        },
+        {
+          "name": "route_normalization_1",
+          "ms": 76.358
+        },
+        {
+          "name": "checkpoint_generation_2",
+          "ms": 6.896
+        },
+        {
+          "name": "checkpoint_generation_3",
+          "ms": 7.69
+        },
+        {
+          "name": "checkpoint_generation_4",
+          "ms": 6.866
+        },
+        {
+          "name": "weather_batch_5",
+          "ms": 842.52
+        },
+        {
+          "name": "weather_normalization_6",
+          "ms": 2.05
+        },
+        {
+          "name": "weather_batch_7",
+          "ms": 715.672
+        },
+        {
+          "name": "weather_normalization_8",
+          "ms": 1.757
+        },
+        {
+          "name": "weather_batch_9",
+          "ms": 828.125
+        },
+        {
+          "name": "weather_normalization_10",
+          "ms": 2.184
+        },
+        {
+          "name": "weather_batch_11",
+          "ms": 922.387
+        },
+        {
+          "name": "weather_normalization_12",
+          "ms": 3.874
+        },
+        {
+          "name": "weather_retrieval_13",
+          "ms": 3319.689
+        },
+        {
+          "name": "exposure_14",
+          "ms": 0.143
+        },
+        {
+          "name": "weather_assessment_15",
+          "ms": 1.899
+        },
+        {
+          "name": "exposure_16",
+          "ms": 0.124
+        },
+        {
+          "name": "weather_assessment_17",
+          "ms": 1.021
+        },
+        {
+          "name": "exposure_18",
+          "ms": 0.129
+        },
+        {
+          "name": "weather_assessment_19",
+          "ms": 1.08
+        },
+        {
+          "name": "ranking_20",
+          "ms": 0.073
+        },
+        {
+          "name": "response_projection_21",
+          "ms": 40.694
+        },
+        {
+          "name": "response_projection_22",
+          "ms": 1.915
+        },
+        {
+          "name": "response_projection_23",
+          "ms": 2.234
+        },
+        {
+          "name": "json_serialization_24",
+          "ms": 16.478
+        },
+        {
+          "name": "django_total",
+          "ms": 7604.417
+        }
+      ]
+    },
+    {
+      "operation": "/api/weather/corridor/",
+      "status": 200,
+      "ms": 3756.8104390000008,
+      "bytes": 663521,
+      "spans": [
+        {
+          "name": "weather_batch_0",
+          "ms": 778.803
+        },
+        {
+          "name": "weather_normalization_1",
+          "ms": 34.421
+        },
+        {
+          "name": "weather_batch_2",
+          "ms": 721.701
+        },
+        {
+          "name": "weather_normalization_3",
+          "ms": 31.544
+        },
+        {
+          "name": "weather_batch_4",
+          "ms": 897.498
+        },
+        {
+          "name": "weather_normalization_5",
+          "ms": 35.186
+        },
+        {
+          "name": "weather_batch_6",
+          "ms": 685.036
+        },
+        {
+          "name": "weather_normalization_7",
+          "ms": 34.747
+        },
+        {
+          "name": "weather_retrieval_8",
+          "ms": 3243.954
+        },
+        {
+          "name": "corridor_cpu_9",
+          "ms": 422.096
+        },
+        {
+          "name": "json_serialization_10",
+          "ms": 32.386
+        },
+        {
+          "name": "django_total",
+          "ms": 3746.457
+        }
+      ]
+    },
+    {
+      "operation": "/api/routes/analyze/",
+      "status": 200,
+      "ms": 6551.927959000001,
+      "bytes": 333989,
+      "spans": [
+        {
+          "name": "tomtom_routes_0",
+          "ms": 3121.406
+        },
+        {
+          "name": "route_normalization_1",
+          "ms": 158.033
+        },
+        {
+          "name": "checkpoint_generation_2",
+          "ms": 24.237
+        },
+        {
+          "name": "checkpoint_generation_3",
+          "ms": 24.309
+        },
+        {
+          "name": "checkpoint_generation_4",
+          "ms": 26.422
+        },
+        {
+          "name": "weather_batch_5",
+          "ms": 735.283
+        },
+        {
+          "name": "weather_normalization_6",
+          "ms": 4.584
+        },
+        {
+          "name": "weather_batch_7",
+          "ms": 556.091
+        },
+        {
+          "name": "weather_normalization_8",
+          "ms": 1.467
+        },
+        {
+          "name": "weather_batch_9",
+          "ms": 1139.142
+        },
+        {
+          "name": "weather_normalization_10",
+          "ms": 1.773
+        },
+        {
+          "name": "weather_batch_11",
+          "ms": 713.343
+        },
+        {
+          "name": "weather_normalization_12",
+          "ms": 1.11
+        },
+        {
+          "name": "weather_retrieval_13",
+          "ms": 3155.02
+        },
+        {
+          "name": "exposure_14",
+          "ms": 0.119
+        },
+        {
+          "name": "weather_assessment_15",
+          "ms": 0.92
+        },
+        {
+          "name": "exposure_16",
+          "ms": 0.091
+        },
+        {
+          "name": "weather_assessment_17",
+          "ms": 0.833
+        },
+        {
+          "name": "exposure_18",
+          "ms": 0.188
+        },
+        {
+          "name": "weather_assessment_19",
+          "ms": 0.728
+        },
+        {
+          "name": "ranking_20",
+          "ms": 0.037
+        },
+        {
+          "name": "response_projection_21",
+          "ms": 2.563
+        },
+        {
+          "name": "response_projection_22",
+          "ms": 1.875
+        },
+        {
+          "name": "response_projection_23",
+          "ms": 2.032
+        },
+        {
+          "name": "json_serialization_24",
+          "ms": 16.284
+        },
+        {
+          "name": "django_total",
+          "ms": 6539.024
+        }
+      ]
+    },
+    {
+      "operation": "/api/weather/corridor/",
+      "status": 200,
+      "ms": 4078.991903999995,
+      "bytes": 663521,
+      "spans": [
+        {
+          "name": "weather_batch_0",
+          "ms": 772.911
+        },
+        {
+          "name": "weather_normalization_1",
+          "ms": 32.846
+        },
+        {
+          "name": "weather_batch_2",
+          "ms": 866.293
+        },
+        {
+          "name": "weather_normalization_3",
+          "ms": 32.46
+        },
+        {
+          "name": "weather_batch_4",
+          "ms": 726.736
+        },
+        {
+          "name": "weather_normalization_5",
+          "ms": 27.408
+        },
+        {
+          "name": "weather_batch_6",
+          "ms": 1026.565
+        },
+        {
+          "name": "weather_normalization_7",
+          "ms": 32.849
+        },
+        {
+          "name": "weather_retrieval_8",
+          "ms": 3542.033
+        },
+        {
+          "name": "corridor_cpu_9",
+          "ms": 468.133
+        },
+        {
+          "name": "json_serialization_10",
+          "ms": 19.776
+        },
+        {
+          "name": "django_total",
+          "ms": 4066.822
+        }
+      ]
+    },
+    {
+      "operation": "/api/routes/analyze/",
+      "status": 200,
+      "ms": 7402.036676999996,
+      "bytes": 333987,
+      "spans": [
+        {
+          "name": "tomtom_routes_0",
+          "ms": 3285.971
+        },
+        {
+          "name": "route_normalization_1",
+          "ms": 210.898
+        },
+        {
+          "name": "checkpoint_generation_2",
+          "ms": 23.493
+        },
+        {
+          "name": "checkpoint_generation_3",
+          "ms": 20.172
+        },
+        {
+          "name": "checkpoint_generation_4",
+          "ms": 24.424
+        },
+        {
+          "name": "weather_batch_5",
+          "ms": 1229.105
+        },
+        {
+          "name": "weather_normalization_6",
+          "ms": 2.398
+        },
+        {
+          "name": "weather_batch_7",
+          "ms": 839.731
+        },
+        {
+          "name": "weather_normalization_8",
+          "ms": 1.964
+        },
+        {
+          "name": "weather_batch_9",
+          "ms": 895.063
+        },
+        {
+          "name": "weather_normalization_10",
+          "ms": 2.578
+        },
+        {
+          "name": "weather_batch_11",
+          "ms": 800.798
+        },
+        {
+          "name": "weather_normalization_12",
+          "ms": 1.252
+        },
+        {
+          "name": "weather_retrieval_13",
+          "ms": 3774.939
+        },
+        {
+          "name": "exposure_14",
+          "ms": 0.095
+        },
+        {
+          "name": "weather_assessment_15",
+          "ms": 0.899
+        },
+        {
+          "name": "exposure_16",
+          "ms": 0.151
+        },
+        {
+          "name": "weather_assessment_17",
+          "ms": 1.023
+        },
+        {
+          "name": "exposure_18",
+          "ms": 0.325
+        },
+        {
+          "name": "weather_assessment_19",
+          "ms": 1.957
+        },
+        {
+          "name": "ranking_20",
+          "ms": 0.047
+        },
+        {
+          "name": "response_projection_21",
+          "ms": 6.992
+        },
+        {
+          "name": "response_projection_22",
+          "ms": 5.818
+        },
+        {
+          "name": "response_projection_23",
+          "ms": 5.105
+        },
+        {
+          "name": "json_serialization_24",
+          "ms": 23.876
+        },
+        {
+          "name": "django_total",
+          "ms": 7393.59
+        }
+      ]
+    },
+    {
+      "operation": "/api/weather/corridor/",
+      "status": 200,
+      "ms": 3897.4394170000087,
+      "bytes": 648098,
+      "spans": [
+        {
+          "name": "weather_batch_0",
+          "ms": 639.885
+        },
+        {
+          "name": "weather_normalization_1",
+          "ms": 34.902
+        },
+        {
+          "name": "weather_batch_2",
+          "ms": 974.589
+        },
+        {
+          "name": "weather_normalization_3",
+          "ms": 33.68
+        },
+        {
+          "name": "weather_batch_4",
+          "ms": 795.471
+        },
+        {
+          "name": "weather_normalization_5",
+          "ms": 30.742
+        },
+        {
+          "name": "weather_batch_6",
+          "ms": 783.332
+        },
+        {
+          "name": "weather_normalization_7",
+          "ms": 29.034
+        },
+        {
+          "name": "weather_retrieval_8",
+          "ms": 3344.422
+        },
+        {
+          "name": "corridor_cpu_9",
+          "ms": 453.847
+        },
+        {
+          "name": "json_serialization_10",
+          "ms": 35.885
+        },
+        {
+          "name": "django_total",
+          "ms": 3885.174
+        }
+      ]
+    },
+    {
+      "operation": "/api/routes/analyze/",
+      "status": 200,
+      "ms": 6377.715448000003,
+      "bytes": 333987,
+      "spans": [
+        {
+          "name": "tomtom_routes_0",
+          "ms": 3194.559
+        },
+        {
+          "name": "route_normalization_1",
+          "ms": 207.059
+        },
+        {
+          "name": "checkpoint_generation_2",
+          "ms": 23.43
+        },
+        {
+          "name": "checkpoint_generation_3",
+          "ms": 24.038
+        },
+        {
+          "name": "checkpoint_generation_4",
+          "ms": 25.751
+        },
+        {
+          "name": "weather_batch_5",
+          "ms": 784.426
+        },
+        {
+          "name": "weather_normalization_6",
+          "ms": 6.173
+        },
+        {
+          "name": "weather_batch_7",
+          "ms": 724.33
+        },
+        {
+          "name": "weather_normalization_8",
+          "ms": 2.069
+        },
+        {
+          "name": "weather_batch_9",
+          "ms": 653.182
+        },
+        {
+          "name": "weather_normalization_10",
+          "ms": 1.901
+        },
+        {
+          "name": "weather_batch_11",
+          "ms": 673.359
+        },
+        {
+          "name": "weather_normalization_12",
+          "ms": 3.661
+        },
+        {
+          "name": "weather_retrieval_13",
+          "ms": 2851.475
+        },
+        {
+          "name": "exposure_14",
+          "ms": 0.332
+        },
+        {
+          "name": "weather_assessment_15",
+          "ms": 2.387
+        },
+        {
+          "name": "exposure_16",
+          "ms": 0.382
+        },
+        {
+          "name": "weather_assessment_17",
+          "ms": 2.469
+        },
+        {
+          "name": "exposure_18",
+          "ms": 0.201
+        },
+        {
+          "name": "weather_assessment_19",
+          "ms": 2.045
+        },
+        {
+          "name": "ranking_20",
+          "ms": 0.029
+        },
+        {
+          "name": "response_projection_21",
+          "ms": 3.264
+        },
+        {
+          "name": "response_projection_22",
+          "ms": 4.772
+        },
+        {
+          "name": "response_projection_23",
+          "ms": 2.322
+        },
+        {
+          "name": "json_serialization_24",
+          "ms": 20.995
+        },
+        {
+          "name": "django_total",
+          "ms": 6370.448
+        }
+      ]
+    },
+    {
+      "operation": "/api/routes/analyze/",
+      "status": 200,
+      "ms": 7257.462152000007,
+      "bytes": 333987,
+      "spans": [
+        {
+          "name": "tomtom_routes_0",
+          "ms": 3771.587
+        },
+        {
+          "name": "route_normalization_1",
+          "ms": 239.656
+        },
+        {
+          "name": "checkpoint_generation_2",
+          "ms": 10.151
+        },
+        {
+          "name": "checkpoint_generation_3",
+          "ms": 12.195
+        },
+        {
+          "name": "checkpoint_generation_4",
+          "ms": 11.908
+        },
+        {
+          "name": "weather_batch_5",
+          "ms": 709.915
+        },
+        {
+          "name": "weather_normalization_6",
+          "ms": 3.589
+        },
+        {
+          "name": "weather_batch_7",
+          "ms": 803.008
+        },
+        {
+          "name": "weather_normalization_8",
+          "ms": 2.035
+        },
+        {
+          "name": "weather_batch_9",
+          "ms": 838.153
+        },
+        {
+          "name": "weather_normalization_10",
+          "ms": 2.883
+        },
+        {
+          "name": "weather_batch_11",
+          "ms": 800.247
+        },
+        {
+          "name": "weather_normalization_12",
+          "ms": 1.171
+        },
+        {
+          "name": "weather_retrieval_13",
+          "ms": 3162.304
+        },
+        {
+          "name": "exposure_14",
+          "ms": 0.211
+        },
+        {
+          "name": "weather_assessment_15",
+          "ms": 0.992
+        },
+        {
+          "name": "exposure_16",
+          "ms": 0.138
+        },
+        {
+          "name": "weather_assessment_17",
+          "ms": 1.186
+        },
+        {
+          "name": "exposure_18",
+          "ms": 0.159
+        },
+        {
+          "name": "weather_assessment_19",
+          "ms": 1.166
+        },
+        {
+          "name": "ranking_20",
+          "ms": 0.026
+        },
+        {
+          "name": "response_projection_21",
+          "ms": 2.664
+        },
+        {
+          "name": "response_projection_22",
+          "ms": 4.295
+        },
+        {
+          "name": "response_projection_23",
+          "ms": 2.968
+        },
+        {
+          "name": "json_serialization_24",
+          "ms": 16.362
+        },
+        {
+          "name": "django_total",
+          "ms": 7246.057
+        }
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "run": 0,
+      "field": "Origin",
+      "suggestMs": 1353.4353669999996,
+      "resolveMs": 744.8436590000001
+    },
+    {
+      "run": 0,
+      "field": "Destination",
+      "suggestMs": 2832.6512060000005,
+      "resolveMs": 697.554091
+    },
+    {
+      "run": 1,
+      "field": "Origin",
+      "suggestMs": 1315.6814720000002,
+      "resolveMs": 714.8551150000003
+    },
+    {
+      "run": 1,
+      "field": "Destination",
+      "suggestMs": 1318.5194110000011,
+      "resolveMs": 695.3366560000013
+    },
+    {
+      "run": 2,
+      "field": "Origin",
+      "suggestMs": 1313.552024999999,
+      "resolveMs": 737.3112929999988
+    },
+    {
+      "run": 2,
+      "field": "Destination",
+      "suggestMs": 1333.444284000001,
+      "resolveMs": 778.6610080000028
+    },
+    {
+      "run": 3,
+      "field": "Origin",
+      "suggestMs": 1316.7869309999987,
+      "resolveMs": 662.6030350000001
+    },
+    {
+      "run": 3,
+      "field": "Destination",
+      "suggestMs": 1325.2081440000002,
+      "resolveMs": 649.495845999998
+    },
+    {
+      "run": 4,
+      "field": "Origin",
+      "suggestMs": 1313.3375529999976,
+      "resolveMs": 578.6685159999979
+    },
+    {
+      "run": 4,
+      "field": "Destination",
+      "suggestMs": 1315.7002639999992,
+      "resolveMs": 733.3644420000019
+    }
+  ],
+  "cachedSuggestMs": 801.5477350000001,
+  "analyses": [
+    {
+      "run": 0,
+      "totalMs": 8196.855298999995,
+      "routeCount": 3,
+      "corridorMs": 4678.7006059999985
+    },
+    {
+      "run": 1,
+      "totalMs": 7282.287618000002,
+      "routeCount": 3,
+      "corridorMs": 4978.660153000004
+    },
+    {
+      "run": 2,
+      "totalMs": 8279.693865000001,
+      "routeCount": 3,
+      "corridorMs": 4953.890720999996
+    },
+    {
+      "run": 3,
+      "totalMs": 7262.139457999991,
+      "routeCount": 3,
+      "corridorMs": null
+    },
+    {
+      "run": 4,
+      "totalMs": 7879.669818000009,
+      "routeCount": 3,
+      "corridorMs": null
+    }
+  ],
+  "browserMetrics": {
+    "profile": {
+      "fetches": [
+        {
+          "path": "/[object%20Request]",
+          "ms": 155.40000000037253,
+          "debounce": null
+        },
+        {
+          "path": "/[object%20Request]",
+          "ms": 74.40000000037253,
+          "debounce": null
+        },
+        {
+          "path": "/[object%20Request]",
+          "ms": 75.29999999981374,
+          "debounce": null
+        },
+        {
+          "path": "/[object%20Request]",
+          "ms": 102.70000000018626,
+          "debounce": null
+        },
+        {
+          "path": "/[object%20Request]",
+          "ms": 72,
+          "debounce": null
+        },
+        {
+          "path": "/[object%20Request]",
+          "ms": 73.6000000005588,
+          "debounce": null
+        },
+        {
+          "path": "/[object%20Request]",
+          "ms": 65.59999999962747,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 721.3999999994412,
+          "debounce": 365.5
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 655.7999999998137,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 2064.100000000559,
+          "debounce": 357.5
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 662.8999999994412,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 624.7999999998137,
+          "debounce": 356.70000000018626
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 687,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 641.7999999998137,
+          "debounce": 355.5
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 651.2999999998137,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 629.7999999998137,
+          "debounce": 355.5
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 705.3999999994412,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 601.5,
+          "debounce": 360.80000000074506
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 747,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 600.7999999998137,
+          "debounce": 355.6000000005588
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 610.0999999996275,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 558.7999999998137,
+          "debounce": 360.90000000037253
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 604.0999999996275,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 550.7999999998137,
+          "debounce": 355.59999999962747
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 534.5999999996275,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 642.5,
+          "debounce": 355.40000000037253
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 702.2999999998137,
+          "debounce": null
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 599.2999999998137,
+          "debounce": 356.40000000037253
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 7638.200000000186,
+          "debounce": null
+        },
+        {
+          "path": "/api/weather/corridor/",
+          "ms": 3848.2999999998137,
+          "debounce": null
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 6591.9000000003725,
+          "debounce": null
+        },
+        {
+          "path": "/api/weather/corridor/",
+          "ms": 4156.300000000745,
+          "debounce": null
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 7452.200000000186,
+          "debounce": null
+        },
+        {
+          "path": "/api/weather/corridor/",
+          "ms": 3993.2000000001863,
+          "debounce": null
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 6415.299999999814,
+          "debounce": null
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 7298.899999999441,
+          "debounce": null
+        }
+      ],
+      "json": [
+        {
+          "path": "/[object%20Request]",
+          "ms": 1.400000000372529,
+          "end": 1513.0999999996275
+        },
+        {
+          "path": "/[object%20Request]",
+          "ms": 3.400000000372529,
+          "end": 1648.5
+        },
+        {
+          "path": "/[object%20Request]",
+          "ms": 3.099999999627471,
+          "end": 1648.699999999255
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.6000000005587935,
+          "end": 4006
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.900000000372529,
+          "end": 4975.5
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.599999999627471,
+          "end": 7436.899999999441
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.6000000005587935,
+          "end": 8513.799999999814
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.6000000005587935,
+          "end": 9578.5
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.6000000005587935,
+          "end": 10603.5
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.5,
+          "end": 11626.799999999814
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.5,
+          "end": 12619.599999999627
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.599999999627471,
+          "end": 13676.899999999441
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.7000000001862645,
+          "end": 14723.099999999627
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.5,
+          "end": 15715.5
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.6000000005587935,
+          "end": 16831.799999999814
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.5,
+          "end": 17865.199999999255
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.5,
+          "end": 18859.39999999944
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.599999999627471,
+          "end": 19811.89999999944
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.6000000005587935,
+          "end": 20838
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.6000000005587935,
+          "end": 21821.799999999814
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.5,
+          "end": 22783.89999999944
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.5,
+          "end": 23806.39999999944
+        },
+        {
+          "path": "/api/locations/resolve/",
+          "ms": 0.599999999627471,
+          "end": 24835.199999999255
+        },
+        {
+          "path": "/api/locations/suggest/",
+          "ms": 0.5,
+          "end": 25862.89999999944
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 5.7000000001862645,
+          "end": 34761.89999999944
+        },
+        {
+          "path": "/api/weather/corridor/",
+          "ms": 20.200000000186265,
+          "end": 39338
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 4.699999999254942,
+          "end": 46889.199999999255
+        },
+        {
+          "path": "/api/weather/corridor/",
+          "ms": 13.599999999627471,
+          "end": 52011.59999999963
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 5.1000000005587935,
+          "end": 60332
+        },
+        {
+          "path": "/api/weather/corridor/",
+          "ms": 13.399999999441206,
+          "end": 65438.39999999944
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 6.900000000372529,
+          "end": 72814.59999999963
+        },
+        {
+          "path": "/api/routes/analyze/",
+          "ms": 13.100000000558794,
+          "end": 81724
+        }
+      ],
+      "renders": [
+        {
+          "afterJsonMs": 193.20000000018626
+        },
+        {
+          "afterJsonMs": 120.5
+        },
+        {
+          "afterJsonMs": 142.19999999925494
+        },
+        {
+          "afterJsonMs": 71.79999999981374
+        },
+        {
+          "afterJsonMs": 169.09999999962747
+        }
+      ],
+      "lastInput": 26250.5,
+      "resultPresent": true
+    },
+    "map": [
+      {
+        "name": "map-routes-source",
+        "ms": 20
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 20.200000000186265
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 20.600000000558794
+      },
+      {
+        "name": "map-routes-source",
+        "ms": 132
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 120.8999999994412
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 14.799999999813735
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 12.900000000372529
+      },
+      {
+        "name": "map-routes-source",
+        "ms": 51.299999999813735
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 51
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 51.39999999944121
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 2.3999999994412065
+      },
+      {
+        "name": "map-routes-source",
+        "ms": 67.5
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 65
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 8.299999999813735
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 8.099999999627471
+      },
+      {
+        "name": "map-routes-source",
+        "ms": 70.5
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 71
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 71.90000000037253
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 11
+      },
+      {
+        "name": "map-routes-source",
+        "ms": 93.5
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 90.20000000018626
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 5.7000000001862645
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 10.5
+      },
+      {
+        "name": "map-routes-source",
+        "ms": 61.10000000055879
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 60.799999999813735
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 61.700000000186265
+      },
+      {
+        "name": "map-corridor-source",
+        "ms": 3.599999999627471
+      },
+      {
+        "name": "map-routes-source",
+        "ms": 75.69999999925494
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 70.70000000018626
+      },
+      {
+        "name": "map-routes-source",
+        "ms": 66.79999999981374
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 66.20000000018626
+      },
+      {
+        "name": "map-routes-source",
+        "ms": 108
+      },
+      {
+        "name": "map-checkpoints-source",
+        "ms": 104.69999999925494
+      }
+    ]
+  }
+}

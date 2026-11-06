@@ -1085,3 +1085,92 @@ summary {
     gap: 6px;
   }
 }
+
+.location-input {
+  position: relative;
+}
+.location-input input {
+  padding-right: 40px;
+  width: 100%;
+}
+.location-clear {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  min-width: 38px;
+  height: 38px;
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  color: #536573;
+}
+.location-field .field-help {
+  margin: 3px 0;
+  font-size: 11px;
+}
+.map-choice {
+  font-size: 11px;
+  align-self: flex-start;
+}
+.swap-button {
+  display: block;
+  margin: 2px auto 6px;
+}
+.example-trip {
+  margin: 6px 0 14px;
+}
+.location-popup {
+  z-index: 2000;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccd7df;
+  border-radius: 8px;
+  box-shadow: 0 8px 28px #20324830;
+  padding: 6px;
+}
+.location-popup ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.location-popup li {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  min-height: 48px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.location-popup li[aria-selected="true"],
+.location-popup li:hover {
+  background: #e7f3ef;
+  outline: 1px solid #80ab9e;
+}
+.location-popup strong,
+.location-popup small {
+  display: block;
+}
+.location-popup strong {
+  font-size: 13px;
+}
+.location-popup small {
+  color: #536573;
+  font-size: 11px;
+  margin-top: 3px;
+}
+.pin-controls {
+  position: absolute;
+  z-index: 8;
+  bottom: 60px;
+  left: 12px;
+  right: 12px;
+  padding: 12px;
+  background: white;
+  border: 1px solid #9ab5b0;
+  border-radius: 8px;
+  box-shadow: 0 3px 18px #0002;
+}
+.pin-controls button {
+  min-height: 44px;
+  margin-right: 8px;
+}

@@ -1,0 +1,686 @@
+{
+  "optimized": {
+    "suggest": {
+      "n": 11,
+      "median_ms": 693.795,
+      "empirical_p95_ms": 1069.971,
+      "cold_first_ms": 1027.988,
+      "warm_median_ms": 680.169
+    },
+    "suggest_statuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "suggest_median_bytes": 746,
+    "suggest_stages": {
+      "tomtom_places": {
+        "n": 11,
+        "median_ms": 687.881,
+        "empirical_p95_ms": 1062.545,
+        "cold_first_ms": 985.364,
+        "warm_median_ms": 674.268
+      },
+      "suggest_normalization": {
+        "n": 11,
+        "median_ms": 0.095,
+        "empirical_p95_ms": 0.367,
+        "cold_first_ms": 0.367,
+        "warm_median_ms": 0.092
+      },
+      "json_serialization": {
+        "n": 11,
+        "median_ms": 0.05,
+        "empirical_p95_ms": 0.1,
+        "cold_first_ms": 0.061,
+        "warm_median_ms": 0.05
+      },
+      "django_total": {
+        "n": 11,
+        "median_ms": 688.931,
+        "empirical_p95_ms": 1063.76,
+        "cold_first_ms": 990.843,
+        "warm_median_ms": 675.276
+      }
+    },
+    "resolve": {
+      "n": 10,
+      "median_ms": 774.444,
+      "empirical_p95_ms": 1284.73,
+      "cold_first_ms": 721.607,
+      "warm_median_ms": 793.239
+    },
+    "resolve_statuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "resolve_median_bytes": 162.0,
+    "resolve_stages": {
+      "tomtom_places": {
+        "n": 10,
+        "median_ms": 767.328,
+        "empirical_p95_ms": 1276.824,
+        "cold_first_ms": 712.419,
+        "warm_median_ms": 785.424
+      },
+      "details_normalization": {
+        "n": 10,
+        "median_ms": 0.062,
+        "empirical_p95_ms": 0.166,
+        "cold_first_ms": 0.099,
+        "warm_median_ms": 0.062
+      },
+      "json_serialization": {
+        "n": 10,
+        "median_ms": 0.05,
+        "empirical_p95_ms": 0.08,
+        "cold_first_ms": 0.048,
+        "warm_median_ms": 0.05
+      },
+      "django_total": {
+        "n": 10,
+        "median_ms": 768.762,
+        "empirical_p95_ms": 1277.906,
+        "cold_first_ms": 714.606,
+        "warm_median_ms": 786.82
+      }
+    },
+    "analyze": {
+      "n": 5,
+      "median_ms": 5203.215,
+      "empirical_p95_ms": 5374.81,
+      "cold_first_ms": 4707.16,
+      "warm_median_ms": 5276.027
+    },
+    "analyze_statuses": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "analyze_median_bytes": 334009,
+    "analyze_stages": {
+      "tomtom_routes": {
+        "n": 5,
+        "median_ms": 3288.757,
+        "empirical_p95_ms": 3715.385,
+        "cold_first_ms": 3246.665,
+        "warm_median_ms": 3438.144
+      },
+      "route_normalization": {
+        "n": 5,
+        "median_ms": 205.45,
+        "empirical_p95_ms": 214.221,
+        "cold_first_ms": 92.103,
+        "warm_median_ms": 205.714
+      },
+      "checkpoint_generation": {
+        "n": 5,
+        "median_ms": 71.704,
+        "empirical_p95_ms": 96.395,
+        "cold_first_ms": 26.463,
+        "warm_median_ms": 72.46
+      },
+      "weather_batch": {
+        "n": 5,
+        "median_ms": 2976.561,
+        "empirical_p95_ms": 3098.326,
+        "cold_first_ms": 2664.244,
+        "warm_median_ms": 3025.698
+      },
+      "weather_normalization": {
+        "n": 5,
+        "median_ms": 8.861,
+        "empirical_p95_ms": 21.515,
+        "cold_first_ms": 8.861,
+        "warm_median_ms": 8.916
+      },
+      "weather_retrieval": {
+        "n": 5,
+        "median_ms": 1514.042,
+        "empirical_p95_ms": 1535.623,
+        "cold_first_ms": 1300.881,
+        "warm_median_ms": 1517.87
+      },
+      "exposure": {
+        "n": 5,
+        "median_ms": 0.43,
+        "empirical_p95_ms": 0.965,
+        "cold_first_ms": 0.965,
+        "warm_median_ms": 0.424
+      },
+      "weather_assessment": {
+        "n": 5,
+        "median_ms": 3.625,
+        "empirical_p95_ms": 7.934,
+        "cold_first_ms": 7.934,
+        "warm_median_ms": 3.464
+      },
+      "ranking": {
+        "n": 5,
+        "median_ms": 0.023,
+        "empirical_p95_ms": 0.05,
+        "cold_first_ms": 0.035,
+        "warm_median_ms": 0.02
+      },
+      "response_projection": {
+        "n": 5,
+        "median_ms": 11.767,
+        "empirical_p95_ms": 59.32,
+        "cold_first_ms": 6.925,
+        "warm_median_ms": 12.272
+      },
+      "json_serialization": {
+        "n": 5,
+        "median_ms": 22.492,
+        "empirical_p95_ms": 26.288,
+        "cold_first_ms": 16.065,
+        "warm_median_ms": 23.788
+      },
+      "django_total": {
+        "n": 5,
+        "median_ms": 5192.79,
+        "empirical_p95_ms": 5369.196,
+        "cold_first_ms": 4702.069,
+        "warm_median_ms": 5263.587
+      }
+    },
+    "corridor": {
+      "n": 3,
+      "median_ms": 2165.863,
+      "empirical_p95_ms": 2317.379,
+      "cold_first_ms": 2017.645,
+      "warm_median_ms": 2241.621
+    },
+    "corridor_statuses": [
+      200,
+      200,
+      200
+    ],
+    "corridor_median_bytes": 663723,
+    "corridor_stages": {
+      "weather_batch": {
+        "n": 3,
+        "median_ms": 3024.956,
+        "empirical_p95_ms": 3209.548,
+        "cold_first_ms": 2624.211,
+        "warm_median_ms": 3117.252
+      },
+      "weather_normalization": {
+        "n": 3,
+        "median_ms": 285.204,
+        "empirical_p95_ms": 472.685,
+        "cold_first_ms": 101.592,
+        "warm_median_ms": 378.945
+      },
+      "weather_retrieval": {
+        "n": 3,
+        "median_ms": 1611.96,
+        "empirical_p95_ms": 1777.824,
+        "cold_first_ms": 1440.696,
+        "warm_median_ms": 1694.892
+      },
+      "corridor_cpu": {
+        "n": 3,
+        "median_ms": 462.161,
+        "empirical_p95_ms": 465.768,
+        "cold_first_ms": 462.161,
+        "warm_median_ms": 463.942
+      },
+      "json_serialization": {
+        "n": 3,
+        "median_ms": 36.362,
+        "empirical_p95_ms": 37.178,
+        "cold_first_ms": 36.362,
+        "warm_median_ms": 34.861
+      },
+      "django_total": {
+        "n": 3,
+        "median_ms": 2155.029,
+        "empirical_p95_ms": 2307.233,
+        "cold_first_ms": 2007.981,
+        "warm_median_ms": 2231.131
+      }
+    },
+    "autocomplete_visible": {
+      "n": 10,
+      "median_ms": 1318.416,
+      "empirical_p95_ms": 1825.323,
+      "cold_first_ms": 1347.25,
+      "warm_median_ms": 1317.731
+    },
+    "resolution_visible": {
+      "n": 10,
+      "median_ms": 815.277,
+      "empirical_p95_ms": 1334.653,
+      "cold_first_ms": 787.752,
+      "warm_median_ms": 829.595
+    },
+    "cached_suggestion_visible_ms": 63.92193200000111,
+    "analysis_visible": {
+      "n": 5,
+      "median_ms": 6016.615,
+      "empirical_p95_ms": 6494.108,
+      "cold_first_ms": 5258.831,
+      "warm_median_ms": 6091.963
+    },
+    "corridor_visible": {
+      "n": 3,
+      "median_ms": 3082.746,
+      "empirical_p95_ms": 3245.594,
+      "cold_first_ms": 3082.746,
+      "warm_median_ms": 3149.667
+    },
+    "debounce": {
+      "n": 11,
+      "median_ms": 255.9,
+      "empirical_p95_ms": 260.4,
+      "cold_first_ms": 259.5,
+      "warm_median_ms": 255.35
+    },
+    "json_parse": {
+      "n": 5,
+      "median_ms": 6.3,
+      "empirical_p95_ms": 7.3,
+      "cold_first_ms": 5.3,
+      "warm_median_ms": 6.7
+    },
+    "results_after_json": {
+      "n": 5,
+      "median_ms": 107,
+      "empirical_p95_ms": 218.4,
+      "cold_first_ms": 218.4,
+      "warm_median_ms": 105.4
+    },
+    "weather_batches": {
+      "n": 32,
+      "median_ms": 747.465,
+      "empirical_p95_ms": 805.467,
+      "cold_first_ms": 680.284,
+      "warm_median_ms": 751.222
+    },
+    "map_sources": {
+      "map-corridor-source": {
+        "n": 13,
+        "median_ms": 11,
+        "empirical_p95_ms": 129.9,
+        "cold_first_ms": 32.6,
+        "warm_median_ms": 10.95
+      },
+      "map-checkpoints-source": {
+        "n": 10,
+        "median_ms": 75.05,
+        "empirical_p95_ms": 128,
+        "cold_first_ms": 31.5,
+        "warm_median_ms": 78.5
+      },
+      "map-routes-source": {
+        "n": 10,
+        "median_ms": 80.1,
+        "empirical_p95_ms": 136.3,
+        "cold_first_ms": 30.9,
+        "warm_median_ms": 81.4
+      }
+    },
+    "request_count": 29
+  },
+  "baseline": {
+    "suggest": {
+      "n": 11,
+      "median_ms": 620.196,
+      "empirical_p95_ms": 2059.812,
+      "cold_first_ms": 712.169,
+      "warm_median_ms": 608.576
+    },
+    "suggest_statuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "suggest_median_bytes": 746,
+    "suggest_stages": {
+      "tomtom_places": {
+        "n": 11,
+        "median_ms": 613.149,
+        "empirical_p95_ms": 2053.384,
+        "cold_first_ms": 677.584,
+        "warm_median_ms": 602.165
+      },
+      "suggest_normalization": {
+        "n": 11,
+        "median_ms": 0.09,
+        "empirical_p95_ms": 0.17,
+        "cold_first_ms": 0.086,
+        "warm_median_ms": 0.098
+      },
+      "json_serialization": {
+        "n": 11,
+        "median_ms": 0.067,
+        "empirical_p95_ms": 0.098,
+        "cold_first_ms": 0.067,
+        "warm_median_ms": 0.068
+      },
+      "django_total": {
+        "n": 11,
+        "median_ms": 614.31,
+        "empirical_p95_ms": 2054.498,
+        "cold_first_ms": 679.065,
+        "warm_median_ms": 603.263
+      }
+    },
+    "resolve": {
+      "n": 10,
+      "median_ms": 648.648,
+      "empirical_p95_ms": 738.477,
+      "cold_first_ms": 634.062,
+      "warm_median_ms": 655.02
+    },
+    "resolve_statuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "resolve_median_bytes": 162.0,
+    "resolve_stages": {
+      "tomtom_places": {
+        "n": 10,
+        "median_ms": 640.642,
+        "empirical_p95_ms": 731.407,
+        "cold_first_ms": 619.139,
+        "warm_median_ms": 647.301
+      },
+      "details_normalization": {
+        "n": 10,
+        "median_ms": 0.073,
+        "empirical_p95_ms": 0.127,
+        "cold_first_ms": 0.077,
+        "warm_median_ms": 0.068
+      },
+      "json_serialization": {
+        "n": 10,
+        "median_ms": 0.061,
+        "empirical_p95_ms": 0.114,
+        "cold_first_ms": 0.066,
+        "warm_median_ms": 0.059
+      },
+      "django_total": {
+        "n": 10,
+        "median_ms": 642.0,
+        "empirical_p95_ms": 732.737,
+        "cold_first_ms": 620.774,
+        "warm_median_ms": 648.694
+      }
+    },
+    "analyze": {
+      "n": 5,
+      "median_ms": 7257.462,
+      "empirical_p95_ms": 7610.04,
+      "cold_first_ms": 7610.04,
+      "warm_median_ms": 6904.695
+    },
+    "analyze_statuses": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "analyze_median_bytes": 333987,
+    "analyze_stages": {
+      "tomtom_routes": {
+        "n": 5,
+        "median_ms": 3285.971,
+        "empirical_p95_ms": 4116.752,
+        "cold_first_ms": 4116.752,
+        "warm_median_ms": 3240.265
+      },
+      "route_normalization": {
+        "n": 5,
+        "median_ms": 207.059,
+        "empirical_p95_ms": 239.656,
+        "cold_first_ms": 76.358,
+        "warm_median_ms": 208.978
+      },
+      "checkpoint_generation": {
+        "n": 5,
+        "median_ms": 68.089,
+        "empirical_p95_ms": 74.968,
+        "cold_first_ms": 21.452,
+        "warm_median_ms": 70.654
+      },
+      "weather_batch": {
+        "n": 5,
+        "median_ms": 3151.323,
+        "empirical_p95_ms": 3764.697,
+        "cold_first_ms": 3308.704,
+        "warm_median_ms": 3147.591
+      },
+      "weather_normalization": {
+        "n": 5,
+        "median_ms": 9.678,
+        "empirical_p95_ms": 13.804,
+        "cold_first_ms": 9.865,
+        "warm_median_ms": 9.306
+      },
+      "weather_retrieval": {
+        "n": 5,
+        "median_ms": 3162.304,
+        "empirical_p95_ms": 3774.939,
+        "cold_first_ms": 3319.689,
+        "warm_median_ms": 3158.662
+      },
+      "exposure": {
+        "n": 5,
+        "median_ms": 0.508,
+        "empirical_p95_ms": 0.915,
+        "cold_first_ms": 0.396,
+        "warm_median_ms": 0.539
+      },
+      "weather_assessment": {
+        "n": 5,
+        "median_ms": 3.879,
+        "empirical_p95_ms": 6.901,
+        "cold_first_ms": 4.0,
+        "warm_median_ms": 3.611
+      },
+      "ranking": {
+        "n": 5,
+        "median_ms": 0.037,
+        "empirical_p95_ms": 0.073,
+        "cold_first_ms": 0.073,
+        "warm_median_ms": 0.033
+      },
+      "response_projection": {
+        "n": 5,
+        "median_ms": 10.358,
+        "empirical_p95_ms": 44.843,
+        "cold_first_ms": 44.843,
+        "warm_median_ms": 10.143
+      },
+      "json_serialization": {
+        "n": 5,
+        "median_ms": 16.478,
+        "empirical_p95_ms": 23.876,
+        "cold_first_ms": 16.478,
+        "warm_median_ms": 18.678
+      },
+      "django_total": {
+        "n": 5,
+        "median_ms": 7246.057,
+        "empirical_p95_ms": 7604.417,
+        "cold_first_ms": 7604.417,
+        "warm_median_ms": 6892.541
+      }
+    },
+    "corridor": {
+      "n": 3,
+      "median_ms": 3897.439,
+      "empirical_p95_ms": 4078.992,
+      "cold_first_ms": 3756.81,
+      "warm_median_ms": 3988.216
+    },
+    "corridor_statuses": [
+      200,
+      200,
+      200
+    ],
+    "corridor_median_bytes": 663521,
+    "corridor_stages": {
+      "weather_batch": {
+        "n": 3,
+        "median_ms": 3193.277,
+        "empirical_p95_ms": 3392.505,
+        "cold_first_ms": 3083.038,
+        "warm_median_ms": 3292.891
+      },
+      "weather_normalization": {
+        "n": 3,
+        "median_ms": 128.358,
+        "empirical_p95_ms": 135.898,
+        "cold_first_ms": 135.898,
+        "warm_median_ms": 126.96
+      },
+      "weather_retrieval": {
+        "n": 3,
+        "median_ms": 3344.422,
+        "empirical_p95_ms": 3542.033,
+        "cold_first_ms": 3243.954,
+        "warm_median_ms": 3443.227
+      },
+      "corridor_cpu": {
+        "n": 3,
+        "median_ms": 453.847,
+        "empirical_p95_ms": 468.133,
+        "cold_first_ms": 422.096,
+        "warm_median_ms": 460.99
+      },
+      "json_serialization": {
+        "n": 3,
+        "median_ms": 32.386,
+        "empirical_p95_ms": 35.885,
+        "cold_first_ms": 32.386,
+        "warm_median_ms": 27.831
+      },
+      "django_total": {
+        "n": 3,
+        "median_ms": 3885.174,
+        "empirical_p95_ms": 4066.822,
+        "cold_first_ms": 3746.457,
+        "warm_median_ms": 3975.998
+      }
+    },
+    "autocomplete_visible": {
+      "n": 10,
+      "median_ms": 1317.653,
+      "empirical_p95_ms": 2832.651,
+      "cold_first_ms": 1353.435,
+      "warm_median_ms": 1316.787
+    },
+    "resolution_visible": {
+      "n": 10,
+      "median_ms": 706.205,
+      "empirical_p95_ms": 778.661,
+      "cold_first_ms": 744.844,
+      "warm_median_ms": 697.554
+    },
+    "cached_suggestion_visible_ms": 801.5477350000001,
+    "analysis_visible": {
+      "n": 5,
+      "median_ms": 7879.67,
+      "empirical_p95_ms": 8279.694,
+      "cold_first_ms": 8196.855,
+      "warm_median_ms": 7580.979
+    },
+    "corridor_visible": {
+      "n": 3,
+      "median_ms": 4953.891,
+      "empirical_p95_ms": 4978.66,
+      "cold_first_ms": 4678.701,
+      "warm_median_ms": 4966.275
+    },
+    "debounce": {
+      "n": 11,
+      "median_ms": 356.4,
+      "empirical_p95_ms": 365.5,
+      "cold_first_ms": 365.5,
+      "warm_median_ms": 356.0
+    },
+    "json_parse": {
+      "n": 5,
+      "median_ms": 5.7,
+      "empirical_p95_ms": 13.1,
+      "cold_first_ms": 5.7,
+      "warm_median_ms": 6.0
+    },
+    "results_after_json": {
+      "n": 5,
+      "median_ms": 142.2,
+      "empirical_p95_ms": 193.2,
+      "cold_first_ms": 193.2,
+      "warm_median_ms": 131.35
+    },
+    "weather_batches": {
+      "n": 32,
+      "median_ms": 789.948,
+      "empirical_p95_ms": 1139.142,
+      "cold_first_ms": 842.52,
+      "warm_median_ms": 784.426
+    },
+    "map_sources": {
+      "map-corridor-source": {
+        "n": 13,
+        "median_ms": 11,
+        "empirical_p95_ms": 71.9,
+        "cold_first_ms": 20.6,
+        "warm_median_ms": 10.75
+      },
+      "map-checkpoints-source": {
+        "n": 10,
+        "median_ms": 68.45,
+        "empirical_p95_ms": 120.9,
+        "cold_first_ms": 20.2,
+        "warm_median_ms": 70.7
+      },
+      "map-routes-source": {
+        "n": 10,
+        "median_ms": 69.0,
+        "empirical_p95_ms": 132,
+        "cold_first_ms": 20,
+        "warm_median_ms": 70.5
+      }
+    },
+    "request_count": 29
+  }
+}

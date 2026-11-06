@@ -1,6 +1,7 @@
 """Bounded operation-scoped Open-Meteo retrieval; no persistent forecast cache."""
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, replace
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from http.client import HTTPException
 import json
@@ -47,18 +48,22 @@ class ForecastRetrieval:
 
 def fetch_forecasts(checkpoints: Sequence[RouteCheckpoint], *, now: datetime | None = None,
                     transport: Callable[[dict], Any] = request_json, batch_size: int = 10,
-                    retries: int = 1) -> ForecastRetrieval:
+                    retries: int = 1, max_workers: int = 1) -> ForecastRetrieval:
     """Retrieve a common bounded hourly window for exact unique coordinates.
 
     Ten locations/batch is an operational choice, not a provider size guarantee.
     No historical forecasts requested; current day through day +15 is supported.
-    One retry for transient transport/5xx only. HTTP 429 is never hammered.
+    One retry for transient transport/5xx only. HTTP 429 is never retried.
+    At most three independent batches can run concurrently; default serial for
+    injected transports. Every batch retains its own response identity mapping.
     """
     now = utc(now if now is not None else datetime.now(timezone.utc))
     if isinstance(batch_size, bool) or not isinstance(batch_size, int) or not 1 <= batch_size <= 20:
         raise AnalysisValidationError('batch_size must be an integer from 1 to 20')
     if isinstance(retries, bool) or not isinstance(retries, int) or not 0 <= retries <= 1:
         raise AnalysisValidationError('retries must be 0 or 1')
+    if isinstance(max_workers, bool) or not isinstance(max_workers, int) or not 1 <= max_workers <= 3:
+        raise AnalysisValidationError('max_workers must be an integer from 1 to 3')
     horizon = now.replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=16)
     positions: dict[GeographicPoint, list[datetime]] = {}
     for checkpoint in checkpoints:
@@ -83,10 +88,10 @@ def fetch_forecasts(checkpoints: Sequence[RouteCheckpoint], *, now: datetime | N
     end = floor if floor == last else floor + timedelta(hours=1)
     results = {p: ForecastLocation(p, None, (WeatherWarning('FORECAST_OUTSIDE_SUPPORTED_RANGE', 'ETA outside forecast horizon.'),))
                for p in positions if p not in requested}
-    calls, batches = 0, 0
-    for offset in range(0, len(requested), batch_size):
-        batch = requested[offset:offset + batch_size]
-        batches += 1
+    batches = tuple(requested[offset:offset + batch_size] for offset in range(0, len(requested), batch_size))
+
+    def retrieve(batch: tuple[GeographicPoint, ...]) -> tuple[tuple[ForecastLocation, ...], int]:
+        calls = 0
         parameters = {
             'latitude': ','.join(str(p.latitude) for p in batch),
             'longitude': ','.join(str(p.longitude) for p in batch),
@@ -105,6 +110,21 @@ def fetch_forecasts(checkpoints: Sequence[RouteCheckpoint], *, now: datetime | N
                     continue
                 locations = tuple(ForecastLocation(p, None, (WeatherWarning(exc.code, str(exc)),)) for p in batch)
                 break
-        for location in locations:
-            results[location.position] = replace(location, valid_from_utc=now, valid_until_utc=horizon)
-    return ForecastRetrieval(tuple(results[p] for p in positions), len(requested), calls, batches, start, end)
+        return locations, calls
+
+    def merge(retrieved: Iterable[tuple[tuple[ForecastLocation, ...], int]]) -> int:
+        calls = 0
+        for locations, batch_calls in retrieved:
+            calls += batch_calls
+            for location in locations:
+                results[location.position] = replace(location, valid_from_utc=now, valid_until_utc=horizon)
+        return calls
+
+    if max_workers == 1 or len(batches) == 1:
+        calls = merge(map(retrieve, batches))
+    else:
+        # Each worker owns its batch and local location_id namespace. map yields
+        # input order even when requests finish out of order; only parent merges.
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            calls = merge(executor.map(retrieve, batches))
+    return ForecastRetrieval(tuple(results[p] for p in positions), len(requested), calls, len(batches), start, end)
