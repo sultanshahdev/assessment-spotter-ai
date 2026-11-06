@@ -1,0 +1,46 @@
+{
+  "suggest": "v3 live",
+  "resolution": {
+    "origin": {
+      "latitude": 41.883229,
+      "longitude": -87.632398
+    },
+    "destination": {
+      "latitude": 38.635355,
+      "longitude": -90.200986
+    },
+    "departure_time": "2026-11-06T08:45:00.000Z",
+    "load_weight_lb": 30000,
+    "checkpoint_interval_miles": 25
+  },
+  "reverse": {
+    "origin": {
+      "latitude": 38.635355,
+      "longitude": -90.200986
+    },
+    "destination": {
+      "latitude": 41.883229,
+      "longitude": -87.632398
+    },
+    "departure_time": "2026-11-06T08:45:00.000Z",
+    "load_weight_lb": 30000,
+    "checkpoint_interval_miles": 25
+  },
+  "exampleStatus": 200,
+  "pinRequest": {
+    "origin": {
+      "latitude": 40.63149872615023,
+      "longitude": -90.10194556771057
+    },
+    "destination": {
+      "latitude": 40.317977442450626,
+      "longitude": -89.61316519741854
+    },
+    "departure_time": "2026-11-06T08:45:00.000Z",
+    "load_weight_lb": 30000,
+    "checkpoint_interval_miles": 25
+  },
+  "pinStatus": 200,
+  "browserErrors": [],
+  "provider_credential_absent_in_browser_requests_and_location_responses": true
+}

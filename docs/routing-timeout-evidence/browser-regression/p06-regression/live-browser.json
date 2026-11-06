@@ -1,0 +1,107 @@
+{
+  "status": "passed",
+  "secret_value_check_performed": true,
+  "browser_request_and_response_secret_absent": true,
+  "http_status": 200,
+  "duration_ms": 5390,
+  "alternatives": 3,
+  "routes": [
+    {
+      "route_id": "tomtom-81eb2e44f11fe833ceb38dcec4952081fe08402e739e4ac63513f441bf9ff546",
+      "distance_miles": 296.861951204963,
+      "duration_seconds": 15388,
+      "geometry_points": 4089,
+      "checkpoint_count": 13,
+      "exposure": {
+        "low_miles": 296.861951204963,
+        "moderate_miles": 0,
+        "high_miles": 0,
+        "severe_miles": 0,
+        "no_travel_miles": 0,
+        "unknown_miles": 0,
+        "assessed_miles": 296.861951204963,
+        "coverage_fraction": 1,
+        "average_risk": 0,
+        "has_confirmed_no_travel": false,
+        "has_confirmed_severe": false
+      },
+      "ranking_position": 1,
+      "eligibility": {
+        "status": "ELIGIBLE",
+        "reasons": [],
+        "fully_verified": true
+      }
+    },
+    {
+      "route_id": "tomtom-290108f25a2570149440b7b2e1e231891dc3f1f345004069fd18d4a62ca71a13",
+      "distance_miles": 311.35232740793765,
+      "duration_seconds": 16217,
+      "geometry_points": 4132,
+      "checkpoint_count": 14,
+      "exposure": {
+        "low_miles": 311.35232740793765,
+        "moderate_miles": 0,
+        "high_miles": 0,
+        "severe_miles": 0,
+        "no_travel_miles": 0,
+        "unknown_miles": 0,
+        "assessed_miles": 311.35232740793765,
+        "coverage_fraction": 1,
+        "average_risk": 0,
+        "has_confirmed_no_travel": false,
+        "has_confirmed_severe": false
+      },
+      "ranking_position": 2,
+      "eligibility": {
+        "status": "ELIGIBLE",
+        "reasons": [],
+        "fully_verified": true
+      }
+    },
+    {
+      "route_id": "tomtom-58cbdae1aa254ea84ea6ec2b65a905f859299cb68d2229640c7ca2ed4fccb533",
+      "distance_miles": 336.4880348763223,
+      "duration_seconds": 17925,
+      "geometry_points": 4434,
+      "checkpoint_count": 15,
+      "exposure": {
+        "low_miles": 336.4880348763223,
+        "moderate_miles": 0,
+        "high_miles": 0,
+        "severe_miles": 0,
+        "no_travel_miles": 0,
+        "unknown_miles": 0,
+        "assessed_miles": 336.4880348763223,
+        "coverage_fraction": 1,
+        "average_risk": 0,
+        "has_confirmed_no_travel": false,
+        "has_confirmed_severe": false
+      },
+      "ranking_position": 3,
+      "eligibility": {
+        "status": "ELIGIBLE",
+        "reasons": [],
+        "fully_verified": true
+      }
+    }
+  ],
+  "recommended_route_id": "tomtom-81eb2e44f11fe833ceb38dcec4952081fe08402e739e4ac63513f441bf9ff546",
+  "map_assets_loaded": 19,
+  "page_exceptions": [],
+  "console_errors": [],
+  "analysis_requests_after_selection": 1,
+  "mobile_scroll_width": 390,
+  "outgoing_request": {
+    "origin": {
+      "latitude": 41.8781,
+      "longitude": -87.6298
+    },
+    "destination": {
+      "latitude": 38.627,
+      "longitude": -90.1994
+    },
+    "departure_time": "2026-11-06T08:46:00.000Z",
+    "load_weight_lb": 30000,
+    "checkpoint_interval_miles": 25
+  }
+}

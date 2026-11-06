@@ -1,9 +1,10 @@
 """Bounded provider transport; URLs and bodies never enter public errors."""
 from datetime import datetime
-from http.client import HTTPException
+from http.client import HTTPException, IncompleteRead
 import gzip
 import json
 import zlib
+import time
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlencode
@@ -11,6 +12,13 @@ from urllib.request import Request, urlopen
 from route_processing import GeographicPoint
 from weather_adapters.open_meteo import WeatherProviderError
 from .models import PlanningError, ResolvedLocation
+
+
+class _InterruptedResponse(PlanningError):
+    """Internal retry signal; never retain partial bodies or authenticated URLs."""
+    def __init__(self):
+        super().__init__('PROVIDER_RESPONSE_INTERRUPTED',
+                         'External provider response was interrupted. Please retry.', 502)
 
 
 def request_json(url: str, parameters: list | dict, timeout: float) -> Any:
@@ -24,6 +32,8 @@ def request_json(url: str, parameters: list | dict, timeout: float) -> Any:
     except HTTPError as exc:
         code = 'PROVIDER_CREDENTIALS' if exc.code in (401, 403) else 'PROVIDER_RATE_LIMIT' if exc.code == 429 else 'PROVIDER_HTTP_ERROR'
         raise PlanningError(code, 'External provider rejected the request.', 503 if exc.code == 429 else 502) from None
+    except IncompleteRead:
+        raise _InterruptedResponse() from None
     except (gzip.BadGzipFile, EOFError, zlib.error):
         raise PlanningError('MALFORMED_PROVIDER_RESPONSE', 'External provider returned invalid compressed data.') from None
     except (TimeoutError, URLError, HTTPException, OSError):
@@ -36,10 +46,19 @@ class TomTomClient:
     def __init__(self, key: str, timeout: float = 30, transport=request_json):
         self.key, self.timeout, self.transport = key, timeout, transport
 
-    def _request(self, path: str, parameters: list) -> Any:
+    def _request(self, path: str, parameters: list, *, retry_interrupted: bool = False) -> Any:
         if not self.key:
             raise PlanningError('PROVIDER_NOT_CONFIGURED', 'Routing provider credentials are not configured.', 503)
-        return self.transport('https://api.tomtom.com/' + path, parameters + [('key', self.key)], self.timeout)
+        for attempt in range(2 if retry_interrupted else 1):
+            try:
+                return self.transport('https://api.tomtom.com/' + path, parameters + [('key', self.key)], self.timeout)
+            except _InterruptedResponse:
+                if not retry_interrupted or attempt == 1:
+                    raise
+                # Only the idempotent routing GET may retry an interrupted body.
+                # Keep the exact departure, truck profile and alternatives.
+                time.sleep(.25)
+        raise AssertionError('unreachable')
 
     def resolve(self, location: GeographicPoint | str) -> ResolvedLocation:
         if isinstance(location, GeographicPoint):
@@ -68,7 +87,7 @@ class TomTomClient:
             'alternativeType': 'anyRoute', 'routeType': 'fastest', 'traffic': 'true',
             'routeRepresentation': 'polyline', 'computeTravelTimeFor': 'all',
             'sectionType': 'travelMode', 'departAt': departure.isoformat(),
-        }.items()) + [('extendedRouteRepresentation', 'distance'), ('extendedRouteRepresentation', 'travelTime')])
+        }.items()) + [('extendedRouteRepresentation', 'distance'), ('extendedRouteRepresentation', 'travelTime')], retry_interrupted=True)
 
 
 def weather_transport(timeout: float):

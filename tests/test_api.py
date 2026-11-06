@@ -94,7 +94,7 @@ class APITests(SimpleTestCase):
                 self.assertEqual(self.post({**self.body, 'checkpoint_interval_miles': value}).status_code, 200)
 
     def test_upstream_error_codes(self):
-        for code, status in (('PROVIDER_TIMEOUT', 504), ('PROVIDER_RATE_LIMIT', 503), ('NO_ROUTES', 502), ('LOCATION_AMBIGUOUS', 400)):
+        for code, status in (('PROVIDER_TIMEOUT', 504), ('PROVIDER_RESPONSE_INTERRUPTED', 502), ('PROVIDER_RATE_LIMIT', 503), ('NO_ROUTES', 502), ('LOCATION_AMBIGUOUS', 400)):
             with patch('backend.views.get_planner') as factory:
                 factory.return_value.analyze.side_effect = PlanningError(code, 'Safe message.', status)
                 response = self.post()

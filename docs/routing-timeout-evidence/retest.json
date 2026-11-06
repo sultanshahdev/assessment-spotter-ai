@@ -1,0 +1,281 @@
+{
+  "mode": "production interrupted-response retry; routing only",
+  "samples": [
+    {
+      "journey": "long",
+      "timeout_seconds": 30,
+      "departure_utc": "2026-11-06T08:42:00+00:00",
+      "attempts": [
+        {
+          "ms": 5261.787
+        }
+      ],
+      "routing_total_ms": 5261.839,
+      "normalization_ms": 208.764,
+      "routes": [
+        {
+          "distance_miles": 945.453,
+          "duration_hours": 15.309,
+          "geometry_points": 11026,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED",
+            "UNVERIFIED_TRUCK_ACCESS"
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ],
+          "non_truck_sections": [
+            {
+              "start_index": 0,
+              "end_index": 4,
+              "mode": "other"
+            }
+          ]
+        },
+        {
+          "distance_miles": 1054.59,
+          "duration_hours": 17.337,
+          "geometry_points": 13753,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED",
+            "UNVERIFIED_TRUCK_ACCESS"
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ],
+          "non_truck_sections": [
+            {
+              "start_index": 0,
+              "end_index": 4,
+              "mode": "other"
+            }
+          ]
+        },
+        {
+          "distance_miles": 940.584,
+          "duration_hours": 16.504,
+          "geometry_points": 12796,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED",
+            "UNVERIFIED_TRUCK_ACCESS"
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ],
+          "non_truck_sections": [
+            {
+              "start_index": 0,
+              "end_index": 4,
+              "mode": "other"
+            }
+          ]
+        }
+      ],
+      "result": "success"
+    },
+    {
+      "journey": "control",
+      "timeout_seconds": 30,
+      "departure_utc": "2026-11-06T08:42:00+00:00",
+      "attempts": [
+        {
+          "ms": 3024.594
+        }
+      ],
+      "routing_total_ms": 3027.74,
+      "normalization_ms": 80.78,
+      "routes": [
+        {
+          "distance_miles": 296.862,
+          "duration_hours": 4.314,
+          "geometry_points": 4089,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED"
+          ],
+          "travel_modes": [
+            "truck"
+          ],
+          "non_truck_sections": []
+        },
+        {
+          "distance_miles": 311.352,
+          "duration_hours": 4.505,
+          "geometry_points": 4132,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED"
+          ],
+          "travel_modes": [
+            "truck"
+          ],
+          "non_truck_sections": []
+        },
+        {
+          "distance_miles": 336.488,
+          "duration_hours": 4.978,
+          "geometry_points": 4434,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED"
+          ],
+          "travel_modes": [
+            "truck"
+          ],
+          "non_truck_sections": []
+        }
+      ],
+      "result": "success"
+    },
+    {
+      "journey": "long",
+      "timeout_seconds": 30,
+      "departure_utc": "2026-11-06T08:42:00+00:00",
+      "attempts": [
+        {
+          "ms": 6234.162
+        }
+      ],
+      "routing_total_ms": 6235.111,
+      "normalization_ms": 326.97,
+      "routes": [
+        {
+          "distance_miles": 945.453,
+          "duration_hours": 15.309,
+          "geometry_points": 11026,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED",
+            "UNVERIFIED_TRUCK_ACCESS"
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ],
+          "non_truck_sections": [
+            {
+              "start_index": 0,
+              "end_index": 4,
+              "mode": "other"
+            }
+          ]
+        },
+        {
+          "distance_miles": 1054.59,
+          "duration_hours": 17.337,
+          "geometry_points": 13753,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED",
+            "UNVERIFIED_TRUCK_ACCESS"
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ],
+          "non_truck_sections": [
+            {
+              "start_index": 0,
+              "end_index": 4,
+              "mode": "other"
+            }
+          ]
+        },
+        {
+          "distance_miles": 940.584,
+          "duration_hours": 16.504,
+          "geometry_points": 12796,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED",
+            "UNVERIFIED_TRUCK_ACCESS"
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ],
+          "non_truck_sections": [
+            {
+              "start_index": 0,
+              "end_index": 4,
+              "mode": "other"
+            }
+          ]
+        }
+      ],
+      "result": "success"
+    },
+    {
+      "journey": "long",
+      "timeout_seconds": 30,
+      "departure_utc": "2026-11-06T08:42:00+00:00",
+      "attempts": [
+        {
+          "ms": 4849.296
+        }
+      ],
+      "routing_total_ms": 4851.244,
+      "normalization_ms": 206.46,
+      "routes": [
+        {
+          "distance_miles": 945.453,
+          "duration_hours": 15.309,
+          "geometry_points": 11026,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED",
+            "UNVERIFIED_TRUCK_ACCESS"
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ],
+          "non_truck_sections": [
+            {
+              "start_index": 0,
+              "end_index": 4,
+              "mode": "other"
+            }
+          ]
+        },
+        {
+          "distance_miles": 1054.59,
+          "duration_hours": 17.337,
+          "geometry_points": 13753,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED",
+            "UNVERIFIED_TRUCK_ACCESS"
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ],
+          "non_truck_sections": [
+            {
+              "start_index": 0,
+              "end_index": 4,
+              "mode": "other"
+            }
+          ]
+        },
+        {
+          "distance_miles": 940.584,
+          "duration_hours": 16.504,
+          "geometry_points": 12796,
+          "warning_codes": [
+            "TRUCK_PROFILE_UNSPECIFIED",
+            "UNVERIFIED_TRUCK_ACCESS"
+          ],
+          "travel_modes": [
+            "other",
+            "truck"
+          ],
+          "non_truck_sections": [
+            {
+              "start_index": 0,
+              "end_index": 4,
+              "mode": "other"
+            }
+          ]
+        }
+      ],
+      "result": "success"
+    }
+  ]
+}

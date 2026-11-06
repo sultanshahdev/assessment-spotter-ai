@@ -86,3 +86,23 @@ describe("API boundary", () => {
     });
   });
 });
+
+it("distinguishes an interrupted provider response from a genuine timeout without exposing provider text", async () => {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn().mockResolvedValue({
+      ok: false,
+      status: 502,
+      json: async () => ({
+        error: {
+          code: "PROVIDER_RESPONSE_INTERRUPTED",
+          message: "SECRET_PROVIDER_BODY",
+        },
+      }),
+    }),
+  );
+  await expect(analyzeTrip(request, signal())).rejects.toMatchObject({
+    code: "PROVIDER_RESPONSE_INTERRUPTED",
+    message: "The routing provider connection was interrupted. Please retry.",
+  });
+});

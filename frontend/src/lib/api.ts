@@ -55,6 +55,8 @@ export async function analyzeTrip(
         NO_ROUTES: "No usable truck route was found. Try different endpoints.",
         PROVIDER_RATE_LIMIT:
           "The routing provider is busy. Wait a moment and retry.",
+        PROVIDER_RESPONSE_INTERRUPTED:
+          "The routing provider connection was interrupted. Please retry.",
         PROVIDER_TIMEOUT:
           "The routing provider did not respond in time. Please retry.",
       };

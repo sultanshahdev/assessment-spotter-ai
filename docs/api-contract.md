@@ -94,3 +94,7 @@ The exact request/response fields, geographic restrictions, safety semantics and
 ## P07.1 location endpoints
 
 `GET /api/locations/suggest/?q=<2–200 characters>&session_id=<UUIDv4/v7>` and `POST /api/locations/resolve/` expose TomTom Places Search v3 through Django. Suggest returns at most7 place suggestions with title/subtitle/type/id and an allowlisted Details reference, never fabricated coordinates. Resolve accepts exactly reference `{type,id}` plus the same session_id; returns id/label/subtitle/source/latitude/longitude. Category/discoverAction suggestions are excluded. All provider calls and credentials remain server-side. Confirmed endpoints use the existing numeric coordinate representation in `/api/routes/analyze/`; text geocoding remains backward compatible. Full validation, normalized schemas, errors and session semantics: [location-selection.md](location-selection.md).
+
+## Routing interrupted-response recovery
+
+A truncated routing HTTP body (`IncompleteRead`) now permits one identical routing GET retry after250ms. The30-second socket timeout is unchanged. Repeated truncation returns HTTP502 with `error.code="PROVIDER_RESPONSE_INTERRUPTED"`; the frontend distinguishes an interrupted connection from a true PROVIDER_TIMEOUT/504. No automatic retry of actual timeouts, HTTP4xx/5xx/429, malformed JSON/gzip, geocoding or weather. No partial routes accepted or routing parameters relaxed. Evidence and limits: [routing-timeout-investigation.md](routing-timeout-investigation.md).

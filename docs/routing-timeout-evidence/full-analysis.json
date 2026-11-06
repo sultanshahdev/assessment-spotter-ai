@@ -1,0 +1,119 @@
+[
+  {
+    "journey": "long",
+    "http_status": 200,
+    "total_ms": 10277.892,
+    "server_timing": "tomtom_routes_0;dur=6244.004, route_normalization_1;dur=690.517, checkpoint_generation_2;dur=65.832, checkpoint_generation_3;dur=98.150, checkpoint_generation_4;dur=73.944, weather_batch_5;dur=755.563, weather_batch_6;dur=770.639, weather_normalization_7;dur=31.740, weather_batch_8;dur=791.924, weather_normalization_9;dur=36.334, weather_normalization_10;dur=19.228, weather_batch_11;dur=630.835, weather_normalization_12;dur=13.538, weather_batch_13;dur=616.090, weather_normalization_14;dur=15.462, weather_batch_15;dur=639.829, weather_normalization_16;dur=15.321, weather_batch_17;dur=585.283, weather_batch_18;dur=564.008, weather_normalization_19;dur=21.164, weather_normalization_20;dur=22.887, weather_batch_21;dur=683.308, weather_normalization_22;dur=9.460, weather_batch_23;dur=547.864, weather_normalization_24;dur=6.233, weather_batch_25;dur=659.962, weather_normalization_26;dur=9.316, weather_retrieval_27;dur=2731.114, exposure_28;dur=0.924, weather_assessment_29;dur=8.366, exposure_30;dur=3.076, weather_assessment_31;dur=11.981, exposure_32;dur=1.073, weather_assessment_33;dur=7.264, ranking_34;dur=0.077, response_projection_35;dur=18.158, response_projection_36;dur=74.652, response_projection_37;dur=18.927, json_serialization_38;dur=115.642, django_total;dur=10183.837",
+    "error_code": null,
+    "route_count": 3,
+    "recommended_route_id": null,
+    "weather_http_calls": 11,
+    "routes": [
+      {
+        "distance_miles": 945.4529298894456,
+        "checkpoints": 39,
+        "eligibility": {
+          "status": "TRUCK_ACCESS_WARNING",
+          "reasons": [
+            "TRUCK_ACCESS_WARNING"
+          ],
+          "fully_verified": false
+        },
+        "truck_warnings": [
+          "TRUCK_PROFILE_UNSPECIFIED",
+          "UNVERIFIED_TRUCK_ACCESS"
+        ],
+        "coverage": 1.0,
+        "eta_monotonic": true
+      },
+      {
+        "distance_miles": 1054.5899447228187,
+        "checkpoints": 44,
+        "eligibility": {
+          "status": "TRUCK_ACCESS_WARNING",
+          "reasons": [
+            "TRUCK_ACCESS_WARNING"
+          ],
+          "fully_verified": false
+        },
+        "truck_warnings": [
+          "TRUCK_PROFILE_UNSPECIFIED",
+          "UNVERIFIED_TRUCK_ACCESS"
+        ],
+        "coverage": 1.0,
+        "eta_monotonic": true
+      },
+      {
+        "distance_miles": 940.584486598266,
+        "checkpoints": 39,
+        "eligibility": {
+          "status": "TRUCK_ACCESS_WARNING",
+          "reasons": [
+            "TRUCK_ACCESS_WARNING"
+          ],
+          "fully_verified": false
+        },
+        "truck_warnings": [
+          "TRUCK_PROFILE_UNSPECIFIED",
+          "UNVERIFIED_TRUCK_ACCESS"
+        ],
+        "coverage": 1.0,
+        "eta_monotonic": true
+      }
+    ]
+  },
+  {
+    "journey": "control",
+    "http_status": 200,
+    "total_ms": 6289.242,
+    "server_timing": "tomtom_routes_0;dur=3498.465, route_normalization_1;dur=75.322, checkpoint_generation_2;dur=7.344, checkpoint_generation_3;dur=9.897, checkpoint_generation_4;dur=7.757, weather_batch_5;dur=793.930, weather_normalization_6;dur=2.346, weather_batch_7;dur=1713.910, weather_normalization_8;dur=2.070, weather_batch_9;dur=1768.966, weather_normalization_10;dur=1.744, weather_batch_11;dur=1836.976, weather_normalization_12;dur=1.184, weather_retrieval_13;dur=2636.488, exposure_14;dur=0.134, weather_assessment_15;dur=0.799, exposure_16;dur=0.092, weather_assessment_17;dur=0.738, exposure_18;dur=0.095, weather_assessment_19;dur=0.903, ranking_20;dur=0.024, response_projection_21;dur=3.780, response_projection_22;dur=2.537, response_projection_23;dur=3.176, json_serialization_24;dur=23.355, django_total;dur=6276.483",
+    "error_code": null,
+    "route_count": 3,
+    "recommended_route_id": "tomtom-81eb2e44f11fe833ceb38dcec4952081fe08402e739e4ac63513f441bf9ff546",
+    "weather_http_calls": 4,
+    "routes": [
+      {
+        "distance_miles": 296.861951204963,
+        "checkpoints": 13,
+        "eligibility": {
+          "status": "ELIGIBLE",
+          "reasons": [],
+          "fully_verified": true
+        },
+        "truck_warnings": [
+          "TRUCK_PROFILE_UNSPECIFIED"
+        ],
+        "coverage": 1.0,
+        "eta_monotonic": true
+      },
+      {
+        "distance_miles": 311.35232740793765,
+        "checkpoints": 14,
+        "eligibility": {
+          "status": "ELIGIBLE",
+          "reasons": [],
+          "fully_verified": true
+        },
+        "truck_warnings": [
+          "TRUCK_PROFILE_UNSPECIFIED"
+        ],
+        "coverage": 1.0,
+        "eta_monotonic": true
+      },
+      {
+        "distance_miles": 336.4880348763223,
+        "checkpoints": 15,
+        "eligibility": {
+          "status": "ELIGIBLE",
+          "reasons": [],
+          "fully_verified": true
+        },
+        "truck_warnings": [
+          "TRUCK_PROFILE_UNSPECIFIED"
+        ],
+        "coverage": 1.0,
+        "eta_monotonic": true
+      }
+    ]
+  }
+]

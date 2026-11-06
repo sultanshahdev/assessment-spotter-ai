@@ -31,3 +31,7 @@ graphify update .
 The live script submits a real Chicago–St. Louis HTTP request with future departure and records compact diagnostics in docs/p05-live-verification.json. It checks geometry, ordered aware ETAs, exposure conservation, ordering, recommendation, No Travel exclusion and secret absence. It does not invent extreme weather. Offline fixtures test dangerous and incomplete conditions separately.
 
 Architecture: backend views/serializers → trip_planning service → provider adapters + accepted P02/P03/P04 domains. Ranking/eligibility is pure. Serialization is an explicit compact JSON projection. Existing domains never import Django. API contract: docs/api-contract.md. P06 is blocked on P05 user review and acceptance.
+
+## Routing reliability follow-up
+
+P07.2 concurrency supersedes the historical serial-batch description above: HTTP weather retrieval uses at most3workers without reducing coverage. Routing now retries only an interrupted response body once (250ms delay), preserving exact parameters and the30-second per-attempt socket timeout. Exhausted truncation returns PROVIDER_RESPONSE_INTERRUPTED/502, while actual timeouts remain504 with no retry. No change to .env or timeout increase is required. Socket timeouts are not strict total wall-clock deadlines. See [routing-timeout-investigation.md](routing-timeout-investigation.md) for reproduction, truck-access warnings and remaining limits.
