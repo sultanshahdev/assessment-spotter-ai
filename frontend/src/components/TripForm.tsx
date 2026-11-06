@@ -19,6 +19,7 @@ interface Props {
   } | null;
   onEdit?: () => void;
   onSubmit: (request: TripRequest) => void;
+  onTripLabels?: (labels: { from: string; to: string }) => void;
   onReset: () => void;
   onCancel: () => void;
 }
@@ -30,6 +31,7 @@ export function TripForm({
   onMap,
   pinned,
   onEdit,
+  onTripLabels,
 }: Props) {
   const [values, setValues] = useState(initialForm);
   const [errors, setErrors] = useState<
@@ -41,6 +43,7 @@ export function TripForm({
     origin: { query: "", selected: null },
     destination: { query: "", selected: null },
   });
+  const [settings, setSettings] = useState(false);
   const [generation, setGeneration] = useState(0);
   useEffect(() => {
     if (pinned) {
@@ -79,8 +82,20 @@ export function TripForm({
       }
     }
     setErrors(result.errors);
-    if (result.request && !Object.keys(result.errors).length)
+    if (
+      result.errors.date ||
+      result.errors.time ||
+      result.errors.weight ||
+      result.errors.interval
+    )
+      setSettings(true);
+    if (result.request && !Object.keys(result.errors).length) {
+      onTripLabels?.({
+        from: locations.origin.selected!.label,
+        to: locations.destination.selected!.label,
+      });
       onSubmit(result.request);
+    }
   }
   function input(
     name: keyof FormValues,
@@ -103,7 +118,10 @@ export function TripForm({
           step={name === "weight" ? "any" : undefined}
           aria-invalid={!!errors[name]}
           aria-describedby={errors[name] ? `${name}-error` : undefined}
-          onChange={(e) => setValues((v) => ({ ...v, [name]: e.target.value }))}
+          onChange={(e) => {
+            setValues((v) => ({ ...v, [name]: e.target.value }));
+            onEdit?.();
+          }}
         />
         {errors[name] && (
           <span className="field-error" id={`${name}-error`}>
@@ -143,7 +161,7 @@ export function TripForm({
                 className="text-button swap-button"
                 type="button"
                 disabled={loading}
-                aria-label="Swap origin and destination"
+                aria-label="Swap start and destination"
                 onClick={() => {
                   setLocations((v) => ({
                     origin: v.destination,
@@ -154,12 +172,12 @@ export function TripForm({
                   onEdit?.();
                 }}
               >
-                ⇅ Swap
+                <span aria-hidden="true">⇅</span>
               </button>
             )}
             <LocationAutocomplete
               key={field + generation}
-              label={field === "origin" ? "Origin" : "Destination"}
+              label={field === "origin" ? "From" : "To"}
               value={locations[field]}
               disabled={loading}
               error={errors[field]}
@@ -188,46 +206,67 @@ export function TripForm({
           onEdit?.();
         }}
       >
-        Try an example journey
+        Use example trip
       </button>
-      <div className="field-row">
-        {input("date", "Departure date", "date")}
-        {input("time", "Departure time", "time")}
-      </div>
-      <p className="field-help">
-        Local time · {zone}. Sent with an explicit UTC timestamp.
-      </p>
-      <div className="field-row">
-        {input("weight", "Cargo weight · lb", "number")}
-        <div className="field">
-          <label htmlFor="interval">Checkpoint spacing</label>
-          <select
-            id="interval"
-            value={values.interval}
-            disabled={loading}
-            onChange={(e) =>
-              setValues((v) => ({ ...v, interval: e.target.value }))
-            }
-          >
-            {[10, 25, 50].map((n) => (
-              <option key={n} value={n}>
-                {n} miles
-              </option>
-            ))}
-          </select>
-          {errors.interval && (
-            <span className="field-error">{errors.interval}</span>
-          )}
+      <button
+        type="button"
+        className="text-button settings-toggle"
+        aria-expanded={settings}
+        aria-controls="trip-settings"
+        onClick={() => setSettings((v) => !v)}
+      >
+        {settings ? "Close trip settings" : "Departure & trip options"}
+      </button>
+      <div
+        id="trip-settings"
+        className={`trip-settings ${settings ? "expanded" : ""}`}
+      >
+        <div className="field-row">
+          {input("date", "Departure date", "date")}
+          {input("time", "Departure time", "time")}
         </div>
+        <p className="field-help">Your timezone: {zone}</p>
+        <details
+          className="trip-options"
+          open={!!errors.weight || !!errors.interval || undefined}
+        >
+          <summary>
+            Trip options · {Number(values.weight).toLocaleString()} lb
+          </summary>
+          <div className="field-row">
+            {input("weight", "Load weight (lb)", "number")}
+            <div className="field">
+              <label htmlFor="interval">Checkpoint spacing</label>
+              <select
+                id="interval"
+                value={values.interval}
+                disabled={loading}
+                onChange={(e) => {
+                  setValues((v) => ({ ...v, interval: e.target.value }));
+                  onEdit?.();
+                }}
+              >
+                {[10, 25, 50].map((n) => (
+                  <option key={n} value={n}>
+                    {n} miles
+                  </option>
+                ))}
+              </select>
+              {errors.interval && (
+                <span className="field-error">{errors.interval}</span>
+              )}
+            </div>
+          </div>
+        </details>
       </div>
       <button className="primary-button" type="submit" disabled={loading}>
         {loading ? (
           <>
-            <span className="spinner" /> Analyzing trip…
+            <span className="spinner" /> Checking routes and weather…
           </>
         ) : (
           <>
-            Analyze routes <span aria-hidden="true">↗</span>
+            Find routes <span aria-hidden="true">↗</span>
           </>
         )}
       </button>
@@ -238,8 +277,7 @@ export function TripForm({
       )}
       {loading && (
         <div className="loading-message" role="status">
-          Fetching truck alternatives and arrival-time forecasts. This can take
-          a few moments.{" "}
+          Checking routes and weather. This may take a moment.{" "}
           <button type="button" className="text-button" onClick={onCancel}>
             Cancel
           </button>

@@ -36,20 +36,6 @@ export function RouteComparison({
   const recommended = analysis.recommendation.recommended_route_id;
   return (
     <section className="comparison" aria-label="Route comparison">
-      <div
-        className={`recommendation ${recommended ? "" : "no-recommendation"}`}
-        role="status"
-      >
-        <span className="eyebrow">
-          {recommended ? "RECOMMENDED" : "REVIEW REQUIRED"}
-        </span>
-        <h2>
-          {recommended
-            ? `Route ${analysis.routes.findIndex((r) => r.route_id === recommended) + 1} is the leading eligible option`
-            : "No fully eligible recommendation"}
-        </h2>
-        <p>{analysis.recommendation.explanation}</p>
-      </div>
       <div className="section-heading">
         <h2>Route comparison</h2>
         <span className="count">
@@ -93,6 +79,15 @@ export function RouteComparison({
               <span>{coverage(route.exposure.coverage_fraction)} coverage</span>
             </div>
             <ExposureBar exposure={route.exposure} />
+            <p className="comparison-weather">
+              Severe {miles(route.exposure.severe_miles)} mi · High{" "}
+              {miles(route.exposure.high_miles)} mi · Unknown{" "}
+              <strong>{miles(route.exposure.unknown_miles)} mi</strong>
+            </p>
+          </button>
+          <SafetyWarnings route={route} />
+          <details className="exposure-breakdown">
+            <summary>Exposure breakdown</summary>
             <dl className="exposure-metrics">
               <div>
                 <dt>Severe</dt>
@@ -117,10 +112,7 @@ export function RouteComparison({
                 ? "unavailable"
                 : `${route.exposure.average_risk.toFixed(2)} / 4`}
             </span>
-          </button>
-          <SafetyWarnings route={route} />
-          <details className="exposure-breakdown">
-            <summary>Exposure breakdown</summary>
+
             <p>
               Low {miles(route.exposure.low_miles)} mi · Moderate{" "}
               {miles(route.exposure.moderate_miles)} mi · Assessed{" "}

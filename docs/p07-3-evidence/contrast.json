@@ -1,0 +1,37 @@
+[
+  {
+    "usage": "primary action",
+    "foreground": "#ffffff",
+    "background": "#008080",
+    "contrast_ratio": 4.77,
+    "AA_normal_text": true
+  },
+  {
+    "usage": "body",
+    "foreground": "#252e3c",
+    "background": "#ffffff",
+    "contrast_ratio": 13.68,
+    "AA_normal_text": true
+  },
+  {
+    "usage": "secondary",
+    "foreground": "#55616d",
+    "background": "#ffffff",
+    "contrast_ratio": 6.33,
+    "AA_normal_text": true
+  },
+  {
+    "usage": "warning",
+    "foreground": "#754a11",
+    "background": "#fff2de",
+    "contrast_ratio": 6.93,
+    "AA_normal_text": true
+  },
+  {
+    "usage": "No Travel",
+    "foreground": "#77284d",
+    "background": "#f6e5ee",
+    "contrast_ratio": 7.91,
+    "AA_normal_text": true
+  }
+]

@@ -1,13 +1,20 @@
+import { offlineBasemap } from "./basemap";
+import { mkdirSync } from "node:fs";
 import { test, expect } from "@playwright/test";
 import { writeFileSync, readFileSync } from "node:fs";
 import AxeBuilder from "@axe-core/playwright";
 import { corridorFixture } from "../src/test/corridorFixture";
 import { fixture } from "../src/test/fixtures";
-const evidence = "../docs/p07-1-evidence/p07-regression/";
+const evidence = "../docs/p07-3-evidence/corridor/";
+mkdirSync(evidence, { recursive: true });
 
 test("live 48-hour corridor on existing map with route cache", async ({
   page,
 }) => {
+  test.skip(
+    !process.env.LIVE_PROVIDERS,
+    "Opt-in real provider smoke test: LIVE_PROVIDERS=1",
+  );
   const exceptions: string[] = [],
     errors: string[] = [];
   let analyses = 0,
@@ -24,19 +31,18 @@ test("live 48-hour corridor on existing map with route cache", async ({
   });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await page.getByRole("button", { name: "Try an example journey" }).click();
+  await page.getByRole("button", { name: "Use example trip" }).click();
   const analysisPending = page.waitForResponse((r) =>
     r.url().endsWith("/api/routes/analyze/"),
   );
-  await page
-    .getByRole("button", { name: "Analyze routes", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Find routes", exact: true }).click();
   const tripResponse = await analysisPending;
   expect(tripResponse.status()).toBe(200);
   const analysis = await tripResponse.json();
-  await expect(
-    page.getByRole("checkbox", { name: "Corridor forecast layer" }),
-  ).not.toBeChecked();
+  await expect(page.getByLabel("Forecast corridor controls")).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "Compare routes", exact: true })
+    .click();
   expect(corridors).toBe(0);
   const recommendation = analysis.recommendation.recommended_route_id;
   const leading = analysis.routes.findIndex(
@@ -51,7 +57,9 @@ test("live 48-hour corridor on existing map with route cache", async ({
   const pending = page.waitForResponse((r) =>
     r.url().endsWith("/api/weather/corridor/"),
   );
-  await page.getByRole("checkbox", { name: "Corridor forecast layer" }).check();
+  await page
+    .getByRole("button", { name: "View 48-hour forecast", exact: true })
+    .click();
   await expect(
     page.getByText(/Loading the corridor’s forecast series/),
   ).toBeVisible();
@@ -106,6 +114,12 @@ test("live 48-hour corridor on existing map with route cache", async ({
   });
   // Original arrival-time details remain independent of the forecast slider.
   await page
+    .getByRole("button", { name: "Close forecast", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Weather details", exact: true })
+    .click();
+  await page
     .getByLabel("Checkpoint along selected route")
     .selectOption(
       analysis.routes[firstIndex].checkpoints[1].checkpoint.checkpoint_id,
@@ -114,11 +128,10 @@ test("live 48-hour corridor on existing map with route cache", async ({
     page.getByRole("region", { name: "Checkpoint weather" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Close checkpoint details" }).click();
-  await page
-    .getByRole("checkbox", { name: "Corridor forecast layer" })
-    .uncheck();
   await expect(slider).toHaveCount(0);
-  await page.getByRole("checkbox", { name: "Corridor forecast layer" }).check();
+  await page
+    .getByRole("button", { name: "View 48-hour forecast", exact: true })
+    .click();
   await expect(slider).toHaveValue("48");
   expect(corridors).toBe(1);
   const secondIndex =
@@ -128,17 +141,16 @@ test("live 48-hour corridor on existing map with route cache", async ({
       r.url().endsWith("/api/weather/corridor/"),
     );
     await page
-      .getByRole("button", {
-        name: `Select Route ${secondIndex + 1}`,
-        exact: true,
-      })
-      .click();
+      .getByLabel("Route to explore")
+      .selectOption(analysis.routes[secondIndex].route_id);
     const nextResponse = await nextPending;
     expect(nextResponse.status()).toBe(200);
     const next = await nextResponse.json();
     await expect(page.getByLabel("Forecast snapshot sample")).toBeVisible();
     expect(next.route_id).toBe(analysis.routes[secondIndex].route_id);
-    await page.getByRole("button", { name: keyLabel, exact: true }).click();
+    await page
+      .getByLabel("Route to explore")
+      .selectOption(analysis.routes[firstIndex].route_id);
     await expect(page.getByLabel("Forecast snapshot sample")).toBeVisible();
     expect(corridors).toBe(2);
   }
@@ -222,6 +234,7 @@ test("live 48-hour corridor on existing map with route cache", async ({
 test("synthetic categories, missing data, errors and slider frame rendering", async ({
   page,
 }) => {
+  await offlineBasemap(page);
   const analysis = fixture(1),
     data = corridorFixture();
   data.frames[48].available = false;
@@ -255,17 +268,15 @@ test("synthetic categories, missing data, errors and slider frame rendering", as
     });
   });
   await page.goto("/");
-  await page.getByRole("button", { name: "Try an example journey" }).click();
+  await page.getByRole("button", { name: "Use example trip" }).click();
+  await page.getByRole("button", { name: "Find routes", exact: true }).click();
   await page
-    .getByRole("button", { name: "Analyze routes", exact: true })
+    .getByRole("button", { name: "View 48-hour forecast", exact: true })
     .click();
-  await page.getByRole("checkbox", { name: "Corridor forecast layer" }).check();
   await expect(page.getByRole("alert")).toContainText(
     "Corridor forecasts are unavailable",
   );
-  await expect(
-    page.getByRole("button", { name: "Select Route 1", exact: true }),
-  ).toBeVisible();
+  await expect(page.getByLabel("Route to explore")).toHaveValue("route-0");
   fail = false;
   await page.getByRole("button", { name: "Retry corridor" }).click();
   await expect(page.getByTestId("route-map")).toHaveAttribute(

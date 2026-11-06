@@ -112,19 +112,30 @@ export function LocationAutocomplete({
   }, [value, focused, disabled, retry, search]);
   useEffect(() => {
     if (!open) return;
+    const viewport = window.visualViewport;
     const update = () => {
       const r = input.current?.getBoundingClientRect();
       if (r) {
-        const below = window.innerHeight - r.bottom - 8,
-          above = r.top - 8;
-        const height = Math.min(280, Math.max(below, above));
+        const viewportTop = viewport?.offsetTop ?? 0;
+        const viewportLeft = viewport?.offsetLeft ?? 0;
+        const viewportWidth = viewport?.width ?? window.innerWidth;
+        const below =
+            viewportTop +
+            (viewport?.height ?? window.innerHeight) -
+            r.bottom -
+            8,
+          above = r.top - viewportTop - 8;
+        const height = Math.max(0, Math.min(280, Math.max(below, above)));
         setPosition({
-          left: Math.max(8, Math.min(r.left, window.innerWidth - r.width - 8)),
+          left: Math.max(
+            viewportLeft + 8,
+            Math.min(r.left, viewportLeft + viewportWidth - r.width - 8),
+          ),
           top:
             below >= Math.min(220, above)
               ? r.bottom + 4
-              : Math.max(8, r.top - height - 4),
-          width: Math.min(r.width, window.innerWidth - 16),
+              : Math.max(viewportTop + 8, r.top - height - 4),
+          width: Math.min(r.width, viewportWidth - 16),
           maxHeight: height,
         });
       }
@@ -137,10 +148,14 @@ export function LocationAutocomplete({
         dismiss();
     };
     update();
+    viewport?.addEventListener("resize", update);
+    viewport?.addEventListener("scroll", update);
     window.addEventListener("resize", update);
     window.addEventListener("scroll", update, true);
     document.addEventListener("pointerdown", outside);
     return () => {
+      viewport?.removeEventListener("resize", update);
+      viewport?.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
       window.removeEventListener("scroll", update, true);
       document.removeEventListener("pointerdown", outside);
@@ -203,7 +218,7 @@ export function LocationAutocomplete({
           aria-describedby={id + "-status"}
           value={value.query}
           disabled={disabled}
-          placeholder="Search city, address or place"
+          placeholder="City or address"
           onFocus={() => setFocused(true)}
           onBlur={dismiss}
           onChange={(e) => {

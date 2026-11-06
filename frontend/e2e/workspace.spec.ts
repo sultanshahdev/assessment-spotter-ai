@@ -1,10 +1,16 @@
+import { offlineBasemap } from "./basemap";
 import { test, expect } from "@playwright/test";
 import { fixture } from "../src/test/fixtures";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import AxeBuilder from "@axe-core/playwright";
-const evidence = "../docs/p07-1-evidence/p06-regression/";
+const evidence = "../docs/p07-3-evidence/workspace/";
+mkdirSync(evidence, { recursive: true });
 
 test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
+  test.skip(
+    !process.env.LIVE_PROVIDERS,
+    "Opt-in real provider smoke test: LIVE_PROVIDERS=1",
+  );
   const exceptions: string[] = [],
     consoleErrors: string[] = [];
   const requests: { url: string; body: string | null }[] = [];
@@ -23,13 +29,11 @@ test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "A clearer route ahead." }),
+    page.getByRole("heading", { name: "Plan your trip" }),
   ).toBeVisible();
-  await expect(
-    page.getByRole("button", { name: "Analyze routes" }),
-  ).toBeVisible();
+  await expect(page.getByRole("button", { name: "Find routes" })).toBeVisible();
   await expect(page.locator(".maplibregl-canvas")).toBeVisible();
-  await expect.poll(() => mapAssets).toBeGreaterThan(3);
+  await expect.poll(() => mapAssets, { timeout: 30000 }).toBeGreaterThan(3);
   await expect(page.getByTestId("route-map")).toHaveAttribute(
     "data-map-ready",
     "true",
@@ -40,10 +44,10 @@ test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
     .withTags(["wcag2a", "wcag2aa"])
     .analyze();
   expect(initialA11y.violations).toEqual([]);
-  await page.getByLabel("Origin", { exact: true }).focus();
+  await page.getByLabel("From", { exact: true }).focus();
   await page.keyboard.press("Tab");
   await expect(
-    page.getByRole("button", { name: "Choose origin on map" }),
+    page.getByRole("button", { name: "Swap start and destination" }),
   ).toBeFocused();
   await page.screenshot({ path: evidence + "desktop-initial.png" });
   await page.setViewportSize({ width: 390, height: 844 });
@@ -53,16 +57,16 @@ test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
     fullPage: true,
   });
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.getByRole("button", { name: "Try an example journey" }).click();
+  await page.getByRole("button", { name: "Use example trip" }).click();
   const started = Date.now();
   const pending = page.waitForResponse(
     (r) =>
       r.url().endsWith("/api/routes/analyze/") &&
       r.request().method() === "POST",
   );
-  await page.getByRole("button", { name: "Analyze routes" }).click();
+  await page.getByRole("button", { name: "Find routes" }).click();
   await expect(
-    page.getByRole("button", { name: /Analyzing trip/ }),
+    page.getByRole("button", { name: /Checking routes and weather/ }),
   ).toBeDisabled();
   await page.screenshot({ path: evidence + "desktop-loading.png" });
   const response = await pending;
@@ -81,6 +85,9 @@ test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
       (r: { route_id: string }) => r.route_id === recommended,
     ),
   );
+  await page
+    .getByRole("button", { name: "Compare routes", exact: true })
+    .click();
   await expect(
     page.getByRole("button", {
       name: `Select Route ${chosenIndex + 1}`,
@@ -136,6 +143,9 @@ test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
     page.getByRole("region", { name: "Checkpoint weather" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Close checkpoint details" }).click();
+  await page
+    .getByRole("button", { name: "Weather details", exact: true })
+    .click();
   const checkpoint = data.routes[selectionIndex].checkpoints[1];
   await page
     .getByLabel("Checkpoint along selected route")
@@ -222,6 +232,7 @@ test("real Django + MapLibre desktop/mobile journey", async ({ page }) => {
 test("browser error, partial safety and checkpoint map interaction", async ({
   page,
 }) => {
+  await offlineBasemap(page);
   let mode: "error" | "partial" = "error";
   const data = fixture(2);
   // Deliberately synthetic divergent lines for deterministic map hit testing.
@@ -276,14 +287,14 @@ test("browser error, partial safety and checkpoint map interaction", async ({
     }),
   );
   await page.goto("/");
-  await page.getByRole("button", { name: "Try an example journey" }).click();
-  await page.getByRole("button", { name: "Analyze routes" }).click();
+  await page.getByRole("button", { name: "Use example trip" }).click();
+  await page.getByRole("button", { name: "Find routes" }).click();
   await expect(page.getByRole("alert")).toContainText("server administrator");
   await page.screenshot({ path: evidence + "desktop-error.png" });
   mode = "partial";
-  await page.getByRole("button", { name: "Retry analysis" }).click();
+  await page.getByRole("button", { name: "Try again" }).click();
   await expect(
-    page.getByRole("heading", { name: "No fully eligible recommendation" }),
+    page.getByRole("heading", { name: "No route can be recommended." }),
   ).toBeVisible();
   await expect(
     page.getByText("Incomplete weather coverage").first(),
@@ -293,6 +304,9 @@ test("browser error, partial safety and checkpoint map interaction", async ({
     "true",
     { timeout: 30000 },
   );
+  await page
+    .getByRole("button", { name: "Compare routes", exact: true })
+    .click();
   await page
     .getByRole("button", { name: "Select Route 2", exact: true })
     .click();
@@ -319,6 +333,9 @@ test("browser error, partial safety and checkpoint map interaction", async ({
     page.getByRole("button", { name: "Select Route 1", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
   await page
+    .getByRole("button", { name: "Weather details", exact: true })
+    .click();
+  await page
     .getByLabel("Checkpoint along selected route")
     .selectOption("cp-0-0");
   await expect(page.getByText("No Travel · incomplete")).toBeVisible();
@@ -344,6 +361,7 @@ test("map failure can retry; malformed geometry cannot reach map sources", async
   });
   await page.screenshot({ path: evidence + "desktop-map-error.png" });
   await page.unroute("**/styles/positron");
+  await offlineBasemap(page);
   await page.getByRole("button", { name: "Retry map" }).click();
   await expect(page.getByTestId("route-map")).toHaveAttribute(
     "data-map-ready",
@@ -359,15 +377,15 @@ test("map failure can retry; malformed geometry cannot reach map sources", async
       body: JSON.stringify(invalid),
     }),
   );
-  await page.getByRole("button", { name: "Try an example journey" }).click();
-  await page.getByRole("button", { name: "Analyze routes" }).click();
+  await page.getByRole("button", { name: "Use example trip" }).click();
+  await page.getByRole("button", { name: "Find routes" }).click();
   await expect(page.locator(".request-error")).toContainText(
     "invalid route data",
   );
   await expect(
     page.getByRole("region", { name: "Route comparison" }),
   ).toHaveCount(0);
-  await expect(page.getByLabel("Origin", { exact: true })).toHaveValue(
+  await expect(page.getByLabel("From", { exact: true })).toHaveValue(
     "Chicago, Illinois, United States",
   );
 });
