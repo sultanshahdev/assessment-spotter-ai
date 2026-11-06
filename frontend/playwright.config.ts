@@ -9,6 +9,9 @@ export default defineConfig({
     viewport: { width: 1440, height: 900 },
     launchOptions: {
       args: [
+        ...(process.env.PLAYWRIGHT_RESOLVER_RULES
+          ? [`--host-resolver-rules=${process.env.PLAYWRIGHT_RESOLVER_RULES}`]
+          : []),
         "--use-gl=angle",
         "--use-angle=swiftshader",
         "--enable-unsafe-swiftshader",

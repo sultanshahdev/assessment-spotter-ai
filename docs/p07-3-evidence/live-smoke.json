@@ -1,0 +1,7 @@
+{
+  "status": 504,
+  "real_backend": true,
+  "basemap": "test-only background style",
+  "error_code": "PROVIDER_TIMEOUT",
+  "page_errors": []
+}

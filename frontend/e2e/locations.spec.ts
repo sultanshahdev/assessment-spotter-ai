@@ -1,10 +1,17 @@
+import { offlineBasemap } from "./basemap";
+import { mkdirSync } from "node:fs";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { writeFileSync, readFileSync } from "node:fs";
-const evidence = "../docs/p07-1-evidence/";
+const evidence = "../docs/p07-3-evidence/locations/";
+mkdirSync(evidence, { recursive: true });
 test("live v3 autocomplete, coordinate trip, swap, map confirmation and mobile", async ({
   page,
 }) => {
+  test.skip(
+    !process.env.LIVE_PROVIDERS,
+    "Opt-in real provider smoke test: LIVE_PROVIDERS=1",
+  );
   const traffic: string[] = [];
   const bodies: string[] = [];
   const credential =
@@ -31,32 +38,26 @@ test("live v3 autocomplete, coordinate trip, swap, map confirmation and mobile",
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
-  await page
-    .getByRole("combobox", { name: "Origin", exact: true })
-    .fill("Chica");
+  await page.getByRole("combobox", { name: "From", exact: true }).fill("Chica");
   const chicago = page.getByRole("option").filter({ hasText: "Chicago, IL" });
-  await expect(chicago).toBeVisible();
+  await expect(chicago).toBeVisible({ timeout: 20000 });
   await page.screenshot({ path: evidence + "autocomplete-desktop.png" });
   await page
-    .getByRole("combobox", { name: "Origin", exact: true })
+    .getByRole("combobox", { name: "From", exact: true })
     .press("ArrowDown");
   await page
-    .getByRole("combobox", { name: "Origin", exact: true })
+    .getByRole("combobox", { name: "From", exact: true })
     .press("Enter");
   await expect(
-    page.getByRole("combobox", { name: "Origin", exact: true }),
+    page.getByRole("combobox", { name: "From", exact: true }),
   ).toHaveValue(/Chicago, IL/);
-  await page
-    .getByRole("combobox", { name: "Destination", exact: true })
-    .fill("St Lou");
+  await page.getByRole("combobox", { name: "To", exact: true }).fill("St Lou");
   await page.getByRole("option").filter({ hasText: "Saint Louis, MO" }).click();
   await expect(page.getByText("✓ Location confirmed")).toHaveCount(2);
   const pending = page.waitForResponse((r) =>
     r.url().endsWith("/api/routes/analyze/"),
   );
-  await page
-    .getByRole("button", { name: "Analyze routes", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Find routes", exact: true }).click();
   const response = await pending;
   expect(response.status()).toBe(200);
   const sent = response.request().postDataJSON();
@@ -66,30 +67,29 @@ test("live v3 autocomplete, coordinate trip, swap, map confirmation and mobile",
     longitude: -90.200986,
   });
   await expect(
-    page.getByRole("region", { name: "Route comparison" }),
+    page.getByRole("region", { name: "Route decision" }),
   ).toBeVisible();
   await page.screenshot({ path: evidence + "live-results.png" });
   await page.getByRole("button", { name: "Edit trip", exact: true }).click();
-  await page.getByLabel("Swap origin and destination").click();
+  await page.getByLabel("Swap start and destination").click();
   await expect(
-    page.getByRole("combobox", { name: "Origin", exact: true }),
+    page.getByRole("combobox", { name: "From", exact: true }),
   ).toHaveValue(/Saint Louis/);
   const reversed = page.waitForResponse((r) =>
     r.url().endsWith("/api/routes/analyze/"),
   );
-  await page
-    .getByRole("button", { name: "Analyze routes", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Find routes", exact: true }).click();
   const reverseResponse = await reversed;
   expect(reverseResponse.status()).toBe(200);
   expect(reverseResponse.request().postDataJSON().origin).toEqual(
     sent.destination,
   );
   await page.getByRole("button", { name: "Edit trip", exact: true }).click();
-  await page.getByRole("button", { name: "Choose origin on map" }).click();
+  await choosePin(page, "origin");
   await expect(page.getByTestId("route-map")).toHaveAttribute(
     "data-map-ready",
     "true",
+    { timeout: 30000 },
   );
   const canvas = page.locator(".maplibregl-canvas");
   await canvas.click({ position: { x: 350, y: 260 } });
@@ -101,41 +101,37 @@ test("live v3 autocomplete, coordinate trip, swap, map confirmation and mobile",
     .getByRole("button", { name: "Confirm origin", exact: true })
     .click();
   await expect(
-    page.getByRole("combobox", { name: "Origin", exact: true }),
+    page.getByRole("combobox", { name: "From", exact: true }),
   ).toHaveValue(/Pinned location/);
   await expect(
-    page.getByRole("region", { name: "Route comparison" }),
+    page.getByRole("region", { name: "Route decision" }),
   ).toHaveCount(0);
-  await page.getByRole("button", { name: "Choose destination on map" }).click();
+  await choosePin(page, "destination");
   await canvas.click({ position: { x: 400, y: 300 } });
   await page.getByRole("button", { name: "Cancel map selection" }).click();
   await expect(
-    page.getByRole("combobox", { name: "Destination", exact: true }),
+    page.getByRole("combobox", { name: "To", exact: true }),
   ).toHaveValue(/Chicago/);
-  await page.getByRole("button", { name: "Choose destination on map" }).click();
+  await choosePin(page, "destination");
   await canvas.click({ position: { x: 410, y: 310 } });
   await page
     .getByRole("button", { name: "Confirm destination", exact: true })
     .click();
   await expect(
-    page.getByRole("combobox", { name: "Destination", exact: true }),
+    page.getByRole("combobox", { name: "To", exact: true }),
   ).toHaveValue(/Pinned location/);
   await expect(page.locator(".maplibregl-marker")).toHaveCount(0);
   await expect(canvas).toHaveCount(1);
   const pinTrip = page.waitForResponse((r) =>
     r.url().endsWith("/api/routes/analyze/"),
   );
-  await page
-    .getByRole("button", { name: "Analyze routes", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Find routes", exact: true }).click();
   const pinResponse = await pinTrip;
   expect(pinResponse.status()).toBe(200);
   await page.getByRole("button", { name: "Edit trip", exact: true }).click();
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.getByRole("button", { name: "Try an example journey" }).click();
-  await page
-    .getByRole("combobox", { name: "Destination", exact: true })
-    .fill("St Lou");
+  await page.getByRole("button", { name: "Use example trip" }).click();
+  await page.getByRole("combobox", { name: "To", exact: true }).fill("St Lou");
   await expect(
     page.getByRole("listbox").getByRole("option").first(),
   ).toBeVisible();
@@ -147,16 +143,12 @@ test("live v3 autocomplete, coordinate trip, swap, map confirmation and mobile",
     (await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze())
       .violations,
   ).toEqual([]);
-  await page
-    .getByRole("combobox", { name: "Destination", exact: true })
-    .press("Escape");
-  await page.getByRole("button", { name: "Try an example journey" }).click();
+  await page.getByRole("combobox", { name: "To", exact: true }).press("Escape");
+  await page.getByRole("button", { name: "Use example trip" }).click();
   const example = page.waitForResponse((r) =>
     r.url().endsWith("/api/routes/analyze/"),
   );
-  await page
-    .getByRole("button", { name: "Analyze routes", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Find routes", exact: true }).click();
   expect((await example).status()).toBe(200);
   await page.screenshot({
     path: evidence + "example-mobile-results.png",
@@ -195,7 +187,8 @@ test("mobile touch map picker preserves map instance and submits pin coordinates
     isMobile: true,
   });
   const page = await context.newPage();
-  // Only trip response is a fixture: MapLibre, basemap, touch events and form are real.
+  await offlineBasemap(page);
+  // Trip response and basemap style are fixtures: MapLibre, basemap, touch events and form are real.
   const { fixture } = await import("../src/test/fixtures");
   let sent: Record<string, unknown> | null = null;
   await page.route("**/api/routes/analyze/", async (route) => {
@@ -207,10 +200,11 @@ test("mobile touch map picker preserves map instance and submits pin coordinates
     });
   });
   await page.goto("http://127.0.0.1:5173/");
-  await page.getByRole("button", { name: "Try an example journey" }).tap();
+  await page.getByRole("button", { name: "Use example trip" }).tap();
   await expect(page.getByTestId("route-map")).toHaveAttribute(
     "data-map-ready",
     "true",
+    { timeout: 30000 },
   );
   const canvas = page.locator(".maplibregl-canvas");
   await canvas.evaluate((el) =>
@@ -218,12 +212,12 @@ test("mobile touch map picker preserves map instance and submits pin coordinates
   );
   const pins: Record<string, { latitude: number; longitude: number }> = {};
   for (const field of ["origin", "destination"]) {
-    await page.getByRole("button", { name: `Choose ${field} on map` }).tap();
+    await choosePin(page, field);
     await expect(
       page.getByRole("button", { name: `Confirm ${field}`, exact: true }),
     ).toBeDisabled();
     await canvas.tap({
-      position: { x: field === "origin" ? 140 : 190, y: 180 },
+      position: { x: field === "origin" ? 140 : 190, y: 340 },
     });
     const preview = page
       .getByRole("region", { name: "Choose location on map" })
@@ -243,9 +237,9 @@ test("mobile touch map picker preserves map instance and submits pin coordinates
   }
   await expect(canvas).toHaveAttribute("data-instance-witness", "original");
   expect(sent).toBeNull();
-  await page.getByRole("button", { name: "Analyze routes", exact: true }).tap();
+  await page.getByRole("button", { name: "Find routes", exact: true }).tap();
   await expect(
-    page.getByRole("region", { name: "Route comparison" }),
+    page.getByRole("region", { name: "Route decision" }),
   ).toBeVisible();
   for (const field of ["origin", "destination"]) {
     const point = sent![field] as { latitude: number; longitude: number };
@@ -269,3 +263,15 @@ test("mobile touch map picker preserves map instance and submits pin coordinates
   );
   await context.close();
 });
+
+async function choosePin(page: import("@playwright/test").Page, field: string) {
+  const menu = page.locator(".pin-toolbar details");
+  if (!(await menu.evaluate((el) => el.hasAttribute("open"))))
+    await menu.locator("summary").click();
+  await page
+    .getByRole("button", {
+      name: field === "origin" ? "Set start on map" : "Set destination on map",
+      exact: true,
+    })
+    .click();
+}

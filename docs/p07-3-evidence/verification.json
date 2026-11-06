@@ -1,0 +1,101 @@
+{
+  "task": "P07.3",
+  "backend_offline_tests": 175,
+  "frontend_tests": 76,
+  "frontend_baseline_tests": 67,
+  "frontend_test_files": 10,
+  "default_browser": {
+    "passed": 10,
+    "opt_in_live_skipped": 3,
+    "last_full_run_minutes": 1.2
+  },
+  "focused_after_last_changes": {
+    "destination_autocomplete_swap": true,
+    "forecast_close_focus_and_cache": true
+  },
+  "typecheck": "passed",
+  "production_build": "passed",
+  "prettier": "passed",
+  "git_diff_check": "passed",
+  "axe": "passing forecast and expanded form scans",
+  "graph": {
+    "nodes": 1095,
+    "edges": 2451,
+    "communities": 70
+  },
+  "live_smoke_http_statuses": [
+    504,
+    200,
+    200
+  ],
+  "full_live_suites_current_success": false,
+  "final_real_basemap_run": {
+    "passed": 1,
+    "failed_cdn_readiness": 1,
+    "not_run": 2
+  },
+  "earlier_real_basemap_run": {
+    "passed": 4
+  },
+  "bundles": [
+    {
+      "path": "RouteMap-DiARJ9cR.js",
+      "bytes": 1084662,
+      "diagnostic_gzip_level9_bytes": 290201
+    },
+    {
+      "path": "RouteMap-qvkd0SPb.css",
+      "bytes": 71339,
+      "diagnostic_gzip_level9_bytes": 10102
+    },
+    {
+      "path": "index-Cjj7JSw-.css",
+      "bytes": 18205,
+      "diagnostic_gzip_level9_bytes": 4520
+    },
+    {
+      "path": "index-CyZbZsFO.js",
+      "bytes": 360765,
+      "diagnostic_gzip_level9_bytes": 108112
+    },
+    {
+      "path": "maplibre-gl-worker-Br3j0JGE.js",
+      "bytes": 518989,
+      "diagnostic_gzip_level9_bytes": 147140
+    }
+  ],
+  "note": "Synthetic and genuine data provenance is separated. Diagnostic gzip uses Python level9; Vite reported sizes are in the report.",
+  "latest_backend_offline_seconds": 0.599,
+  "last_build_vite_sizes_kb": {
+    "initial_js": 360.76,
+    "initial_js_gzip": 109.53,
+    "map_js": 1084.66,
+    "map_js_gzip": 294.84,
+    "app_css": 18.2,
+    "app_css_gzip": 4.54
+  },
+  "signoff_2026_11_07": {
+    "frontend_tests": 76,
+    "backend_offline_tests": 175,
+    "default_browser": {
+      "passed": 10,
+      "skipped_live": 3,
+      "seconds": 50.9
+    },
+    "focused_real_basemap": {
+      "passed": 1,
+      "seconds": 33.9,
+      "data": "synthetic route/weather; real OpenFreeMap style/tiles"
+    },
+    "typecheck": "passed",
+    "build": "passed; expected MapLibre chunk warning",
+    "formatting": "passed",
+    "django_check": "passed",
+    "full_live_suites_rerun": false,
+    "graph": {
+      "nodes": 1097,
+      "edges": 2453,
+      "communities": 71
+    }
+  }
+}

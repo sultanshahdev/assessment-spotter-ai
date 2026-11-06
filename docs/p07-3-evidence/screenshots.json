@@ -1,0 +1,352 @@
+{
+  "required_states_present": true,
+  "captures": [
+    {
+      "path": "before-desktop.png",
+      "bytes": 275432,
+      "provenance": "Before redesign; browser initial state; basemap readiness not asserted",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "8361bd791ab491df75b5b02c3da766029dddd5b625cf80a2c389d8722578523c"
+    },
+    {
+      "path": "corridor/synthetic-categories-hour-0.png",
+      "bytes": 90954,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "3d4fa7f302534cca2a7ff4bdea60e6970d9ea7101102600bc4930bead60c7450"
+    },
+    {
+      "path": "corridor/synthetic-mobile-unknown-hour.png",
+      "bytes": 60302,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "c7b1b4dd57a8343828d2d44d991eca20b59ca59c2730042f8e25d1dbfa434cb2"
+    },
+    {
+      "path": "corridor/synthetic-unknown-hour.png",
+      "bytes": 105566,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "1c144e3213dc406779b9d22db0da79fbdd40aba319d15576cd636577a22ef6b7"
+    },
+    {
+      "path": "desktop-comparison.png",
+      "bytes": 93951,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "ba5592dbede3d983bb2d1031f5632d3c45dd1adac990ece903db4b36fe52d94a"
+    },
+    {
+      "path": "desktop-initial.png",
+      "bytes": 57277,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "96994569302526807a83f9d7c89731cdad29c4f2182728961447579c8f48da44"
+    },
+    {
+      "path": "desktop-pin.png",
+      "bytes": 38632,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "8abf675a72a1b86ff0c05fad936276839d0ca89dde26051a999ee6c7343ada49"
+    },
+    {
+      "path": "desktop-results.png",
+      "bytes": 79054,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "53fa3ab6021d102b940823b786d5afd74def81ffcef54b82dbe14fff80ba3cd5"
+    },
+    {
+      "path": "desktop-timeline.png",
+      "bytes": 90338,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "14c00d9bc2e1e50ea380ce42f164cc2b16f48a4ad38b651f6bf62fb7667b1613"
+    },
+    {
+      "path": "initial-1024x768.png",
+      "bytes": 54173,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "51f32b16c66b7b0c39b245f6e365777760ed279a4f4f52804ed541d7988e656a"
+    },
+    {
+      "path": "initial-1280x800.png",
+      "bytes": 55316,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "3c0798930924cdc561beac2706c9d7c0fb8a61166310b5f26301a70e201cf60b"
+    },
+    {
+      "path": "initial-1440x900.png",
+      "bytes": 57277,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "96994569302526807a83f9d7c89731cdad29c4f2182728961447579c8f48da44"
+    },
+    {
+      "path": "initial-320x568.png",
+      "bytes": 26361,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "5d8e7d370895a2b4c7b4351b3713f3f2a21a0ac20c1c35d881a5ff90ee6b9ae2"
+    },
+    {
+      "path": "initial-375x667.png",
+      "bytes": 27293,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "139d1c70591a9228c89942a2f07a2f5d7a3ad802e2d4c7b0b4b6b35564841a00"
+    },
+    {
+      "path": "initial-390x844.png",
+      "bytes": 28238,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "57efb387ea30d13fe8a381b559055e49458d0056489e5782f9ffe0119766e8a3"
+    },
+    {
+      "path": "initial-768x1024.png",
+      "bytes": 31378,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "b02ed78333cf3d78f5aff4b60498ad772e0a2248b05335f7a91611601dea41ec"
+    },
+    {
+      "path": "initial-844x390.png",
+      "bytes": 24000,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "47d96edc710e95a09c20e5c1db01691f3f04dd19c3eb79ea7642382ef1afd78c"
+    },
+    {
+      "path": "live-backend-results-settled.png",
+      "bytes": 103801,
+      "provenance": "Genuine Django/TomTom/Open-Meteo response; test background basemap; settled capture supersedes early capture",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "ba6945fab47acd7e0bd6a0d52819c449714139daab40edfe2d4b674c53321a59"
+    },
+    {
+      "path": "live-backend-results.png",
+      "bytes": 68701,
+      "provenance": "Genuine Django/TomTom/Open-Meteo response; test background basemap; settled capture supersedes early capture",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "2ef736e32d7ef3354689874bd4b55e7b4df9ba35354845bce15e87635bc5c014"
+    },
+    {
+      "path": "live-map-diagnostic.png",
+      "bytes": 301774,
+      "provenance": "Real OpenFreeMap; initial app state; diagnostic capture",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "4970b10571d9a4c9f5f0b5d3ebb750a961b7f2f2556b8faab8e6d92727eeb1fd"
+    },
+    {
+      "path": "locations/pin-mobile-preview.png",
+      "bytes": 29337,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "a8768cdd6ca835dbcd18ec22a1b2ab97b972e3f327afcb4c42ba3c5e2ad2fbd1"
+    },
+    {
+      "path": "mobile-expanded.png",
+      "bytes": 42825,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "9c12d3f42731ecd91432c49b724b71c48d3fb019426f4d7d0d38a5f74a63e59b"
+    },
+    {
+      "path": "mobile-forecast.png",
+      "bytes": 46524,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "ded09f96f7cf4b022b4b2695050ed252b367c41356d782276105b6428ad1bed7"
+    },
+    {
+      "path": "mobile-initial.png",
+      "bytes": 28238,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "57efb387ea30d13fe8a381b559055e49458d0056489e5782f9ffe0119766e8a3"
+    },
+    {
+      "path": "mobile-keyboard-viewport.png",
+      "bytes": 27936,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "02e2132e98f9027a9937b36df9aa9e64e3a3936b592b8837be1cb2331f85d5cd"
+    },
+    {
+      "path": "mobile-results.png",
+      "bytes": 42453,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "3de557bbad8e5d5bc4d8ed67b7d83e00a5ba36f525110566751645afcb1f9caf"
+    },
+    {
+      "path": "mobile-safety.png",
+      "bytes": 50620,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": true,
+      "sha256": "9e09700ba9d05d03b336c43c3aa5295205615f02851a7ee704fc4a821a61887e"
+    },
+    {
+      "path": "real-basemap/desktop-comparison.png",
+      "bytes": 363756,
+      "provenance": "Real OpenFreeMap; synthetic route/weather fixtures",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "0eca16532db8c5514f94e33b327a8b0216cee5740833767542055242b983252c"
+    },
+    {
+      "path": "real-basemap/desktop-initial.png",
+      "bytes": 380993,
+      "provenance": "Real OpenFreeMap; synthetic route/weather fixtures",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "0a6c6ee6349c8e37ea0b0d371a8198d1d3ebcae3b87d5be6d78585d1b1b18cc6"
+    },
+    {
+      "path": "real-basemap/desktop-results.png",
+      "bytes": 111551,
+      "provenance": "Real OpenFreeMap; synthetic route/weather fixtures",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "706346e3e8684ac57410e71604709e780349214955926703398879cc5c28da27"
+    },
+    {
+      "path": "real-basemap/desktop-timeline.png",
+      "bytes": 354063,
+      "provenance": "Real OpenFreeMap; synthetic route/weather fixtures",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "a7bd62574a79e053c14aa97fd74eae8dd132f9c0aa5c5af92c2a0bf052db4109"
+    },
+    {
+      "path": "real-basemap/mobile-forecast.png",
+      "bytes": 115018,
+      "provenance": "Real OpenFreeMap; synthetic route/weather fixtures",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "688dc89a9f1f0fb5fdde6d9bc38a3c5a3972bf3908bbfcfd7ce2818e4d4f96a2"
+    },
+    {
+      "path": "real-basemap/mobile-results.png",
+      "bytes": 90955,
+      "provenance": "Real OpenFreeMap; synthetic route/weather fixtures",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "3c3b06b2369083d5be82897c225dc505c287db68aa7b71fe8271c188bba13f6e"
+    },
+    {
+      "path": "reflow-200-percent.png",
+      "bytes": 60184,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "aa2645f933f1de360edb4b61b8c4f4389cd82f284cf595e6232cc6e03326e490"
+    },
+    {
+      "path": "reflow-400-percent.png",
+      "bytes": 61175,
+      "provenance": "Deterministic test data/background style; actual Chromium/MapLibre rendering",
+      "visually_inspected": true,
+      "required_state_capture": false,
+      "sha256": "3caf689a6efe61ac6739e4c2f36df24518a0a8baf9d88e1b1ca58e836606110d"
+    },
+    {
+      "path": "workspace/desktop-error.png",
+      "bytes": 72734,
+      "provenance": "Adapted legacy scenario captures; some in-progress live runs; final deterministic cases use fixtures/background style",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "5f70d2590f3419f34182b3c549cddf349397ca534217318de4f91fa161224028"
+    },
+    {
+      "path": "workspace/desktop-initial.png",
+      "bytes": 69300,
+      "provenance": "Adapted legacy scenario captures; some in-progress live runs; final deterministic cases use fixtures/background style",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "8412b3b9bb6e74c063e48507a959d4da3cc5df385ad9d67e09cd94c79025cccc"
+    },
+    {
+      "path": "workspace/desktop-loading.png",
+      "bytes": 388416,
+      "provenance": "Adapted legacy scenario captures; some in-progress live runs; final deterministic cases use fixtures/background style",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "3a176e54bdd5efec676af2a03746e8d13dd95867071eedcad64916a07a18e6d9"
+    },
+    {
+      "path": "workspace/desktop-map-error.png",
+      "bytes": 66821,
+      "provenance": "Adapted legacy scenario captures; some in-progress live runs; final deterministic cases use fixtures/background style",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "d48de93bfa66666175f5e89d3386a79d020d84c52d04f512e092143df6b19466"
+    },
+    {
+      "path": "workspace/desktop-partial.png",
+      "bytes": 135330,
+      "provenance": "Adapted legacy scenario captures; some in-progress live runs; final deterministic cases use fixtures/background style",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "b10e1c40cc84827a68cb9e91b36d119799e8d67f30939874db042d42609f4e17"
+    },
+    {
+      "path": "workspace/desktop-results.png",
+      "bytes": 144752,
+      "provenance": "Adapted legacy scenario captures; some in-progress live runs; final deterministic cases use fixtures/background style",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "df2d2a61d934e9b8cb167f3e5d086b15eb98576b5f3c3f49b14a73083ce78a07"
+    },
+    {
+      "path": "workspace/mobile-initial.png",
+      "bytes": 81497,
+      "provenance": "Adapted legacy scenario captures; some in-progress live runs; final deterministic cases use fixtures/background style",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "274bd94d3493de85a7daa300a81015c30b499bfc8d53c2af47841ef4295fb904"
+    },
+    {
+      "path": "workspace/mobile-partial.png",
+      "bytes": 65943,
+      "provenance": "Adapted legacy scenario captures; some in-progress live runs; final deterministic cases use fixtures/background style",
+      "visually_inspected": false,
+      "required_state_capture": false,
+      "sha256": "0f9d2965c7431dd0852e370c1921c41d76f24da0e33fdaf9003bd95110452341"
+    }
+  ],
+  "preferred_genuine_route_result": "live-backend-results-settled.png",
+  "signoff_review_date": "2026-11-07",
+  "signoff_note": "All 43 captures inventoried; required ten final deterministic states visually reviewed after rerun. Historical live captures are integration evidence and predate final presentation polish. Real-basemap decision captures refreshed by passing focused sign-off test."
+}

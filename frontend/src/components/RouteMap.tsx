@@ -17,6 +17,8 @@ import { routeFeatures, checkpointFeatures } from "../lib/geojson";
 setWorkerUrl(workerUrl);
 const STYLE = "https://tiles.openfreemap.org/styles/positron";
 interface Props {
+  forecastMode?: boolean;
+  focusedCheckpointId?: string;
   picker?: "origin" | "destination" | null;
   onPinConfirm?: (location: SelectedLocation) => void;
   onPinCancel?: () => void;
@@ -48,7 +50,22 @@ export function RouteMap(props: Props) {
       route.geometry.coordinates.forEach((p) => bounds.extend(p)),
     );
     map.fitBounds(bounds, {
-      padding: 55,
+      padding:
+        window.innerWidth >= 850
+          ? current.current.forecastMode
+            ? {
+                top: 70,
+                bottom: 65,
+                left: 55,
+                right: Math.min(500, window.innerWidth * 0.48),
+              }
+            : { top: 70, bottom: 65, left: 440, right: 75 }
+          : {
+              top: 140,
+              bottom: Math.min(window.innerHeight * 0.52, 420),
+              left: 35,
+              right: 35,
+            },
       maxZoom: 12,
       duration: matchMedia("(prefers-reduced-motion: reduce)").matches
         ? 0
@@ -338,6 +355,25 @@ export function RouteMap(props: Props) {
       temporary.current = null;
     };
   }, [preview, props.picker]);
+  useEffect(() => {
+    if (ready) fit();
+  }, [props.forecastMode, ready]);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!ready || !map?.getLayer("checkpoint-points")) return;
+    map.setPaintProperty("checkpoint-points", "circle-radius", [
+      "case",
+      ["==", ["get", "checkpointId"], props.focusedCheckpointId ?? ""],
+      10,
+      6,
+    ]);
+    map.setPaintProperty("checkpoint-points", "circle-stroke-width", [
+      "case",
+      ["==", ["get", "checkpointId"], props.focusedCheckpointId ?? ""],
+      4,
+      2,
+    ]);
+  }, [props.focusedCheckpointId, ready]);
   return (
     <>
       {props.picker && (
@@ -346,10 +382,12 @@ export function RouteMap(props: Props) {
           role="region"
           aria-label="Choose location on map"
         >
-          <p role="status">
-            Choose {props.picker}:{" "}
+          <p role="status" tabIndex={-1} ref={(el) => el?.focus()}>
+            {props.picker === "origin"
+              ? "Choose your starting point."
+              : "Choose your destination."}{" "}
             {ready
-              ? "Click the map to preview a pin."
+              ? "Tap the map to preview a pin."
               : "Waiting for the map. You can cancel and use search."}
           </p>
           {preview && (
@@ -393,22 +431,28 @@ export function RouteMap(props: Props) {
         data-map-ready={ready > 0}
         aria-label="Interactive route map"
       />
-      <div className="map-toolbar">
-        <span className="map-chip">
-          <span className="live-dot" />{" "}
-          {props.corridor
-            ? "OpenFreeMap · forecast snapshot"
-            : "OpenFreeMap · arrival-time weather"}
-        </span>
-        <button
-          type="button"
-          className="map-fit"
-          disabled={!props.routes.length}
-          onClick={fit}
-        >
-          Fit routes
-        </button>
-      </div>
+      {!!props.routes.length && (
+        <div className="map-toolbar">
+          <span className="map-chip">
+            <span className="live-dot" />{" "}
+            {props.corridor
+              ? "OpenFreeMap · forecast snapshot"
+              : "OpenFreeMap · arrival-time weather"}
+          </span>
+          <button
+            type="button"
+            className="map-fit"
+            aria-label="Fit routes"
+            disabled={!props.routes.length}
+            onClick={fit}
+          >
+            <span className="fit-desktop">Fit routes</span>
+            <span className="fit-mobile" aria-hidden="true">
+              Fit
+            </span>
+          </button>
+        </div>
+      )}
       {error && (
         <div className="map-error" role="alert">
           {error}

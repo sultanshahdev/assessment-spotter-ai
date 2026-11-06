@@ -1,3 +1,4 @@
+import { useViewportHeight } from "./lib/useViewportHeight";
 import type { SelectedLocation } from "./lib/locations";
 import {
   lazy,
@@ -13,6 +14,7 @@ import {
   CorridorSnapshotDetail,
 } from "./components/CorridorControls";
 import { TripForm } from "./components/TripForm";
+import { RouteDecision } from "./components/RouteDecision";
 import { RouteComparison } from "./components/RouteComparison";
 const RouteMap = lazy(() =>
   import("./components/RouteMap").then((module) => ({
@@ -23,27 +25,31 @@ import { CheckpointDetail } from "./components/CheckpointDetail";
 import { RiskLegend } from "./components/ExposureBar";
 import { analyzeTrip } from "./lib/api";
 import type { Analysis, Checkpoint, TripRequest } from "./lib/contracts";
-import {
-  duration,
-  localTime,
-  miles,
-  routeName,
-  routeColors,
-} from "./lib/presentation";
+import { localTime, miles, routeName } from "./lib/presentation";
 const EMPTY_ROUTES: Analysis["routes"] = [];
 export default function App() {
+  useViewportHeight();
+  const [tripLabels, setTripLabels] = useState<{
+    from: string;
+    to: string;
+  } | null>(null);
   const [picker, setPicker] = useState<"origin" | "destination" | null>(null);
   const [pinned, setPinned] = useState<{
     field: "origin" | "destination";
     location: SelectedLocation;
   } | null>(null);
   const invalidate = () => {
+    active.current?.abort();
+    active.current = null;
+    setLoading(false);
+    setTripLabels(null);
     setAnalysis(null);
     setSample(null);
     setSelectedId("");
     setError("");
     setLastRequest(null);
   };
+  const [sheetExpanded, setSheetExpanded] = useState(false);
   const [editing, setEditing] = useState(true);
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [selectedId, setSelectedId] = useState("");
@@ -93,59 +99,87 @@ export default function App() {
   useEffect(() => {
     if (corridor.selectedSample) setSample(null);
   }, [corridor.selectedSample]);
+  const [view, setView] = useState<"decision" | "comparison" | "weather">(
+    "decision",
+  );
+  const forecastWasOpen = useRef(false);
+  useEffect(() => {
+    if (corridor.enabled) document.getElementById("forecast-route")?.focus();
+    else if (forecastWasOpen.current)
+      document
+        .querySelector<HTMLButtonElement>(
+          window.innerWidth < 850 ? ".mobile-sheet-toggle" : ".forecast-entry",
+        )
+        ?.focus();
+    forecastWasOpen.current = corridor.enabled;
+  }, [corridor.enabled]);
+  const pinTrigger = useRef<HTMLElement | null>(null);
+  const beginPin = (field: "origin" | "destination") => {
+    pinTrigger.current = document.activeElement as HTMLElement;
+    corridor.setEnabled(false);
+    setSample(null);
+    setPicker(field);
+  };
+  const finishPin = () => {
+    setPicker(null);
+    requestAnimationFrame(() => {
+      const target = pinTrigger.current;
+      if (target?.checkVisibility?.()) target.focus();
+      else
+        document
+          .querySelector<HTMLButtonElement>(".pin-toolbar button")
+          ?.focus();
+    });
+  };
+  useEffect(() => {
+    if (!picker) return;
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") finishPin();
+    };
+    window.addEventListener("keydown", escape);
+    return () => window.removeEventListener("keydown", escape);
+  }, [picker]);
   return (
-    <div className="app-shell">
+    <div
+      className={`app-shell ${picker ? "is-picking" : ""} ${corridor.enabled ? "forecast-mode" : ""}`}
+    >
       <header className="app-header">
-        <a className="brand" href="#main">
-          <span className="brand-mark" aria-hidden="true">
-            s<span>↗</span>
-          </span>
-          <span>
-            spotter<span className="brand-dot">.ai</span>
-          </span>
+        <a className="brand" href="#main" aria-label="Spotter.ai Route Planner">
+          spotter<span>.ai</span>
         </a>
-        <div className="header-divider" />
-        <span className="header-product">Weather-aware truck routing</span>
-        <span className="header-note">Route planning workspace</span>
+        <span className="header-divider" />
+        <span className="header-product">Route Planner</span>
+        <span className="header-note">
+          Assessment prototype · Plan before driving
+        </span>
       </header>
       <main id="main" className="workspace">
         <aside
-          className={`control-panel ${analysis ? "has-results" : ""}`}
+          className={`control-panel ${analysis ? "has-results" : ""} ${sheetExpanded ? "sheet-expanded" : ""}`}
           aria-label="Trip controls and results"
+          inert={picker ? true : undefined}
         >
-          <div className="panel-intro">
-            <span className="eyebrow">DISPATCH / ROUTE PLANNER</span>
-            <h1>A clearer route ahead.</h1>
-            <p>Compare truck routes with weather at the time you arrive.</p>
-          </div>
           <div hidden={!!analysis && !editing}>
             <TripForm
               loading={loading}
               pinned={pinned}
               onEdit={invalidate}
-              onMap={(field) => {
-                setPicker(field);
-                document
-                  .querySelector(".map-panel")
-                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
+              onMap={beginPin}
+              onTripLabels={setTripLabels}
               onSubmit={submit}
               onCancel={() => active.current?.abort()}
               onReset={() => {
                 setPinned(null);
                 setPicker(null);
-                setAnalysis(null);
-                setSample(null);
-                setSelectedId("");
-                setError("");
-                setLastRequest(null);
+                invalidate();
                 setEditing(true);
+                setView("decision");
               }}
             />
           </div>
           {error && (
             <div className="request-error" role="alert">
-              <strong>Analysis unavailable</strong>
+              <strong>We couldn't retrieve routes right now.</strong>
               <p>{error}</p>
               <button
                 type="button"
@@ -153,93 +187,149 @@ export default function App() {
                 disabled={loading}
                 onClick={() => lastRequest && submit(lastRequest)}
               >
-                Retry analysis
+                Try again
               </button>
             </div>
           )}
-          {analysis && (
+          {analysis && !editing && route && (
             <>
+              <button
+                className="text-button mobile-sheet-toggle"
+                aria-expanded={sheetExpanded}
+                onClick={() => setSheetExpanded((v) => !v)}
+              >
+                {sheetExpanded ? "Show more map" : "Expand results"}
+              </button>
               <div className="result-context">
                 <div className="section-heading">
-                  <strong>Analyzed trip</strong>
+                  <strong>Your trip</strong>
                   <button
                     className="text-button"
-                    type="button"
-                    onClick={() => setEditing((v) => !v)}
+                    onClick={() => {
+                      setEditing(true);
+                      corridor.setEnabled(false);
+                    }}
                   >
-                    {editing ? "Close editor" : "Edit trip"}
+                    Edit trip
                   </button>
                 </div>
                 <span>
-                  {analysis.request.origin.label} →{" "}
-                  {analysis.request.destination.label}
+                  {tripLabels?.from ?? analysis.request.origin.label} →{" "}
+                  {tripLabels?.to ?? analysis.request.destination.label}
                 </span>
                 <span>
                   {localTime(analysis.request.departure_time)} ·{" "}
                   {analysis.request.load_weight_lb.toLocaleString()} lb
                 </span>
-                {loading && (
-                  <span>
-                    Showing previous results while this trip is analyzed.
-                  </span>
-                )}
               </div>
-              <RouteComparison
-                analysis={analysis}
-                selectedId={selectedId}
-                onSelect={selectRoute}
-              />
+              {view === "decision" ? (
+                <RouteDecision analysis={analysis} route={route} />
+              ) : (
+                <div className="explore-summary">
+                  <strong>
+                    Viewing {routeName(analysis.routes, route.route_id)}
+                  </strong>
+                  <button
+                    className="text-button"
+                    onClick={() => setView("decision")}
+                  >
+                    Back to trip
+                  </button>
+                </div>
+              )}
+              <div className="decision-actions">
+                <button
+                  className="secondary-button"
+                  aria-expanded={view === "comparison"}
+                  onClick={() => {
+                    setView(view === "comparison" ? "decision" : "comparison");
+                    corridor.setEnabled(false);
+                  }}
+                >
+                  Compare routes
+                </button>
+                <button
+                  className="secondary-button"
+                  aria-expanded={view === "weather"}
+                  onClick={() => {
+                    setView(view === "weather" ? "decision" : "weather");
+                    corridor.setEnabled(false);
+                  }}
+                >
+                  Weather details
+                </button>
+                <button
+                  className="text-button forecast-entry"
+                  aria-expanded={corridor.enabled}
+                  onClick={() => {
+                    corridor.setEnabled(!corridor.enabled);
+                    setView("decision");
+                  }}
+                >
+                  {corridor.enabled
+                    ? "Back to trip weather"
+                    : "View 48-hour forecast"}
+                </button>
+              </div>
+              {view === "comparison" && (
+                <RouteComparison
+                  analysis={analysis}
+                  selectedId={selectedId}
+                  onSelect={selectRoute}
+                />
+              )}
+              {view === "weather" && (
+                <section className="checkpoint-explorer">
+                  <h2>Weather along your route</h2>
+                  <p>Conditions at each checkpoint's arrival time.</p>
+                  <RiskLegend />
+                  <label htmlFor="checkpoint">
+                    Checkpoint along selected route
+                  </label>
+                  <select
+                    id="checkpoint"
+                    value={sample?.checkpoint.checkpoint_id ?? ""}
+                    onChange={(e) => {
+                      corridor.setSelectedSample(null);
+                      setSample(
+                        route.checkpoints.find(
+                          (c) => c.checkpoint.checkpoint_id === e.target.value,
+                        ) ?? null,
+                      );
+                    }}
+                  >
+                    <option value="">Choose a checkpoint…</option>
+                    {route.checkpoints.map((c, i) => (
+                      <option
+                        key={c.checkpoint.checkpoint_id}
+                        value={c.checkpoint.checkpoint_id}
+                      >
+                        Checkpoint {i + 1} ·{" "}
+                        {miles(c.checkpoint.distance_meters / 1609.344)} mi ·{" "}
+                        {localTime(c.checkpoint.eta_utc)}
+                      </option>
+                    ))}
+                  </select>
+                </section>
+              )}
             </>
           )}
-          {!analysis && (
-            <div className="ranking-guide">
-              <span className="eyebrow">HOW ROUTES ARE COMPARED</span>
-              <p>
-                Fewer Severe miles, then High miles, then average risk and
-                travel time.
-              </p>
-              <p className="fine-print">
-                Confirmed No Travel, incomplete weather or unverified truck
-                access can prevent a recommendation.
-              </p>
-            </div>
+          {analysis && editing && (
+            <button className="text-button" onClick={() => setEditing(false)}>
+              Back to results
+            </button>
           )}
           <p className="panel-footer">
-            Forecasts:{" "}
+            Weather:{" "}
             <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">
               Open-Meteo
             </a>{" "}
             · Routing: TomTom
             <br />
-            Default vehicle profile. Confirm truck restrictions before
-            departure.
+            Default truck profile. Check restrictions before departure.
           </p>
         </aside>
         <section className="map-panel" aria-label="Map and checkpoint explorer">
-          <div className="map-heading">
-            <div>
-              <span className="eyebrow">
-                {analysis ? "TRIP OVERVIEW" : "YOUR ROUTE, IN CONTEXT"}
-              </span>
-              <h2>
-                {route && analysis
-                  ? `${routeName(analysis.routes, route.route_id)} · ${duration(route.duration_seconds)} · ${miles(route.distance_miles)} mi`
-                  : "Explore the road ahead"}
-              </h2>
-            </div>
-            <span className="map-subtitle">
-              {analysis
-                ? `${analysis.routes.length} actual alternatives`
-                : "Plan a trip to compare routes"}
-            </span>
-          </div>
-          {analysis && route && (
-            <CorridorControls
-              state={corridor}
-              routeLabel={routeName(analysis.routes, route.route_id)}
-              departure={analysis.request.departure_time}
-            />
-          )}
           <div className="map-stage">
             <Suspense
               fallback={
@@ -250,12 +340,15 @@ export default function App() {
             >
               <RouteMap
                 picker={picker}
-                onPinCancel={() => setPicker(null)}
+                forecastMode={corridor.enabled}
+                focusedCheckpointId={sample?.checkpoint.checkpoint_id}
+                onPinCancel={finishPin}
                 onPinConfirm={(location) => {
                   if (picker) {
                     setPinned({ field: picker, location });
                     invalidate();
-                    setPicker(null);
+                    setEditing(true);
+                    finishPin();
                   }
                 }}
                 routes={analysis?.routes ?? EMPTY_ROUTES}
@@ -270,6 +363,53 @@ export default function App() {
                 onCorridorSample={corridor.setSelectedSample}
               />
             </Suspense>
+            <div className="pin-toolbar" aria-label="Map location controls">
+              <details>
+                <summary>⌖ Set location on map</summary>
+                <button disabled={loading} onClick={() => beginPin("origin")}>
+                  Set start on map
+                </button>
+                <button
+                  disabled={loading}
+                  onClick={() => beginPin("destination")}
+                >
+                  Set destination on map
+                </button>
+              </details>
+            </div>
+            {corridor.enabled && analysis && route && (
+              <div className="forecast-panel">
+                <label htmlFor="forecast-route">Route to explore</label>
+                <select
+                  id="forecast-route"
+                  value={selectedId}
+                  onChange={(e) => selectRoute(e.target.value)}
+                >
+                  {analysis.routes.map((r, i) => (
+                    <option key={r.route_id} value={r.route_id}>
+                      Route {i + 1}
+                      {analysis.recommendation.recommended_route_id ===
+                      r.route_id
+                        ? " · Recommended"
+                        : r.eligibility.status !== "ELIGIBLE"
+                          ? " · Not eligible"
+                          : ""}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  className="text-button"
+                  onClick={() => corridor.setEnabled(false)}
+                >
+                  Close forecast
+                </button>
+                <CorridorControls
+                  state={corridor}
+                  routeLabel={routeName(analysis.routes, route.route_id)}
+                  departure={analysis.request.departure_time}
+                />
+              </div>
+            )}
             {corridor.enabled && corridor.data && corridor.selectedSample && (
               <div className="map-checkpoint">
                 <CorridorSnapshotDetail state={corridor} />
@@ -283,83 +423,7 @@ export default function App() {
                 />
               </div>
             )}
-            {!analysis && (
-              <div className="map-empty">
-                <span className="map-empty-icon" aria-hidden="true">
-                  ↗
-                </span>
-                <strong>Every journey starts with a plan.</strong>
-                <p>
-                  Enter your trip to see real truck routes and arrival-time
-                  weather.
-                </p>
-              </div>
-            )}
           </div>
-          <div className="map-caption">
-            <RiskLegend />
-            <p>
-              Checkpoint colors show sampled ETA weather, not continuous road
-              conditions.
-            </p>
-          </div>
-          {analysis && (
-            <div className="route-map-key">
-              {analysis.routes.map((r, i) => (
-                <button
-                  key={r.route_id}
-                  aria-pressed={selectedId === r.route_id}
-                  onClick={() => selectRoute(r.route_id)}
-                >
-                  <i
-                    style={{ background: routeColors[i % routeColors.length] }}
-                  />
-                  Route {i + 1}
-                </button>
-              ))}
-            </div>
-          )}
-          {route && (
-            <section className="checkpoint-explorer">
-              <div className="section-heading">
-                <div>
-                  <h2>Explore checkpoint weather</h2>
-                  <p>Select a point on the map or choose a checkpoint below.</p>
-                </div>
-              </div>
-              <label htmlFor="checkpoint">
-                Checkpoint along selected route
-              </label>
-              <select
-                id="checkpoint"
-                value={sample?.checkpoint.checkpoint_id ?? ""}
-                onChange={(e) => {
-                  corridor.setSelectedSample(null);
-                  setSample(
-                    route.checkpoints.find(
-                      (c) => c.checkpoint.checkpoint_id === e.target.value,
-                    ) ?? null,
-                  );
-                }}
-              >
-                <option value="">Choose a checkpoint…</option>
-                {route.checkpoints.map((c, i) => (
-                  <option
-                    key={c.checkpoint.checkpoint_id}
-                    value={c.checkpoint.checkpoint_id}
-                  >
-                    {i === 0
-                      ? "Origin"
-                      : i === route.checkpoints.length - 1
-                        ? "Destination"
-                        : `Checkpoint ${i + 1}`}{" "}
-                    · {miles(c.checkpoint.distance_meters / 1609.344)} mi ·{" "}
-                    {localTime(c.checkpoint.eta_utc)}
-                  </option>
-                ))}
-              </select>
-            </section>
-          )}
         </section>
       </main>
     </div>
