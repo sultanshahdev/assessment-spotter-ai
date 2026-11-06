@@ -1,0 +1,22 @@
+{
+  "files": [
+    "p07-3-evidence/desktop-initial.png",
+    "p07-3-evidence/initial-1280x800.png",
+    "p07-3-evidence/initial-1440x900.png",
+    "p07-3-evidence/initial-1024x768.png",
+    "p07-3-evidence/mobile-forecast.png",
+    "p07-3-evidence/desktop-results.png",
+    "p07-3-evidence/mobile-expanded.png",
+    "p07-3-evidence/workspace/desktop-partial.png",
+    "p07-3-evidence/workspace/desktop-error.png",
+    "p07-3-evidence/workspace/desktop-map-error.png",
+    "p07-3-evidence/corridor/synthetic-mobile-unknown-hour.png",
+    "p07-3-evidence/corridor/synthetic-unknown-hour.png",
+    "p07-3-evidence/corridor/synthetic-categories-hour-0.png",
+    "p07-3-evidence/locations/mobile-pin.json",
+    "p07-4-evidence/responsiveness.json",
+    "p07-4-evidence/pending-analysis.png",
+    "p07-4-evidence/deterministic-long-results.png"
+  ],
+  "note": "Fresh local Vite regression outputs; prior milestone evidence restored byte-for-byte."
+}

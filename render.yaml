@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://render.com/schema/render.yaml.json
+services:
+  - type: web
+    name: spotter-weather-routing
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health/
+    autoDeployTrigger: "off"
+    maxShutdownDelaySeconds: 180
+    envVars:
+      - key: DEBUG
+        value: "false"
+      - key: DJANGO_SETTINGS_MODULE
+        value: backend.production_settings
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: TOMTOM_API_KEY
+        sync: false

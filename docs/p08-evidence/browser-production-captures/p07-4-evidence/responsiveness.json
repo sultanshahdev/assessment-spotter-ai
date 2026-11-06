@@ -1,0 +1,11 @@
+{
+  "fixture_vertices": 60000,
+  "comparison_and_selection_automation_ms": 550.7111750000004,
+  "weather_detail_open_automation_ms": 456.8829679999981,
+  "pending_pan_and_preview_ms": 542.2092100000009,
+  "response_release_to_results_ms": 599.2902880000001,
+  "analysis_calls": 2,
+  "initial_corridor_calls": 0,
+  "map_identity_preserved": true,
+  "source_measures": []
+}

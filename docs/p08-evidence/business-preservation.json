@@ -1,0 +1,23 @@
+{
+  "protected_paths": [
+    "backend/settings.py",
+    "backend/wsgi.py",
+    "backend/urls.py",
+    "backend/views.py",
+    "backend/serializers.py",
+    "backend/locations.py",
+    "backend/corridor.py",
+    "frontend/src",
+    "frontend/vite.config.ts",
+    "route_processing",
+    "routing_adapters",
+    "weather_risk",
+    "weather_adapters",
+    "weather_analysis",
+    "trip_planning",
+    "forecast_corridor",
+    "location_search"
+  ],
+  "modified_existing_files": [],
+  "result": "Existing business logic, API clients, development settings/entry/proxy unchanged; only separate production boundary modules added."
+}

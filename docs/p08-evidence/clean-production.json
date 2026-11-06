@@ -1,0 +1,101 @@
+{
+  "docker_build": "not executed: Docker daemon permission denied",
+  "alternative": "clean temporary source/npm ci/fresh venv, local Python/Node; not a container or CPU quota test",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 723,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/trips/refresh",
+      "status": 200,
+      "bytes": 723,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/api/health/",
+      "status": 200,
+      "bytes": 43,
+      "mime": "application/json"
+    },
+    {
+      "path": "/api/missing/",
+      "status": 404,
+      "bytes": 66,
+      "mime": "application/json"
+    },
+    {
+      "path": "/assets/missing.js",
+      "status": 404,
+      "bytes": 179,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/.env",
+      "status": 404,
+      "bytes": 179,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/fonts/dm-sans-latin.woff2",
+      "status": 200,
+      "bytes": 36932,
+      "mime": "font/woff2"
+    },
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "bytes": 268,
+      "mime": "image/svg+xml"
+    },
+    {
+      "path": "/assets/RouteMap-LG5ONCvX.js",
+      "status": 200,
+      "bytes": 1084649,
+      "mime": "text/javascript; charset=\"utf-8\""
+    },
+    {
+      "path": "/assets/RouteMap-qvkd0SPb.css",
+      "status": 200,
+      "bytes": 71339,
+      "mime": "text/css; charset=\"utf-8\""
+    },
+    {
+      "path": "/assets/index-Cjj7JSw-.css",
+      "status": 200,
+      "bytes": 18205,
+      "mime": "text/css; charset=\"utf-8\""
+    },
+    {
+      "path": "/assets/index-DAqjaUHu.js",
+      "status": 200,
+      "bytes": 361211,
+      "mime": "text/javascript; charset=\"utf-8\""
+    },
+    {
+      "path": "/assets/maplibre-gl-worker-Br3j0JGE.js",
+      "status": 200,
+      "bytes": 518989,
+      "mime": "text/javascript; charset=\"utf-8\""
+    }
+  ],
+  "idle_processes": {
+    "rss_kib_by_pid": {
+      "26036": 24708,
+      "26037": 42752,
+      "26038": 38388
+    },
+    "sum_rss_kib": 105848
+  },
+  "after_smoke_processes": {
+    "rss_kib_by_pid": {
+      "26036": 24708,
+      "26037": 42752,
+      "26038": 38388
+    },
+    "sum_rss_kib": 105848
+  },
+  "result": "passed local clean production alternative"
+}

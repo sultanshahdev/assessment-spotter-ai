@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "analysis_response": "synthetic fixture",
+  "touch": true,
+  "pins": {
+    "origin": {
+      "latitude": 40.8148,
+      "longitude": -92.0878
+    },
+    "destination": {
+      "latitude": 40.8148,
+      "longitude": -90.7353
+    }
+  },
+  "request": {
+    "origin": {
+      "latitude": 40.81475171226495,
+      "longitude": -92.08783321436903
+    },
+    "destination": {
+      "latitude": 40.81475171226495,
+      "longitude": -90.73525756494246
+    },
+    "departure_time": "2026-11-06T22:39:00.000Z",
+    "load_weight_lb": 30000,
+    "checkpoint_interval_miles": 25
+  },
+  "map_instance_preserved": true
+}

@@ -1,0 +1,77 @@
+{
+  "method": "Local real Gunicorn master+two sync workers; deterministic synthetic providers; summed RSS double-counts shared pages. No container memory/CPU quotas; not proof of Render behavior. Second phase overrides timeout only for test.",
+  "samples": [
+    {
+      "mode": "resource",
+      "worker_timeout_seconds": 150,
+      "fixture_vertices_per_route": 60000,
+      "idle": {
+        "rss_kib_by_pid": {
+          "26997": 24668,
+          "26998": 42460,
+          "26999": 42152
+        },
+        "sum_rss_kib": 109280
+      },
+      "peak_sum_server_rss_kib": 209936,
+      "health_during_analysis": {
+        "status": 200,
+        "ms": 3.5392139998293715,
+        "bytes": 43,
+        "routes": 0,
+        "code": null
+      },
+      "second_analysis": {
+        "status": 503,
+        "ms": 3.6887550004394143,
+        "bytes": 100,
+        "routes": 0,
+        "code": "SERVICE_BUSY"
+      },
+      "first_analysis": {
+        "status": 200,
+        "ms": 4995.436490999964,
+        "bytes": 7453977,
+        "routes": 3,
+        "code": null
+      },
+      "worker_replaced": false
+    },
+    {
+      "mode": "deadline_test_override",
+      "worker_timeout_seconds": 2,
+      "fixture_vertices_per_route": 100,
+      "idle": {
+        "rss_kib_by_pid": {
+          "27107": 24584,
+          "27108": 42460,
+          "27109": 42188
+        },
+        "sum_rss_kib": 109232
+      },
+      "peak_sum_server_rss_kib": 109588,
+      "health_during_analysis": {
+        "status": 200,
+        "ms": 9.114506000514666,
+        "bytes": 43,
+        "routes": 0,
+        "code": null
+      },
+      "second_analysis": {
+        "status": 503,
+        "ms": 2.1149189997231588,
+        "bytes": 100,
+        "routes": 0,
+        "code": "SERVICE_BUSY"
+      },
+      "first_analysis": {
+        "status": 500,
+        "ms": 2214.963510999951,
+        "bytes": 141,
+        "routes": 0,
+        "code": null
+      },
+      "worker_replaced": true
+    }
+  ]
+}

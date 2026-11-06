@@ -1,0 +1,55 @@
+{
+  "note": "Controlled live HTTP through clean production Gunicorn; before disabling unused control socket. No provider business change.",
+  "live": [
+    {
+      "journey": "Chicago to St. Louis",
+      "status": 200,
+      "elapsed_ms": 18951.71429399943,
+      "bytes": 308460,
+      "error_code": null,
+      "routes": [
+        {
+          "checkpoints": 8,
+          "coverage": 1.0
+        },
+        {
+          "checkpoints": 8,
+          "coverage": 1.0
+        },
+        {
+          "checkpoints": 8,
+          "coverage": 1.0
+        }
+      ]
+    },
+    {
+      "journey": "Dallas to Houston",
+      "status": 200,
+      "elapsed_ms": 14026.027669000541,
+      "bytes": 323690,
+      "error_code": null,
+      "routes": [
+        {
+          "checkpoints": 6,
+          "coverage": 1.0
+        },
+        {
+          "checkpoints": 7,
+          "coverage": 1.0
+        },
+        {
+          "checkpoints": 8,
+          "coverage": 1.0
+        }
+      ]
+    }
+  ],
+  "rss": {
+    "rss_kib_by_pid": {
+      "25581": 26472,
+      "25582": 58120,
+      "25583": 38384
+    },
+    "sum_rss_kib": 122976
+  }
+}
